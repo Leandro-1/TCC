@@ -42,8 +42,8 @@ body {
     justify-content: center;
 }
 .menu-item {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-color: #000;
     color: #fff;
     display: flex;
