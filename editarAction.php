@@ -10,14 +10,16 @@
     <title>Editar Propriedade</title>
 </head>
 <body>
+
+<!-- centralizar -->
 <div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle w3-card">
         <?php
-         $conexao = new mysqli("localhost:3307","root","usbw","conpac");
+         require_once 'conexaoBD.php';
          if ($conexao->connect_error) {
             die("Erro de Conexão". $conexao->connect_error);
          }
 
-         // CCORRIGIR ERRO! NÃO ESTÁ FAZENDO O UPDATE!!!
+        
          $sql = "UPDATE propriedade SET num_propriedade = '" .$_POST['txtNumero'] . "', bloco_quadra='" . $_POST['txtBloco'] . "' WHERE id_propriedade =" . $_POST['txtCodigo'] . ";";
 
 
