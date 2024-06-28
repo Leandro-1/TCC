@@ -34,7 +34,7 @@
                     echo '<td>' . $linha['id_propriedade'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td> <a href="editar.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] .'&bloco=' . $linha['bloco_quadra'] . '">
+                    echo '<td> <a href="editar_propriedade.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] .'&bloco=' . $linha['bloco_quadra'] . '">
                                         <i class="fa fa-pencil-square-o w3-large w3-text-black""></i>
                                     </a></td>
                                 </td>';
