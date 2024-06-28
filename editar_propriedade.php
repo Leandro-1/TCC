@@ -12,7 +12,7 @@
 <body>
 <div class="w3-padding w3-content w3-text-grey w3-third w3-margin w3-display-middle w3-card">
     <h1 class="w3-center w3-black w3-round-large w3-margin">Editar - Código: <?php echo " " . $_GET['id'] ?> </h1>
-    <form action="editar_propriedadeAction.php" class="w3-container" method='post'>
+    <form action="editarAction.php" class="w3-container" method='post'>
         <input name="txtCodigo" class="w3-input w3-grey w3-border" type="hidden" value="<?php echo $_GET['id'] ?>">
         <br>
         <label class="w3-text-black" style="font-weight: bold;">Número</label>
