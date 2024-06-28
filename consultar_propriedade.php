@@ -24,10 +24,7 @@
                 <th>Editar</th>
             </tr>
             <?php
-            $conexao = new mysqli("localhost:3307", "root", "usbw", "conpac");
-            if ($conexao->connect_error) {
-                die("Erro de conexão: " . $conexao->connect_error);
-            }
+           require_once 'conexaoBD.php';
 
             $sql = "SELECT * FROM propriedade";
             $resultado = $conexao->query($sql);
@@ -37,8 +34,7 @@
                     echo '<td>' . $linha['id_propriedade'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td> <a href="editar.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] .
-                        '&bloco=' . $linha['bloco_quadra'] . '">
+                    echo '<td> <a href="editar.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] .'&bloco=' . $linha['bloco_quadra'] . '">
                                         <i class="fa fa-pencil-square-o w3-large w3-text-black""></i>
                                     </a></td>
                                 </td>';
