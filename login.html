@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
-.imgcontainer {
+.logo {
   text-align: center;
   margin: 24px 0 12px 0;
 }
-img.avatar {
+.logoimg {
   width: 40%;
   border-radius: 50%;
 }
@@ -29,17 +33,17 @@ span.psw {
 
 <h2 class="w3-center">Conpac</h2>
 
-<form class="w3-container w3-card-4 w3-light-grey w3-margin" action="/action_page.php" method="post">
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+<form class="w3-container w3-card-4 w3-light-grey w3-margin" action="loginAction.php" method="post">
+  <div class="logo">
+    <img src="" alt="conpac" class="logoimg">
   </div>
 
   <div class="w3-container">
-    <label for="uname"><b>Usuário</b></label>
-    <input class="w3-input w3-border w3-margin-bottom" type="text" name="uname" required>
+    <label for="uname"><b>Login</b></label>
+    <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
 
     <label for="psw"><b>Senha</b></label>
-    <input class="w3-input w3-border w3-margin-bottom" type="password" name="psw" required>
+    <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
         
     <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Login</button>
     <label>
