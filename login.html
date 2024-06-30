@@ -2,60 +2,67 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-.logo {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-.logoimg {
-  width: 40%;
-  border-radius: 50%;
-}
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo {
+      text-align: center;
+      margin: 24px 0 12px 0;
+    }
+
+    .logoimg {
+      width: 40%;
+      border-radius: 50%;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+    @media screen and (max-width: 300px) {
+      span.psw {
+        display: block;
+        float: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <h2 class="w3-center">Conpac</h2>
+  <div class="w3-container w3-card-4 w3-round-xxlarge w3-display-middle w3-third w3-padding">
+    <form action="loginAction.php" method="post">
+      <div class="logo">
+        <!--Imagem temporaria-->
+        <img src="imagens_logo/logo.png" alt="conpac" class="logoimg">
+      </div>
 
-<h2 class="w3-center">Conpac</h2>
-<div class="w3-container w3-card w3-round w3-display-middle w3-third w3-padding">
-<form action="loginAction.php" method="post">
-  <div class="logo">
-    <!--Imagem temporaria-->
-    <img src="imagens_logo/logo.png" alt="conpac" class="logoimg">
+      <div class="w3-container">
+        <label for="uname"><b>Login</b></label>
+        <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
+
+        <label for="psw"><b>Senha</b></label>
+        <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
+
+        <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Login</button>
+        <label>
+          <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
+      </div>
+    </form>
+    <div class="w3-container w3-light-grey w3-padding">
+      <button class="w3-button w3-red" type="button">Limpar</button>
+      <!-- implantar depois <span class="psw">Forgot <a href="#">password?</a></span> -->
+    </div>
+   
   </div>
-
-  <div class="w3-container">
-    <label for="uname"><b>Login</b></label>
-    <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
-
-    <label for="psw"><b>Senha</b></label>
-    <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
-        
-    <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Login</button>
-    <label>
-     <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me
-    </label>  -->
-  </div> </form>
-  <div class="w3-container w3-light-grey w3-padding">
-    <button class="w3-button w3-red" type="button">Limpar</button>
-    <!-- implantar depois <span class="psw">Forgot <a href="#">password?</a></span> -->
-  </div>
-</form>
-</div>
 </body>
+
 </html>
