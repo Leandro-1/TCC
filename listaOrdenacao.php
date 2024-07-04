@@ -1,4 +1,4 @@
-<?php require_once("cabecalho.php"); ?>
+<?php require_once('cabecalho.php'); ?>
 <title>Consultar Propriedade</title>
 </head>
 
@@ -38,8 +38,8 @@
             if ($conexao->connect_error) {
                 die("Connection failed: " . $conexao->connect_error);
             }
-
-            $sql = "SELECT * FROM propriedade order by num_propriedade";
+            $ordem = $_POST['ordenacao'];
+            $sql = "SELECT * FROM propriedade order by $ordem";
             $resultado = $conexao->query($sql);
             if ($resultado != null)
                 foreach ($resultado as $linha) {

@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Cadastrar Propriedades</title>
+<?php require_once('cabecalho.php') ?>
+<?php require_once("verificaacesso_admin.php") ?>
+<title>Cadastrar Propriedades</title>
 </head>
 
 <body>
     <div class="w3-container w3-card w3-round">
-        <h1 class="w3-center"><b>Cadastro de Propriedade</b></h1>
- 
+        <h1 class="w3-center"><b>Cadastrar Propriedade</b></h1>
+
         <form action="cadastro_propriedadeAction.php" method="post">
             <div class="w3-margin-bottom">
                 <label for="codigo">Código</label>
@@ -28,18 +21,14 @@
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
             </div>
-<!-- criar um botão para acessar o menu de consulta-->
+            <!-- criar um botão para acessar o menu de consulta-->
         </form>
-
         <div class=" w3-center">
-
-            
-            <a href="propriedade.html" class="w3-display-top-center">
+            <a href="propriedade.php" class="w3-display-top-center">
                 <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
             </a>
 
-            
-            <a href="menu.html" class="w3-display-top-center">
+            <a href="menu.php" class="w3-display-top-center">
                 <i class="fa fa-home w3-xxlarge w3-button"></i>
             </a>
 
@@ -49,6 +38,4 @@
             </a>
         </div>
     </div>
-</body>
-
-</html>
+<?php require_once('rodape.php'); ?>

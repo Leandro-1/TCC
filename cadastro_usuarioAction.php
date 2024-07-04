@@ -1,5 +1,5 @@
 <?php require_once "cabecalho.php"; ?>
-<title>Cadastro de Propriedade</title>
+<title>Cadastro de Usuário</title>
 </head>
 
 <body>
@@ -16,28 +16,31 @@
         if ($conexao->connect_error) {
             die("Connection failed: " . $conexao->connect_error);
         }
+// dados temporarios, até o front ficar pronto.
 
-
-        if (empty($_POST["numero"]) || empty($_POST["bloco"])) {
+        if (empty($_POST["login"]) || empty($_POST["senha"]) || empty($_POST["nome"]) || empty($_POST["privilegio"])) {
             echo "Por favor, preencha todos os campos!";
             return;
         }
 
-        $sql = "INSERT INTO propriedade (num_propriedade, bloco_quadra) VALUES ('" . $_POST['numero'] . "', '" . $_POST['bloco'] . "')";
+        $sql = "INSERT INTO usuario (login, senha, nome, privilegio) VALUES ('" . $_POST['login'] . "', '" . $_POST['senha'] . "','" . $_POST['nome'] . "', '" . $_POST['privilegio'] . "')";
+       
         if ($conexao->query($sql) === TRUE) {
+
+            // criar e inserir pagina de cadastro de usuario
             echo '
-            <a href="cadastro_propriedade.php">
+            <a href="">
                 <h1 class="w3-button w3-black">Propriedade salva com êxito! </h1>
             </a>
             ';
         } else {
             echo '
-            <a href="cadastro_propriedade.php">
-                <h1 class="w3-button w3-black">ERRO! </h1>
+            <a href="">
+                <h1 class="w3-button w3-black">ERRO... Tente Novamente! </h1>
             </a>
             ';
         }
         $conexao->close();
         ?>
     </div>
-<?php require_once('rodape.php'); ?>
+    <?php require_once('rodape.php'); ?>

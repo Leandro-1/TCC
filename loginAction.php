@@ -8,43 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Login</title>
 </head>
+
 <body>
 
-<div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
-<?php
-$login = $_POST['login'];
-$senha = $_POST['senha'];
+    <div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
+        <?php
+        session_start();
 
-require_once 'conexaoBD.php';
+        $login = $_POST['login'];
+        $senha = $_POST['senha'];
 
-if ($conexao->connect_error) {
-    die("Connection failed: " . $conexao->connect_error);
-}
+        require_once 'conexaoBD.php';
 
-$sql = "SELECT * FROM usuario WHERE login = '$login';";
-$resultado = $conexao->query($sql);
+        $sql = "SELECT * FROM usuario WHERE login = '$login';";
+        $resultado = $conexao->query($sql);
 
-$linha = mysqli_fetch_array($resultado);
+        $linha = mysqli_fetch_array($resultado);
 
-if ($linha && $linha['senha'] == $senha) {
-    $bemVindoMensagem = $linha['nome'] . ', Seja Bem-Vindo!';
-    if ($linha['privilegio'] == 'administrador') {
-        $link = 'menu.html';
-    } elseif ($linha['privilegio'] == 'operador') {
-        $link = '#';
-    } else {
-        $link = 'index.php';
-        $bemVindoMensagem = 'Login Inválido!';
-    }
-} else {
-    $link = 'index.php';
-    $bemVindoMensagem = 'Login Inválido!';
-}
+        if ($linha && $linha['senha'] == $senha) {
+            $_SESSION['logado'] = true;
+            $_SESSION['nome'] = $linha['nome'];
+            $_SESSION['privilegio'] = $linha['privilegio'];
+            $bemVindoMensagem = $linha['nome'] . ', Seja Bem-Vindo!';
+            $link = 'menu.php';
+        } else {
+            $link = 'login.html';
+            $bemVindoMensagem = 'Login Inválido!';
+        }
 
-echo "<a href=\"$link\"><h1 class=\"w3-button w3-black\">$bemVindoMensagem</h1></a>";
+        echo "<a href=\"$link\"><h1 class=\"w3-button w3-black\">$bemVindoMensagem</h1></a>";
 
-$conexao->close();
-?>
-</div>
+        $conexao->close();
+        ?>
+    </div>
 </body>
+
 </html>
