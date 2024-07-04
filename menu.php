@@ -1,3 +1,4 @@
+<?php require_once("verificaacesso_todos.php"); ?>
 <?php require_once("cabecalho.php"); ?>
 <title>Menu</title>
 </head>

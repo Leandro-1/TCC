@@ -13,6 +13,8 @@
 
     <div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
         <?php
+        session_start();
+
         $login = $_POST['login'];
         $senha = $_POST['senha'];
 
@@ -24,17 +26,13 @@
         $linha = mysqli_fetch_array($resultado);
 
         if ($linha && $linha['senha'] == $senha) {
+            $_SESSION['logado'] = true;
+            $_SESSION['nome'] = $linha['nome'];
+            $_SESSION['privilegio'] = $linha['privilegio'];
             $bemVindoMensagem = $linha['nome'] . ', Seja Bem-Vindo!';
-            if ($linha['privilegio'] == 'administrador') {
-                $link = 'menu.php';
-            } elseif ($linha['privilegio'] == 'operador') {
-                $link = '#';
-            } else {
-                $link = 'index.php';
-                $bemVindoMensagem = 'Login Inválido!';
-            }
+            $link = 'menu.php';
         } else {
-            $link = 'index.php';
+            $link = 'login.html';
             $bemVindoMensagem = 'Login Inválido!';
         }
 

@@ -1,6 +1,6 @@
 <!-- criar a pagina de "verificarAcesso.php"
-<?php require_once('verificarAcesso.php'); ?> 
+<?php require_once('verificaacesso_todos.php'); ?> 
 <?php
 unset($_SESSION['logado']);
-header("location:index.php");
+header("location:login.html");
 ?>
