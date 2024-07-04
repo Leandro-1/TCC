@@ -1,5 +1,5 @@
-<?php require_once("cabecalho.php"); ?>
-
+<?php require_once("cabecalho.php") ?>
+<?php require_once("verificaacesso_todos.php") ?>
 <title>Propriedade</title>
 </head>
 
