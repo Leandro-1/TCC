@@ -13,15 +13,16 @@
                 <input class="w3-input w3-border w3-light-grey" type="text" name="codigo" disabled>
                 <br>
                 <label for="numero">Número</label>
-                <input class="w3-input w3-border" type="number" name="numero">
+                <input class="w3-input w3-border" type="number" name="numero" required>
                 <br>
                 <label for="bloco">Bloco ou Quadra</label>
-                <input class="w3-input w3-border" type="text" name="bloco">
+                <input class="w3-input w3-border" type="text" name="bloco" required>
                 <br>
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
             </div>
             <!-- criar um botão para acessar o menu de consulta-->
+       
         </form>
         <div class=" w3-center">
             <a href="propriedade.php" class="w3-display-top-center">

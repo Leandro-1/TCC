@@ -10,7 +10,7 @@
             <i class="fas fa-arrow-circle-left w3-xxlarge"></i>
         </a>
         <!--Criar pagina de cadastro de usuário -->
-        <a href="" class="menu-item">
+        <a href="cadastro_usuario.php" class="menu-item">
             <span>Cadastrar Usuário</span><br>
             <i class="fas fa-edit w3-xxlarge"></i>
         </a>

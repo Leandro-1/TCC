@@ -91,6 +91,13 @@ body {
         font-size: 12px;
     }
 }
+/** pag cadastro de usuario **/
+
+#slc-usuario {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;}
 ul {
     list-style-type: none;
     margin: 0;
