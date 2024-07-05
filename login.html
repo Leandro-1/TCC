@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+
     }
 
     .logo {
@@ -33,36 +34,102 @@
         float: none;
       }
     }
+
+    footer {
+      background-color: rgb(24, 23, 23);
+      color: white;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin: auto auto;
+      padding: 10px 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      width: 100%;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #04AA6D;
+    }
   </style>
 </head>
 
 <body>
-  <h2 class="w3-center">Conpac</h2>
-  <div class="w3-container w3-card-4 w3-round-xxlarge w3-display-middle w3-third w3-padding">
-    <form action="loginAction.php" method="post">
-      <div class="logo">
-        <!--Imagem temporaria-->
-        <img src="imagens_logo/logo.png" alt="conpac" class="logoimg">
-      </div>
 
-      <div class="w3-container">
-        <label for="uname"><b>Login</b></label>
-        <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
+  <header class=" w3-center w3-padding w3-text-white" style="background-color: rgb(24, 23, 23);">
+    <img src="imagens_logo/logo.png" width="5%">
+    <h1>CONPAC</h1>
+    <p>Gerenciamento de Entregas para Condomínios</p>
+  </header>
+  <!--Criar paginas conteudos dentro da mesma pagina.-->
+  <ul>
+    <li><a class="active" href="#home">Incio</a></li>
+    <!--"novidades é mais uma opção para colocarmos algo no lugar"-->
+    <li><a href="#news">Novidades</a></li>
+    <li><a href="#contact">Contato</a></li>
+    <li><a href="#about">Sobre</a></li>
+    <li style="float: right;"><a href="#cadastrar" >Cadastrar</a></li>
+  </ul>
+  <main>
+    <div class="w3-container w3-card w3-round-xxlarge w3-display-right w3-third w3-padding" style="margin: 128px;">
+      <form action="loginAction.php" method="post">
+        <div class="logo">
+          <!--Imagem temporaria-->
+          <img src="imagens_logo/logo.png" alt="conpac" class="logoimg">
+        </div>
 
-        <label for="psw"><b>Senha</b></label>
-        <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
+        <div class="w3-container">
+          <label for="uname"><b>Login</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
 
-        <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Login</button>
-        <label>
-          <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
-      </div>
-    </form>
-    <div class="w3-container w3-light-grey w3-padding">
-      <button class="w3-button w3-red" type="button">Limpar</button>
-      <!-- implantar depois <span class="psw">Forgot <a href="#">password?</a></span> -->
+          <label for="psw"><b>Senha</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
+
+          <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Entrar</button>
+          <label>
+            <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
+        </div>
+        <a href="" class="w3-text-blue w3-padding">Esqueceu sua senha?</a>
+      </form>
+      <!--Criar pagina de alterar senha, mandando email para pessoa-->
+
     </div>
-   
-  </div>
+    <div class="slides w3-container w3-card-4 w3-round-xxlarge  w3-half w3-padding w3-center"
+      style="float: left; margin: 64px;">
+      <h1>Seja Bem-Vindo!</h1>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab quae, modi inventore doloribus dolorem officia
+        quam maxime enim alias animi, officiis fugiat aliquam hic. Obcaecati qui repudiandae saepe voluptatum
+        consectetur!</p>
+
+    </div>
+  </main>
+
 </body>
+<footer class="w3-footer w3-padding w3-black w3-center">
+  Suporte:
+  contato@conpac.com.br
+</footer>
 
 </html>
