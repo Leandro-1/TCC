@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- passar estilização para o doc style.css-->
+  <!-- passar estilização para o doc style.css-->
   <style>
-  
     body {
       font-family: Arial, Helvetica, sans-serif;
       margin: 0;
@@ -37,14 +36,16 @@
       }
     }
 
-    footer {
+    .footer {
+
       background-color: rgb(24, 23, 23);
       color: white;
-      position: absolute;
       bottom: 0;
       width: 100%;
-      margin: auto auto;
       padding: 10px 5px;
+      text-align: center;
+      left: 0;
+      right: 0;
     }
 
     ul {
@@ -54,6 +55,8 @@
       overflow: hidden;
       background-color: #333;
       width: 100%;
+
+
     }
 
     li {
@@ -73,29 +76,31 @@
     }
 
     .active {
-      background-color: #04AA6D;
+      background-color: #000000;
     }
   </style>
 </head>
 
 <body>
+  <div class="" style="position: fixed; width: 100%;">
+    <header class=" w3-center w3-padding w3-text-white" style="background-color: rgb(24, 23, 23);">
+      <h1><img src="imagens_logo/logo.png" width="5%">
+        CONPAC</h1>
+      <h5>Gerenciamento de Entregas para Condomínios</h5>
+    </header>
+    <!--Criar paginas conteudos dentro da mesma pagina.-->
+    <ul>
+      <li><a class="active w3-margin-left" href="#home">Incio</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li class="w3-blue w3-margin-right" style="float: right;"><a href="#cadastrar">Cadastrar</a></li>
+    </ul>
+  </div>
+  <!--Conteudo de INICIO-->
 
-  <header class=" w3-center w3-padding w3-text-white" style="background-color: rgb(24, 23, 23);">
-    <img src="imagens_logo/logo.png" width="5%">
-    <h1>CONPAC</h1>
-    <p>Gerenciamento de Entregas para Condomínios</p>
-  </header>
-  <!--Criar paginas conteudos dentro da mesma pagina.-->
-  <ul>
-    <li><a class="active" href="#home">Incio</a></li>
-    <!--"novidades é mais uma opção para colocarmos algo no lugar"-->
-    <li><a href="#news">Novidades</a></li>
-    <li><a href="#contact">Contato</a></li>
-    <li><a href="#about">Sobre</a></li>
-    <li style="float: right;"><a href="#cadastrar" >Cadastrar</a></li>
-  </ul>
-  <main>
-    <div class="w3-container w3-card w3-round-xxlarge w3-display-right w3-third w3-padding" style="margin: 128px;">
+  <div class="w3-container w3-cell-row w3-mobile">
+    <div class="w3-container w3-cell w3-content w3-card w3-round-xxlarge w3-display-right w3-quarter w3-padding"
+      style="margin: 90px;">
       <form action="loginAction.php" method="post">
         <div class="logo">
           <!--Imagem temporaria-->
@@ -113,25 +118,81 @@
           <label>
             <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
         </div>
+        <!--Criar pagina de alterar senha, mandando email para pessoa-->
         <a href="" class="w3-text-blue w3-padding">Esqueceu sua senha?</a>
       </form>
-      <!--Criar pagina de alterar senha, mandando email para pessoa-->
-
     </div>
-    <div class="slides w3-container w3-card-4 w3-round-xxlarge  w3-half w3-padding w3-center"
-      style="float: left; margin: 64px;">
+
+    <div class="w3-container w3-cell w3-content w3-container w3-card-4 w3-round-xxlarge w3-padding w3-center w3-half"
+      style="float: left; margin-top: 250px; margin-left: 128px;">
       <h1>Seja Bem-Vindo!</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab quae, modi inventore doloribus dolorem officia
         quam maxime enim alias animi, officiis fugiat aliquam hic. Obcaecati qui repudiandae saepe voluptatum
         consectetur!</p>
-
     </div>
-  </main>
+  </div><br><br>
+  <!--Conteudo do SOBRE-->
+  <div class="w3-container w3-content" id="sobre" style="margin-top: 300px;">
+    <h2>Sobre Conpac</h2>
+    <hr style="width: 200px;">
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+      Placeat, molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+      Placeat,
+      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+      Placeat,
+      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+      Placeat,
+      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+  </div>
+  <!--Contato-->
+  <div class="w3-content w3-container" id="contato" style="margin-top: 100px;">
+    <h2>Contato</h2>
+    <hr style="width:110px">
+
+    <div class="w3-section">
+      <p>
+        <i class="fa fa-map-marker fa-fw  w3-xlarge w3-margin-right"></i> São Paulo, Brasil
+      </p>
+      <p>
+        <i class="fa fa-phone fa-fw  w3-xlarge w3-margin-right"></i> Telefone: 11 3333-3333
+      </p>
+      <p>
+        <i class="fa fa-envelope fa-fw  w3-xlarge w3-margin-right"> </i> Email: contato@conpac.com.br
+      </p>
+    </div>
+    <div>
+      <p>Entre em contato:</p>
+      <form class="w3-content w3-container w3-black w3-round-xxlarge w3-card-4 w3-half w3-padding-16">
+        <p>
+          <input class="w3-input w3-padding-16" type="text" placeholder="Nome" required name="Nome">
+        </p>
+        <p>
+          <input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email">
+        </p>
+        <p>
+          <input class="w3-input w3-padding-16" type="text" placeholder="Assunto" required name="Assunto">
+        </p>
+        <p>
+          <input class="w3-input w3-padding-16" placeholder="Menssagem" required name="Mensagem">
+        </p><br>
+
+        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+          <i class="fa fa-paper-plane"></i> Enviar mensagem
+        </button>
+      </form>
+    </div>
+  </div><br><br><br>
+
+
 
 </body>
-<footer class="w3-footer w3-padding w3-black w3-center">
-  Suporte:
-  contato@conpac.com.br
-</footer>
+
+<div class="footer">
+  <p>Suporte: contato@conpac.com.br</p>
+</div>
 
 </html>
