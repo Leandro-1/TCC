@@ -5,6 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 .w3-container {
     background-color: white;
@@ -125,4 +126,15 @@ li a:hover:not(.active) {
 
 .active {
     background-color: #04AA6D;
+}
+.footer {
+
+    background-color: rgb(24, 23, 23);
+    color: white;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 5px;
+    text-align: center;
+    left: 0;
+    right: 0;
 }
