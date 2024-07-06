@@ -1,5 +1,5 @@
 <?php require_once('cabecalho.php') ?>
-<?php require_once("verificaacesso_admin.php") ?>
+<!--<?php require_once("verificaacesso_admin.php") ?>-->
 <style>
     .slc-usuario {
         width: 100%;
@@ -14,7 +14,7 @@
 <body>
     <div class="w3-container w3-card w3-round w3-padding">
         <h2 class="w3-center"><b>Cadastrar Usuários</b></h2>
-<br>
+        <br>
         <form action="cadastro_usuarioAction.php" method="post">
             <div class="w3-margin-bottom">
                 <label for="codigo">Código</label>
@@ -43,7 +43,7 @@
         </form>
 
         <div class="w3-center">
-            <a href="propriedade.php" class="w3-display-top-center">
+            <a href="usuario.php" class="w3-display-top-center">
                 <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
             </a>
 
@@ -58,4 +58,3 @@
         </div>
     </div>
     <?php require_once('rodape.php'); ?>
-
