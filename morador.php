@@ -1,9 +1,8 @@
+<?php require_once("verificaacesso_admin.php") ?>
 <?php require_once("cabecalho.php"); ?>
 
-<title>Morador</title>
-</head>
 
-<body class="menu-body">
+<div class="menu-body">
     <div class="menu-container">
         <a href="menu.php" class="menu-item w3-red">
             <span>Voltar Menu Principal</span><br>
@@ -20,5 +19,6 @@
             <i class="fas fa-search w3-xxlarge"></i>
         </a>
     </div>
+</div>
 
 <?php require_once("rodape.php"); ?>

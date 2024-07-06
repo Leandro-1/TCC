@@ -1,10 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
 }
 .w3-container {
@@ -35,12 +31,14 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    
 }
 .menu-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    
 }
 .menu-item {
     width: 150px;
@@ -92,49 +90,19 @@ body {
         font-size: 12px;
     }
 }
+.formulario {
+    
+            padding-top: 255px;
+   
+        
+}
 /** pag cadastro de usuario **/
 
 #slc-usuario {
     width: 100%;
     padding: 8px;
     border-radius: 4px;
-    border: 1px solid #ccc;}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    width: 100%;
+    border: 1px solid #ccc;
 }
 
-li {
-    float: left;
-}
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.active {
-    background-color: #04AA6D;
-}
-.footer {
-
-    background-color: rgb(24, 23, 23);
-    color: white;
-    bottom: 0;
-    width: 100%;
-    padding: 10px 5px;
-    text-align: center;
-    left: 0;
-    right: 0;
-}
