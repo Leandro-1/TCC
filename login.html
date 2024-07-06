@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>CONPAC</title>
   <!-- passar estilização para o doc style.css-->
   <style>
     body {
@@ -88,19 +89,19 @@
         CONPAC</h1>
       <h5>Gerenciamento de Entregas para Condomínios</h5>
     </header>
-    <!--Criar paginas conteudos dentro da mesma pagina.-->
+
     <ul>
-      <li><a class="active w3-margin-left" href="#home">Incio</a></li>
+      <li><a class="active" href="#home">Incio</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#contato">Contato</a></li>
-      <li class="w3-blue w3-margin-right" style="float: right;"><a href="#cadastrar">Cadastrar</a></li>
+      <li class="w3-blue" style="float: right;"><a href="#cadastrar">Cadastrar</a></li>
     </ul>
   </div>
-  <!--Conteudo de INICIO-->
 
-  <div class="w3-container w3-cell-row w3-mobile">
-    <div class="w3-container w3-cell w3-content w3-card w3-round-xxlarge w3-display-right w3-quarter w3-padding"
-      style="margin: 90px;">
+  <!--Conteudo de INICIO-->
+  <div class="w3-row w3-container w3-mobile" id="home">
+    <div class="w3-col w3-container  w3-content w3-card w3-round-xxlarge w3-display-right w3-quarter w3-padding"
+      style="margin: 90px; margin-right: 128px;">
       <form action="loginAction.php" method="post">
         <div class="logo">
           <!--Imagem temporaria-->
@@ -122,70 +123,108 @@
         <a href="" class="w3-text-blue w3-padding">Esqueceu sua senha?</a>
       </form>
     </div>
+    <!--Slides promover o sistema-->
+    <div class=" w3-col w3-card-4 w3-center "
+      style="float: left; margin-top: 250px; margin-left: 300px; max-width: 450px; ">
+      <div class="w3-content w3-display-container">
 
-    <div class="w3-container w3-cell w3-content w3-container w3-card-4 w3-round-xxlarge w3-padding w3-center w3-half"
-      style="float: left; margin-top: 250px; margin-left: 128px;">
-      <h1>Seja Bem-Vindo!</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab quae, modi inventore doloribus dolorem officia
-        quam maxime enim alias animi, officiis fugiat aliquam hic. Obcaecati qui repudiandae saepe voluptatum
-        consectetur!</p>
+        <div class="mySlides">
+          <img src="imagens_logo/geren_conpac.jpg" style="width:100%;">
+          <div class="w3-display-bottom">
+            Agora ficou mais fácil organizar e redirecionar os pacotes recebidos na portaria!
+          </div>
+        </div>
+
+        <div class="mySlides">
+          <img src="imagens_logo/msg_morador.jpg" style="width:100%;">
+          <div class="w3-display-bottom">
+            Envie avisos automaticamente para os moradores informando que seu pacote está na portaria!
+          </div>
+        </div>
+
+        <div class="mySlides">
+          <img src="imagens_logo/conpac.jpg" style="width:100%;">
+          <div class="w3-display-bottom">
+            Chega de papelada! Modernize seu Condomínio e evite dores de cabeça!
+          </div>
+
+        </div>
+      </div>
+      <!--slides automaticos-->
+      <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > x.length) { slideIndex = 1 }
+          x[slideIndex - 1].style.display = "block";
+          setTimeout(carousel, 3000);
+        }
+      </script>
+    </div><br><br>
+
+    <!--Conteudo do SOBRE-->
+    <div class="w3-container w3-content" id="sobre" style="margin-top: 900px;">
+      <h2>Sobre Conpac</h2>
+      <hr style="width: 200px;">
+
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+        Placeat, molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+        Placeat,
+        molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+        Placeat,
+        molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
+        Placeat,
+        molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
     </div>
-  </div><br><br>
-  <!--Conteudo do SOBRE-->
-  <div class="w3-container w3-content" id="sobre" style="margin-top: 300px;">
-    <h2>Sobre Conpac</h2>
-    <hr style="width: 200px;">
 
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
-      Placeat, molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
-      Placeat,
-      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
-      Placeat,
-      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea deleniti in commodi a et eaque itaque ipsam.
-      Placeat,
-      molestiae. Quis adipisci assumenda suscipit. Debitis modi possimus ipsa eaque nam dolorum.</p>
-  </div>
-  <!--Contato-->
-  <div class="w3-content w3-container" id="contato" style="margin-top: 100px;">
-    <h2>Contato</h2>
-    <hr style="width:110px">
+    <!--Contato-->
+    <div class="w3-content w3-container" id="contato" style="margin-top: 100px;">
+      <h2>Contato</h2>
+      <hr style="width:110px">
 
-    <div class="w3-section">
-      <p>
-        <i class="fa fa-map-marker fa-fw  w3-xlarge w3-margin-right"></i> São Paulo, Brasil
-      </p>
-      <p>
-        <i class="fa fa-phone fa-fw  w3-xlarge w3-margin-right"></i> Telefone: 11 3333-3333
-      </p>
-      <p>
-        <i class="fa fa-envelope fa-fw  w3-xlarge w3-margin-right"> </i> Email: contato@conpac.com.br
-      </p>
-    </div>
-    <div>
-      <p>Entre em contato:</p>
-      <form class="w3-content w3-container w3-black w3-round-xxlarge w3-card-4 w3-half w3-padding-16">
+      <div class="w3-section">
         <p>
-          <input class="w3-input w3-padding-16" type="text" placeholder="Nome" required name="Nome">
+          <i class="fa fa-map-marker fa-fw  w3-xlarge w3-margin-right"></i> São Paulo, Brasil
         </p>
         <p>
-          <input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email">
+          <i class="fa fa-phone fa-fw  w3-xlarge w3-margin-right"></i> Telefone: 11 3333-3333
         </p>
         <p>
-          <input class="w3-input w3-padding-16" type="text" placeholder="Assunto" required name="Assunto">
+          <i class="fa fa-envelope fa-fw  w3-xlarge w3-margin-right"> </i> Email: contato@conpac.com.br
         </p>
-        <p>
-          <input class="w3-input w3-padding-16" placeholder="Menssagem" required name="Mensagem">
-        </p><br>
+      </div>
+      <div>
+        <p>Entre em contato:</p>
+        <form class="w3-content w3-container w3-black w3-round-xxlarge w3-card-4 w3-half w3-padding-16">
+          <p>
+            <input class="w3-input w3-padding-16" type="text" placeholder="Nome" required name="Nome">
+          </p>
+          <p>
+            <input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email">
+          </p>
+          <p>
+            <input class="w3-input w3-padding-16" type="text" placeholder="Assunto" required name="Assunto">
+          </p>
+          <p>
+            <input class="w3-input w3-padding-16" placeholder="Menssagem" required name="Mensagem">
+          </p><br>
 
-        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
-          <i class="fa fa-paper-plane"></i> Enviar mensagem
-        </button>
-      </form>
-    </div>
-  </div><br><br><br>
+          <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+            <i class="fa fa-paper-plane"></i> Enviar mensagem
+          </button>
+        </form>
+      </div>
+    </div><br><br><br>
 
 
 
