@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="reset.css">
+    <!--<link rel="stylesheet" href="reset.css">-->
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="imagens_logo/logo.png">
     <title>CONPAC</title>
@@ -46,9 +46,9 @@
 <body>
     <div class="cabecalho" style="position: fixed; width: 100%; margin-top:0%;">
         <header class=" w3-center w3-padding-16 w3-text-white" style="background-color: rgb(24, 23, 23);">
-            <h1><img src="imagens_logo/logo.png" width="5%">
+            <h1 class="w3-xxlarge"><img src="imagens_logo/logo.png" width="5%">
                 CONPAC</h1>
-            <h5>Gerenciamento de Entregas para Condomínios</h5>
+            <h6>Gerenciamento de Entregas para Condomínios</h6>
         </header>
 
         <ul>

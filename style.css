@@ -3,6 +3,7 @@ body {
     background-color: #f0f0f0;
     margin: 0;
 }
+
 .w3-container {
     background-color: white;
     padding: 20px;
@@ -10,6 +11,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
 }
+
 .w3-btn {
     width: 100%;
     padding: 10px;
@@ -19,11 +21,12 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .w3-btn:hover {
     background-color: #009f8c;
 }
 
-.menu-body{
+.menu-body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     display: flex;
@@ -31,15 +34,17 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    
+
 }
+
 .menu-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    
+
 }
+
 .menu-item {
     width: 150px;
     height: 150px;
@@ -52,50 +57,62 @@ body {
     border-radius: 8px;
     text-align: center;
     transition: background-color 0.3s ease;
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none;
+    /* Remove underline from links */
 }
+
 .menu-item:hover {
     background-color: #333;
 }
+
 .menu-item i {
     font-size: 24px;
     margin-bottom: 10px;
 }
+
 .menu-item span {
     font-size: 16px;
 }
+
 @media (max-width: 600px) {
     .menu-item {
         width: 80px;
         height: 80px;
     }
+
     .menu-item i {
         font-size: 20px;
         margin-bottom: 8px;
     }
+
     .menu-item span {
         font-size: 14px;
     }
 }
+
 @media (max-width: 400px) {
     .menu-item {
         width: 70px;
         height: 70px;
     }
+
     .menu-item i {
         font-size: 18px;
         margin-bottom: 6px;
     }
+
     .menu-item span {
         font-size: 12px;
     }
 }
+
 .formulario {
-    
-            padding-top: 255px;
-   
-        
+
+    padding-top: 225px;
+
+
 }
+
 /** pag cadastro de usuario **/
 
 #slc-usuario {
@@ -104,5 +121,3 @@ body {
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-
-
