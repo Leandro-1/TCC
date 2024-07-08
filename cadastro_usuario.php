@@ -31,7 +31,13 @@
             <select class="slc-usuario" name="privilegio">
                 <option value="administrador">Administrador</option>
                 <option value="operador">Operador</option>
-                <option value="operador" selected>Morador</option>
+                <option value="morador" selected>Morador</option>
+            </select>
+
+            <label for="propriedade">Propriedade</label>
+            <select class="slc-usuario" name="propriedade">
+                <option value="administrador">Administrador</option>
+              
             </select>
             <br><br>
             <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
