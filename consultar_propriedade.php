@@ -1,3 +1,4 @@
+<?php require_once("verificaacesso_todos.php") ?>
 <?php require_once("cabecalho.php"); ?>
 <title>Consultar Propriedade</title>
 </head>
@@ -27,18 +28,9 @@
                 <th>Editar</th>
             </tr>
             <?php
-            // require_once 'conexaoBD.php';
+            require_once 'conexaoBD.php';
 
-            //BD temporario teste Jéssie
-            $servername = "localhost:3307";
-            $username = "root";
-            $password = "usbw";
-            $dbname = "conpac";
-            $conexao = new mysqli($servername, $username, $password, $dbname);
-            if ($conexao->connect_error) {
-                die("Connection failed: " . $conexao->connect_error);
-            }
-
+            
             $sql = "SELECT * FROM propriedade order by num_propriedade";
             $resultado = $conexao->query($sql);
             if ($resultado != null)
