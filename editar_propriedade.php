@@ -1,3 +1,4 @@
+<?php require_once("verificaacesso_admin.php") ?>
 <?php require_once("cabecalho.php"); ?>
 <title>Editar Propriedade</title>
 </head>
