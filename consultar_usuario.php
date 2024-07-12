@@ -41,7 +41,7 @@ require_once("cabecalho.php");
                     echo '<td>' . htmlspecialchars($linha['id_user'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                    echo '<td><a href="editar_usuario.php?id=' . urlencode($linha['id_user']) . '&nome=' . urlencode($linha['nome']) . '&privilegio=' . urlencode($linha['privilegio']) . '">
+                    echo '<td><a href="editar_usuario.php?id_user=' . urlencode($linha['id_user']) . '&nome=' . urlencode($linha['nome']) . '&privilegio=' . urlencode($linha['privilegio']) . '">
                             <i class="fa fa-pen-to-square w3-large w3-text-black"></i>
                           </a></td>';
                     echo '</tr>';
@@ -57,5 +57,3 @@ require_once("cabecalho.php");
 </div>
 
 <?php require_once('rodape.php'); ?>
-</body>
-</html>
