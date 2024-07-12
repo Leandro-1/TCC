@@ -19,7 +19,7 @@
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
             </div>
-            <!-- criar um botão para acessar o menu de consulta-->
+            
         </form>
         <div class=" w3-center">
             <a href="propriedade.php" class="w3-display-top-center">
