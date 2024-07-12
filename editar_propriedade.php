@@ -4,7 +4,7 @@
     <div class="w3-container w3-content w3-card w3-round">
         <h2 class="w3-center"><b>Editar Propriedade</b></h2>
         <form action="editar_propriedadeAction.php" method='post'>
-            <input name="txtCodigo" class="w3-input w3-grey w3-border" type="" value="<?php echo $_GET['id'] ?>">
+            <input name="txtCodigo" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['id'] ?>">
             <br>
             <label class="w3-text-black" style="font-weight: bold;">Número</label>
             <input name="txtNumero" class="w3-input w3-light-grey w3-border" value="<?php echo $_GET['numero'] ?>">

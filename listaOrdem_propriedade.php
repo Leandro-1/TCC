@@ -2,7 +2,7 @@
 <?php require_once('cabecalho.php'); ?>
 
     <div class="w3-padding w3-content w3-half w3-display-middle w3-margin w3-card" style="overflow-y:auto;">
-        <form action="listaOrdenacao.php" method="post">
+        <form action="listaOrdem_propriedade.php" method="post">
             <label for="ordenacao"><b>Ordem:</b></label>
             <select name="ordenacao">
                 <option value="null"></option>
@@ -36,7 +36,7 @@
                     echo '<td>' . $linha['id_propriedade'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td> <a href="editar_propriedade.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
+                    echo '<td> <a href="editar_morador.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
                                         <i class="fa fa-pen-to-square w3-large w3-text-black""></i>
                                     </a></td>
                                 </td>';

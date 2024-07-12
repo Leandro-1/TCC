@@ -2,7 +2,7 @@
 <?php require_once("cabecalho.php"); ?>
 <div class="formulario">
     <div class="w3-padding w3-content w3-half w3-display-middle w3-margin w3-card">
-        <form action="listaOrdenacao.php" method="post">
+        <form action="listaOrdem_propriedade.php" method="post">
             <label for="ordenacao"><b>Ordem:</b></label>
             <select name="ordenacao">
                 <option value="num_propriedade" select>Número</option>

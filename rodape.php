@@ -1,6 +1,6 @@
 <style>
     .footer {
-        position: absolute;
+        position: relative;
         background-color: rgb(24, 23, 23);
         color: white;
         bottom: 0;
