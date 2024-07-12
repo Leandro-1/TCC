@@ -11,7 +11,6 @@
         if ($conexao->connect_error) {
             die("Connection failed: " . $conexao->connect_error);
         }
-// dados temporarios, até o front ficar pronto.
 
         if (empty($_POST["login"]) || empty($_POST["senha"]) || empty($_POST["nome"]) || empty($_POST["privilegio"])) {
             echo "Por favor, preencha todos os campos!";

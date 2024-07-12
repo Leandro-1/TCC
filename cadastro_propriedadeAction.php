@@ -1,3 +1,4 @@
+<?php require_once("verificaacesso_admin.php") ?>
 <?php require_once "cabecalho.php"; ?>
 <title>Cadastro de Propriedade</title>
 </head>
@@ -5,17 +6,8 @@
 <body>
     <div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
         <?php
-        //require_once 'conexaoBD.php';
+        require_once 'conexaoBD.php';
 
-        //BD temporario teste Jéssie
-        $servername = "localhost:3307";
-        $username = "root";
-        $password = "usbw";
-        $dbname = "conpac";
-        $conexao = new mysqli($servername, $username, $password, $dbname);
-        if ($conexao->connect_error) {
-            die("Connection failed: " . $conexao->connect_error);
-        }
 
 
         if (empty($_POST["numero"]) || empty($_POST["bloco"])) {
