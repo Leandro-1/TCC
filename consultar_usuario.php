@@ -20,7 +20,7 @@ require_once("cabecalho.php");
 
     <table class="w3-table-all w3-centered">
         <caption>
-            <h1 class="w3-center w3-black w3-round-large">Propriedades</h1>
+            <h1 class="w3-center w3-black w3-round-large">Usuários</h1>
         </caption>
         <tr class="w3-center w3-black">
             <th>Código</th>
