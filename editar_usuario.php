@@ -21,6 +21,12 @@
             <label class="w3-text-black" style="font-weight: bold;">Confirme a senha</label>
             <input name="confirma_senha" class="w3-input w3-light-grey w3-border" type="password" value="">
             <br>
+            <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
+            <select class="slc-usuario" name="privilegio">
+                <option value="administrador" <?php echo ($_GET['privilegio'] == 'administrador') ? 'selected' : ''; ?>>Administrador</option>
+                <option value="operador" <?php echo ($_GET['privilegio'] == 'operador') ? 'selected' : ''; ?>>Operador</option>
+            </select>
+            <br><br>
             <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
         </form><br>
         <div class="w3-center">
