@@ -27,17 +27,9 @@
                 <th>Editar</th>
             </tr>
             <?php
-            // require_once 'conexaoBD.php';
+            require_once 'conexaoBD.php';
 
-            //BD temporario teste Jéssie
-            $servername = "localhost:3307";
-            $username = "root";
-            $password = "usbw";
-            $dbname = "conpac";
-            $conexao = new mysqli($servername, $username, $password, $dbname);
-            if ($conexao->connect_error) {
-                die("Connection failed: " . $conexao->connect_error);
-            }
+           
             $ordem = $_POST['ordenacao'];
             $sql = "SELECT * FROM propriedade order by $ordem";
             $resultado = $conexao->query($sql);
