@@ -10,18 +10,16 @@
             <input name="id_user" class="w3-input w3-grey w3-border" type="hidden" value="<?php echo $_GET['id_user']; ?>">
             <br>
             <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-            <input name="nome" class="w3-input w3-light-grey w3-border" value="<?php echo $_GET['nome']; ?>">
+            <input name="nome" class="w3-input  w3-border" value="<?php echo $_GET['nome']; ?>">
             <br>
             <label class="w3-text-black" style="font-weight: bold;">Login</label>
-            <input name="login" class="w3-input w3-light-grey w3-border" value="<?php echo $_GET['login']; ?>">
-            <br>
-            <label class="w3-text-black" style="font-weight: bold;">Senha</label>
-            <input name="senha" class="w3-input w3-light-grey w3-border" value="">
+            <input name="login" class="w3-input  w3-border" value="<?php echo $_GET['login']; ?>">
             <br>
             <label class="w3-text-black" style="font-weight: bold;">Privilégio</label>
-            <select name="privilegio" class="w3-input w3-light-grey w3-border">
+            <select name="privilegio" class="w3-input  w3-border">
                 <option value="administrador" <?php if ($_GET['privilegio'] == 'administrador') echo 'selected'; ?>>Administrador</option>
                 <option value="operador" <?php if ($_GET['privilegio'] == 'operador') echo 'selected'; ?>>Operador</option>
+                <option value="morador" <?php if ($_GET['privilegio'] == 'morador') echo 'selected'; ?>>Morador</option>
             </select>
             <br>
             <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
@@ -29,10 +27,11 @@
         <br>
         <div class="w3-center">
             <a href="consultar_usuario.php" class="w3-button w3-black">
-                <i class="fa fa-arrow-circle-left w3-xxlarge"></i> Voltar
+                <i class="fa fa-arrow-circle-left w3-xxlarge"></i>
             </a>
         </div>
     </div>
     <?php require_once('rodape.php'); ?>
 </body>
+
 </html>
