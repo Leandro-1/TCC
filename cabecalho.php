@@ -44,11 +44,10 @@
 </style>
 
 <body>
-    <div class="cabecalho" style="position: fixed; width: 100%; margin-top:0%;">
+    <div class="cabecalho" style="position: fixed; width: 100%; margin-top:0;">
         <header class=" w3-center w3-padding-16 w3-text-white" style="background-color: rgb(24, 23, 23);">
             <h1 class="w3-xxlarge"><img src="imagens_logo/logo.png" width="5%">
                 CONPAC</h1>
-            <h6>Gerenciamento de Entregas para Condomínios</h6>
         </header>
 
         <ul>

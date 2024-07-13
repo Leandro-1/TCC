@@ -7,7 +7,7 @@
         require_once 'conexaoBD.php';
 
       
-        $sql = "UPDATE propriedade SET num_propriedade = '" . $_POST['txtNumero'] . "', bloco_quadra='" . $_POST['txtBloco'] . "' WHERE id_propriedade =" . $_POST['txtCodigo'] . ";";
+        $sql = "UPDATE propriedade SET num_propriedade = '" . $_POST['txtNumero'] . "', bloco_quadra='" . $_POST['txtBloco'] . "' WHERE id_propriedade ='" . $_POST['txtCodigo'] . "';";
 
 
         if ($conexao->query($sql) === TRUE) {
