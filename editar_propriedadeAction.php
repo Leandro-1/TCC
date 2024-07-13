@@ -23,7 +23,7 @@
             $id = mysqli_insert_id($conexao);
         } else {
             echo '<a href="consultar_propriedade.php">
-                    <h1 class="w3-button w3-black w3-center">ERRO! </h1>
+                    <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
                 </a>';
         }
         $conexao->close();
