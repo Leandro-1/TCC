@@ -1,10 +1,6 @@
 <?php
 // BD para testes PC Leandro
-<<<<<<< Updated upstream
-
-=======
 /*
->>>>>>> Stashed changes
 $servername = "localhost";
 $username = "root";
 $password = "conpac@1";
@@ -12,19 +8,6 @@ $dbname = "conpac";
 $conexao = new mysqli($servername, $username, $password, $dbname);
 if ($conexao->connect_error) {
 die("Connection failed: " . $conexao->connect_error);
-<<<<<<< Updated upstream
-}
-
- //BD temporario teste Jéssie
- /*$servername = "localhost:3307";
- $username = "root";
-$password = "usbw";
-$dbname = "conpac";
-$conexao = new mysqli($servername, $username, $password, $dbname);
-if ($conexao->connect_error) {
-    die("Erro de Conexão: " . $conexao->connect_error);
-}*/
-=======
 
 */
 
@@ -37,5 +20,4 @@ $conexao = new mysqli($servername, $username, $password, $dbname);
 if ($conexao->connect_error) {
     die("Connection failed: " . $conexao->connect_error);
 }
->>>>>>> Stashed changes
 ?>
