@@ -20,7 +20,7 @@ require_once "cabecalho.php"; ?>
         $row = $resultado->fetch_assoc();
         $id_propriedade = $row["id_propriedade"];
 
-        $sql_insert = "INSERT INTO morador (cpf, nome, telefone, email, id_propriedade) VALUES ('$cpf','$nome','$tel','$email','$id_propriedade');";
+        $sql_insert = "INSERT INTO morador (cpf, nome, telefone, email, id_propriedade) VALUES ('$cpf','$nome','$tel','$email','$id_propriedade')";
 
         if ($conexao->query($sql_insert) === TRUE) {
             echo '
