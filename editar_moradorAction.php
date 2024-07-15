@@ -19,12 +19,12 @@ if ($resultado->num_rows > 0) {
     $row = $resultado->fetch_assoc();
     $id_propriedade = $row["id_propriedade"];
 
-    $sql = "UPDATE morador SET nome = '$nome', telefone = '$tel', email = '$email', id_propriedade = '$id_propriedade' WHERE cpf = '$cpf'";
+    $sql_up = "UPDATE morador SET nome = '$nome', telefone = '$tel', email = '$email', id_propriedade = '$id_propriedade' WHERE cpf = '$cpf'";
 
 
-    if ($conexao->query($sql) === TRUE) {
+    if ($conexao->query($sql_up) === TRUE) {
         echo '<a href="consultar_morador.php">
-                    <h1 class="w3-button w3-black w3-center">Propriedade Atualizada com Sucesso!</h1>
+                    <h1 class="w3-button w3-black w3-center">Morador Atualizado com Sucesso!</h1>
                 </a>';
         $id = mysqli_insert_id($conexao);
     } else {
