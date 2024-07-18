@@ -38,6 +38,7 @@
                 <br><br>
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
+                <?php require_once('botoes.php'); ?>
             </div>
         </form>
     </div>
