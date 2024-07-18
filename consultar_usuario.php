@@ -45,7 +45,7 @@ require_once("cabecalho.php");
                     echo '<td><a href="editar_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
                             <i class="fa fa-pen-to-square w3-large w3-text-black"></i>
                           </a></td>';
-                    echo '<td><a href="excluir.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
+                    echo '<td><a href="excluir_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
                             <i class="fa fa-user-times w3-large w3-text-red"></i>
                           </a></td>';
                     echo '</tr>';

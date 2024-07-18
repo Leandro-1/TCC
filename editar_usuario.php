@@ -1,6 +1,7 @@
 <?php require_once("verificaacesso_admin.php"); ?>
 <?php require_once("cabecalho.php"); ?>
-
+<title>Editar Usuário</title>
+</head>
     <div class="w3-container w3-card w3-round">
         <h1 class="w3-center"><b>Editar Usuário</b></h1>
         <form action="editar_usuarioAction.php" method='post'>
