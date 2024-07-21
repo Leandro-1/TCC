@@ -1,8 +1,9 @@
-<?php require_once("verificaacesso_admin.php") ?>
-<?php require_once('cabecalho.php') ?>
+<?php require_once("verificaacesso_admin.php"); ?>
+<?php require_once("conexaoBD.php"); ?>
+<?php require_once('cabecalho.php'); ?>
 
 <div class="formulario">
-    <div class=" w3-container w3-content w3-card w3-round" style="width: 450px;">
+    <div class="w3-container w3-content w3-card w3-round" style="width: 450px;">
         <h2 class="w3-center"><b>Cadastrar Morador</b></h2>
 
         <form action="cadastro_moradorAction.php" method="post">
@@ -16,32 +17,39 @@
                     <label for="tel">Telefone</label>
                     <input class="w3-input w3-border" type="tel" name="tel" required>
                 </p>
+                <div style="clear: both;"></div> <!-- Para garantir a separação entre os elementos -->
 
                 <label for="nome">Nome</label>
-                <input class="w3-input w3-border " type="text" name="nome" required>
+                <input class="w3-input w3-border" type="text" name="nome" required>
                 <br>
 
                 <label for="email">E-mail</label>
                 <input class="w3-input w3-border" type="email" name="email" required>
+                <br>
 
-                <p class="w3-left">
-                    <label for="num_ap">Número Apart</label>
-                    <input class="w3-input w3-border" type="text" name="num_apart" required>
-                    <br>
-                </p>
-                <p class="w3-right">
-                    <label for="bloco">Bloco ou Quadra</label>
-                    <input class="w3-input w3-border" type="text" name="bloco" required>
-                    <br>
-                </p>
+                <label for="propriedade">Propriedade</label>
+                <select class="w3-input w3-border" name="propriedade" required>
+                    <?php 
+                    $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                    $result = $conexao->query($query);
 
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Nenhuma opção disponível</option>';
+                    }
+                    ?>
+                </select>
+                <br>
 
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
             </div>
-
         </form>
-        <div class=" w3-center">
+        
+        <div class="w3-center">
             <a href="morador.php" class="w3-display-top-center">
                 <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
             </a>
@@ -52,8 +60,8 @@
             <a href="consultar_morador.php" class="w3-display-top-center">
                 <i class="fa-solid fa-list w3-xxlarge w3-button"></i>
             </a>
-
         </div>
     </div>
 </div>
+
 <?php require_once('rodape.php'); ?>
