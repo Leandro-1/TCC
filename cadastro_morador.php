@@ -1,7 +1,8 @@
 <?php require_once("verificaacesso_admin.php"); ?>
 <?php require_once("conexaoBD.php"); ?>
 <?php require_once('cabecalho.php'); ?>
-
+<title>Cadastro Morador</title>
+</head>
 <div class="formulario">
     <div class="w3-container w3-content w3-card w3-round" style="width: 450px;">
         <h2 class="w3-center"><b>Cadastrar Morador</b></h2>
