@@ -26,7 +26,7 @@
                 <i class="fa fa-home w3-xxlarge w3-button"></i>
             </a>
 
-            <!--Criar logout-->
+           
             <a href="logoutAction.php" class="w3-display-top-center">
                 <i class="fa fa-sign-out w3-xxlarge w3-button" style="color: red;"></i>
             </a>

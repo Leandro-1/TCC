@@ -10,12 +10,12 @@
             <i class="fas fa-arrow-circle-left w3-xxlarge"></i>
         </a>
         <!--Criar pagina de cadastro de morador -->
-        <a href="" class="menu-item">
+        <a href="cadastro_morador.php" class="menu-item">
             <span>Cadastrar Morador</span><br>
             <i class="fas fa-edit w3-xxlarge"></i>
         </a>
         <!--Criar pagina de Consulta de morador -->
-        <a href="" class="menu-item">
+        <a href="consultar_morador.php" class="menu-item">
             <span>Consultar Morador</span><br>
             <i class="fas fa-search w3-xxlarge"></i>
         </a>

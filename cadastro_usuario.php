@@ -1,5 +1,5 @@
-<?php require_once("verificaacesso_admin.php") ?>
-<?php require_once('cabecalho.php') ?>
+<?php require_once("verificaacesso_admin.php"); ?>
+<?php require_once('cabecalho.php'); ?>
 
 <style>
     .slc-usuario {
@@ -15,7 +15,7 @@
 <body>
     <div class="w3-container w3-card w3-round w3-padding">
         <h2 class="w3-center"><b>Cadastrar Usuários</b></h2>
-<br>
+        <br>
         <form action="cadastro_usuarioAction.php" method="post">
             <div class="w3-margin-bottom">
                 <label for="codigo">Código</label>
@@ -38,25 +38,9 @@
                 <br><br>
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
-                <!-- Botão para acessar o menu de consulta -->
-                <!-- <a href="consulta.php" class="w3-btn w3-blue">Ir para Consulta</a> -->
+                <?php require_once('botoes.php'); ?>
             </div>
         </form>
-
-        <div class="w3-center">
-            <a href="propriedade.php" class="w3-display-top-center">
-                <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
-            </a>
-
-            <a href="menu.php" class="w3-display-top-center">
-                <i class="fa fa-home w3-xxlarge w3-button"></i>
-            </a>
-
-            <!-- Botão de logout -->
-            <a href="logoutAction.php" class="w3-display-top-center">
-                <i class="fa fa-sign-out w3-xxlarge w3-button" style="color: red;"></i>
-            </a>
-        </div>
     </div>
-    <?php require_once('rodape.php'); ?>
-</body>
+
+<?php require_once('rodape.php'); ?>

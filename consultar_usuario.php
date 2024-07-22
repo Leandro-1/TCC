@@ -20,13 +20,14 @@ require_once("cabecalho.php");
 
     <table class="w3-table-all w3-centered">
         <caption>
-            <h1 class="w3-center w3-black w3-round-large">Propriedades</h1>
+            <h1 class="w3-center w3-black w3-round-large">Usuários</h1>
         </caption>
         <tr class="w3-center w3-black">
             <th>Código</th>
             <th>Nome</th>
             <th>Privilégio</th>
             <th>Editar</th>
+            <th>Excluir</th> <!-- Nova coluna para exclusão -->
         </tr>
         <?php
         require_once 'conexaoBD.php';
@@ -41,16 +42,19 @@ require_once("cabecalho.php");
                     echo '<td>' . htmlspecialchars($linha['id_user'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                    echo '<td><a href="editar_usuario.php?id=' . urlencode($linha['id_user']) . '&nome=' . urlencode($linha['nome']) . '&privilegio=' . urlencode($linha['privilegio']) . '">
+                    echo '<td><a href="editar_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
                             <i class="fa fa-pen-to-square w3-large w3-text-black"></i>
+                          </a></td>';
+                    echo '<td><a href="excluir_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
+                            <i class="fa fa-user-times w3-large w3-text-red"></i>
                           </a></td>';
                     echo '</tr>';
                 }
             } else {
-                echo '<tr><td colspan="4" class="w3-center">Nenhum usuário encontrado.</td></tr>';
+                echo '<tr><td colspan="5" class="w3-center">Nenhum usuário encontrado.</td></tr>';
             }
         } catch (PDOException $e) {
-            echo '<tr><td colspan="4" class="w3-center">Erro ao consultar usuários: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</td></tr>';
+            echo '<tr><td colspan="5" class="w3-center">Erro ao consultar usuários: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</td></tr>';
         }
         ?>
     </table>
