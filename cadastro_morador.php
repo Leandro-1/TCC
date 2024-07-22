@@ -17,7 +17,7 @@
                     <label for="tel">Telefone</label>
                     <input class="w3-input w3-border" type="tel" name="tel" required pattern="\d{10,11}" title="O telefone deve conter 10 ou 11 dígitos.">
                 </p>
-                <div style="clear: both;"></div> <!-- Para garantir a separação entre os elementos -->
+                
 
                 <label for="nome">Nome</label>
                 <input class="w3-input w3-border" type="text" name="nome" required>
