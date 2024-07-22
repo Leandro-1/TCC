@@ -10,12 +10,12 @@
             <div class="w3-margin-bottom">
                 <p class="w3-left">
                     <label for="cpf">CPF</label>
-                    <input class="w3-input w3-border" type="text" name="cpf" required>
+                    <input class="w3-input w3-border" type="text" name="cpf" required pattern="\d{11}" title="O CPF deve conter 11 dígitos.">
                 </p>
 
                 <p class="w3-right">
                     <label for="tel">Telefone</label>
-                    <input class="w3-input w3-border" type="tel" name="tel" required>
+                    <input class="w3-input w3-border" type="tel" name="tel" required pattern="\d{10,11}" title="O telefone deve conter 10 ou 11 dígitos.">
                 </p>
                 <div style="clear: both;"></div> <!-- Para garantir a separação entre os elementos -->
 
