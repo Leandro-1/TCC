@@ -6,15 +6,13 @@
     <?php
     require_once 'conexaoBD.php';
     
-        $cpf = $_POST['id'];
+        $cpf = $_POST['cpf'];
         $tel = $_POST['txtTel'];
         $nome = $_POST['txtNome'];
         $email = $_POST['txtEmail'];
         $id_propriedade = $_POST['propriedade'];
 
-
-        $sql = "UPDATE morador SET cpf = '$cpf', nome = '$nome', telefone='$tel', email='$email', id_propriedade='$id_propriedade' WHERE cpf = '$cpf';";
-
+        $sql = "UPDATE morador SET nome = '$nome', telefone ='$tel', email ='$email', id_propriedade ='$id_propriedade' WHERE cpf = '$cpf';";
 
         if ($conexao->query($sql) === TRUE) {
             echo '<a href="consultar_morador.php">

@@ -9,7 +9,7 @@
         <form action="editar_moradorAction.php" method='post'>
             <p class="w3-left">
                 <label class="w3-text-black" style="font-weight: bold;">CPF</label>
-                <input name="id" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['id'] ?>">
+                <input name="cpf" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['id'] ?>">
             </p>
             <p class="w3-right">
                 <label class="w3-text-black" style="font-weight: bold;">Telefone</label>

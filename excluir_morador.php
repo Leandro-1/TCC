@@ -5,17 +5,17 @@
     <div class="w3-container w3-content w3-card w3-round" style="width:450px;">
         <h2 class="w3-center"><b>Excluir Morador</b></h2>
         <form action="excluir_moradorAction.php" method="post">
-        <p class="w3-left">
-        <label class="w3-text-black" style="font-weight: bold;">CPF</label>
-        <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo htmlspecialchars($_GET['id']); ?>">
-    </p>
+            <p class="w3-left">
+                <label class="w3-text-black" style="font-weight: bold;">CPF</label>
+                <input name="cpf" class="w3-input w3-grey w3-border" disabled value="<?php echo htmlspecialchars($_GET['id']); ?>">
+            </p>
             <p class="w3-right">
                 <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
                 <input name="txtTel" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['tel'] ?>">
             </p>
             <label class="w3-text-black" style="font-weight: bold;">Nome</label>
             <input name="txtNome" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['nome'] ?>">
-    <br>
+            <br>
             <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
             <input name="txtEmail" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['email'] ?>">
 

@@ -38,9 +38,21 @@
                 <br><br>
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
-                <?php require_once('botoes.php'); ?>
+
             </div>
         </form>
+        <div class="w3-center">
+            <a href="usuario.php" class="w3-display-top-center">
+                <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
+            </a>
+
+            <a href="menu.php" class="w3-display-top-center">
+                <i class="fa fa-home w3-xxlarge w3-button"></i>
+            </a>
+            <a href="consultar_usuario.php" class="w3-display-top-center">
+                <i class="fa-solid fa-list w3-xxlarge w3-button"></i>
+            </a>
+        </div>
     </div>
 
-<?php require_once('rodape.php'); ?>
+    <?php require_once('rodape.php'); ?>
