@@ -11,7 +11,7 @@
             <div class="w3-margin-bottom">
                 <p class="w3-left">
                     <label for="cpf">CPF</label>
-                    <input class="w3-input w3-border" type="text" name="cpf" required pattern="\d{11}" title="O CPF deve conter 11 dígitos.">
+                    <input class="w3-input w3-border" name="cpf" required pattern="\d{11}" title="O CPF deve conter 11 dígitos.">
                 </p>
 
                 <p class="w3-right">
