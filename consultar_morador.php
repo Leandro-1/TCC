@@ -41,11 +41,11 @@
                     echo '<td>' . $linha['email'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td><a href="excluir_morador.php?id=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
+                    echo '<td><a href="excluir_morador.php?cpf=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
                                         <i class="fa fa-user-times w3-large w3-text-black"></i> 
                                     </a></td>
                             </td>';
-                    echo '<td> <a href="editar_morador.php?id=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
+                    echo '<td> <a href="editar_morador.php?cpf=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
                                         <i class="fa fa-pen-to-square w3-large w3-text-black""></i>
                                     </a></td>
                                 </td>';

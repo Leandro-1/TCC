@@ -7,25 +7,25 @@
         <form action="excluir_moradorAction.php" method="post">
             <p class="w3-left">
                 <label class="w3-text-black" style="font-weight: bold;">CPF</label>
-                <input name="cpf" class="w3-input w3-grey w3-border" disabled value="<?php echo htmlspecialchars($_GET['id']); ?>">
+                <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo htmlspecialchars($_GET['cpf']); ?>">
             </p>
             <p class="w3-right">
                 <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
-                <input name="txtTel" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['tel'] ?>">
+                <input name="tel" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['tel'] ?>">
             </p>
             <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-            <input name="txtNome" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['nome'] ?>">
+            <input name="nome" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['nome'] ?>">
             <br>
             <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
-            <input name="txtEmail" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['email'] ?>">
+            <input name="email" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['email'] ?>">
 
             <p class="w3-left">
                 <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
-                <input name="txtApart" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['num_apart'] ?>">
+                <input name="numapart" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['num_apart'] ?>">
             </p>
             <p class="w3-right">
                 <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
-                <input name="txtBloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['bloco'] ?>">
+                <input name="bloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['bloco'] ?>">
             </p>
             <button class="w3-btn w3-black" type="submit">Confirmar Exclusão!</button>
 
