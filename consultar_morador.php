@@ -2,15 +2,20 @@
 <?php require_once("cabecalho.php"); ?>
 <div class="formulario w3-display-flex">
     <div class="w3-padding w3-margin w3-card-4 w3-cell">
-        <form action="listaOrdem_morador.php" method="post">
-            <label for="ordenacao"><b>Ordem:</b></label>
-            <select name="ordenacao">
-                <option value="nome" select>Nome</option>
-                <option value="bloco_quadra">Bloco</option>
-                <option value="num_propriedade">Apartamento</option>
-            </select>
-            <input type="submit" value="OK">
-        </form>
+        <div class="w3-displey-top">
+            <form action="listaOrdem_morador.php" method="post">
+                <label for="ordenacao"><b>Ordem:</b></label>
+                <select name="ordenacao">
+                    <option value="nome" select>Nome</option>
+                    <option value="bloco_quadra">Bloco</option>
+                    <option value="num_propriedade">Apartamento</option>
+                </select>
+                <input type="submit" value="OK">
+            </form>
+            <div>
+                <a href="cadastro_morador.php"> <button class="w3-right w3-round-xlarge w3-green w3-xlarge" type="submit">Novo Cadastro</button></a>
+            </div>
+        </div>
 
         <table class="w3-table-all w3-centered  w3-cell" style="overflow-y:auto;">
             <caption>
