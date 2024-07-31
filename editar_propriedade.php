@@ -25,11 +25,10 @@
             <a href="propriedade.php" class="w3-display-top-center">
                 <i class="fa fa-home w3-xxlarge w3-button"></i>
             </a>
-
-           
-            <a href="logoutAction.php" class="w3-display-top-center">
-                <i class="fa fa-sign-out w3-xxlarge w3-button" style="color: red;"></i>
+            
+            <a href="consultar_propriedade.php" class="w3-display-top-center">
+                <i class="fa-solid fa-list w3-xxlarge w3-button"></i>
             </a>
         </div>
     </div>
-<?php require_once("rodape.php"); ?>
+    <?php require_once("rodape.php"); ?>

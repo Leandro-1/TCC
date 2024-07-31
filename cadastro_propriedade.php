@@ -22,8 +22,7 @@
                 <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                 <br><br>
             </div>
-            <!-- criar um botão para acessar o menu de consulta-->
-       
+          
         </form>
         <div class=" w3-center">
             <a href="propriedade.php" class="w3-display-top-center">
@@ -34,10 +33,9 @@
                 <i class="fa fa-home w3-xxlarge w3-button"></i>
             </a>
 
-            <!--Criar logout-->
-            <a href="logoutAction.php" class="w3-display-top-center">
-                <i class="fa fa-sign-out w3-xxlarge w3-button" style="color: red;"></i>
+            <a href="consultar_propriedade.php" class="w3-display-top-center">
+                <i class="fa-solid fa-list w3-xxlarge w3-button"></i>
             </a>
         </div>
     </div>
-<?php require_once('rodape.php'); ?>
+    <?php require_once('rodape.php'); ?>
