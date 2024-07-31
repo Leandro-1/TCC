@@ -64,13 +64,4 @@
         </div>
     </div>
 </div>
-
-<!--teste de criar um pop-up-->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharModal()">&times;</span>
-        <p id="mensagemModal"></p>
-    </div>
-</div>
-<script src="script.js"></script>
 <?php require_once('rodape.php'); ?>
