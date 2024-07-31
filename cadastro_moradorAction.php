@@ -1,3 +1,8 @@
+<?php require_once("verificaacesso_admin.php"); ?>
+<?php require_once("conexaoBD.php"); ?>
+<?php require_once('cabecalho.php'); ?>
+<title>Cadastro Morador</title>
+</head>
 <?php
 require_once 'conexaoBD.php';
 
@@ -28,3 +33,4 @@ if ($stmt->execute()) {
 $stmt->close();
 $conexao->close();
 ?>
+<?php require_once('rodape.php'); ?>

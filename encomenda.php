@@ -10,7 +10,7 @@
             <i class="fas fa-arrow-circle-left w3-xxlarge"></i>
         </a>
         <!--Criar pagina de cadastro de encomenda -->
-        <a href="" class="menu-item">
+        <a href="cadastro_encomenda.php" class="menu-item">
             <span>Cadastrar Encomenda</span><br>
             <i class="fas fa-edit w3-xxlarge"></i>
         </a>

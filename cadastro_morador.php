@@ -1,7 +1,8 @@
 <?php require_once("verificaacesso_admin.php"); ?>
 <?php require_once("conexaoBD.php"); ?>
 <?php require_once('cabecalho.php'); ?>
-
+<title>Cadastro Morador</title>
+</head>
 <div class="formulario">
     <div class="w3-container w3-content w3-card w3-round" style="width: 450px;">
         <h2 class="w3-center"><b>Cadastrar Morador</b></h2>
@@ -10,7 +11,7 @@
             <div class="w3-margin-bottom">
                 <p class="w3-left">
                     <label for="cpf">CPF</label>
-                    <input class="w3-input w3-border" type="text" name="cpf" required pattern="\d{11}" title="O CPF deve conter 11 dígitos.">
+                    <input class="w3-input w3-border" name="cpf" required pattern="\d{11}" title="O CPF deve conter 11 dígitos.">
                 </p>
 
                 <p class="w3-right">
