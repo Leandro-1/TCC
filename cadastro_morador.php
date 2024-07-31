@@ -18,7 +18,7 @@
                     <label for="tel">Telefone</label>
                     <input class="w3-input w3-border" type="tel" name="tel" required pattern="\d{10,11}" title="O telefone deve conter 10 ou 11 dígitos.">
                 </p>
-                
+
 
                 <label for="nome">Nome</label>
                 <input class="w3-input w3-border" type="text" name="nome" required>
@@ -30,7 +30,7 @@
 
                 <label for="propriedade">Propriedade</label>
                 <select class="w3-input w3-border" name="propriedade" required>
-                    <?php 
+                    <?php
                     $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                     $result = $conexao->query($query);
 
@@ -49,7 +49,7 @@
                 <br><br>
             </div>
         </form>
-        
+
         <div class="w3-center">
             <a href="morador.php" class="w3-display-top-center">
                 <i class="fa fa-arrow-circle-left w3-xxlarge w3-button"></i>
@@ -65,4 +65,12 @@
     </div>
 </div>
 
+<!--teste de criar um pop-up-->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <p id="mensagemModal"></p>
+    </div>
+</div>
+<script src="script.js"></script>
 <?php require_once('rodape.php'); ?>
