@@ -1,8 +1,9 @@
 <?php require_once("verificaacesso_admin.php") ?>
 <?php require_once("cabecalho.php"); ?>
+
 <div class="formulario w3-display-flex">
     <div class="w3-padding w3-margin w3-card-4 w3-cell">
-        <div class="w3-displey-top">
+        <div class="w3-displey-top w3-padding">
             <form action="listaOrdem_morador.php" method="post">
                 <label for="ordenacao"><b>Ordem:</b></label>
                 <select name="ordenacao">
@@ -13,7 +14,7 @@
                 <input type="submit" value="OK">
             </form>
             <div>
-                <a href="cadastro_morador.php"> <button class="w3-right w3-round-xlarge w3-green w3-xlarge" type="submit">Novo Cadastro</button></a>
+                <a href="cadastro_morador.php"> <button class="w3-right w3-round-xlarge w3-blue w3-large w3-padding" type="submit">Novo Cadastro</button></a>
             </div>
         </div>
 

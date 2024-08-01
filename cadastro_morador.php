@@ -3,6 +3,32 @@
 <?php require_once('cabecalho.php'); ?>
 <title>Cadastro Morador</title>
 </head>
+<style>
+    .caixa {
+        display: flex;
+       
+        align-items: center;
+      
+        justify-content: center;
+      
+        height: 100vh;
+        
+        z-index: 2;
+    }
+.formulario{
+    z-index: 1;
+}
+   
+</style>
+<?php
+
+
+// Verifica se há mensagem de sucesso ou erro
+if (isset($_SESSION['mensagem'])) {
+    echo '<div class="caixa"><div class="alert">' . $_SESSION['mensagem'] . '</div></div>';
+    unset($_SESSION['mensagem']); // Limpa a mensagem após exibição
+}
+?>
 <div class="formulario">
     <div class="w3-container w3-content w3-card w3-round" style="width: 450px;">
         <h2 class="w3-center"><b>Cadastrar Morador</b></h2>
@@ -65,12 +91,5 @@
     </div>
 </div>
 
-<!--teste de criar um pop-up-->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharModal()">&times;</span>
-        <p id="mensagemModal"></p>
-    </div>
-</div>
-<script src="script.js"></script>
+
 <?php require_once('rodape.php'); ?>

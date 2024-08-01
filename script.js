@@ -1,6 +1,8 @@
 function exibirModal(mensagem) {
-    document.getElementById('mensagemModal').textContent = mensagem;
-    document.getElementById('myModal').style.display = 'block';
+    const mensagemModal = document.getElementById('mensagemModal');
+    const myModal = document.getElementById('myModal');
+    mensagemModal.textContent = mensagem;
+    myModal.style.display = 'block';
 }
 
 // Função para fechar o modal
