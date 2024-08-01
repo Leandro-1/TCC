@@ -13,7 +13,7 @@
             <span>Encomenda</span><br>
             <i class="fas fa-box w3-xxlarge"></i>
         </a>
-        <a href="consultar_morador.php" class="menu-item">
+        <a href="morador.php" class="menu-item">
             <span>Morador</span><br>
             <i class="fas fa-user w3-xxlarge"></i>
         </a>

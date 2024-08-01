@@ -24,14 +24,14 @@ if ($stmt->execute()) {
 
    $_SESSION['mensagem'] =  '
             <a href="cadastro_morador.php">
-                <h1 class="w3-button w3-green">Realizado com Sucesso! </h1>
+                <h1 class="w3-button w3-green" style="width: 180%;">Realizado com Sucesso! </h1>
             </a>
             ';
     
 } else {
     $_SESSION['mensagem'] =  '
             <a href="cadastro_morador.php">
-                <h1 class="w3-button w3-red">ERRO... Tente novamente!</h1>
+                <h1 class="w3-button w3-red" style="width: 180%;">ERRO... Tente novamente!</h1>
             </a>
             ';
     

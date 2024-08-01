@@ -1,7 +1,7 @@
 <?php require_once("verificaacesso_admin.php") ?>
 <?php require_once("cabecalho.php"); ?>
 
-<div class="formulario w3-display-flex">
+<div class="formulario w3-display-flex " style="margin-top: 100%;">
     <div class="w3-padding w3-margin w3-card-4 w3-cell">
         <div class="w3-displey-top w3-padding">
             <form action="listaOrdem_morador.php" method="post">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <table class="w3-table-all w3-centered  w3-cell" style="overflow-y:auto;">
+        <table class="w3-table-all w3-centered  w3-cell w3-" style="overflow-y:auto;">
             <caption>
                 <h1 class="w3-center w3-black w3-round-large">Moradores</h1>
             </caption>

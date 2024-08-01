@@ -4,33 +4,32 @@
 <title>Cadastro Morador</title>
 </head>
 <style>
-    .caixa {
-        display: flex;
-       
-        align-items: center;
-      
-        justify-content: center;
-      
-        height: 100vh;
-        
-        z-index: 2;
-    }
-.formulario{
-    z-index: 1;
-}
    
+    
+    .alert {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        margin-left: 60px;
+        margin-right: 0;
+        position: absolute;
+
+    }
 </style>
-<?php
 
-
-// Verifica se há mensagem de sucesso ou erro
-if (isset($_SESSION['mensagem'])) {
-    echo '<div class="caixa"><div class="alert">' . $_SESSION['mensagem'] . '</div></div>';
-    unset($_SESSION['mensagem']); // Limpa a mensagem após exibição
-}
-?>
 <div class="formulario">
+    <?php
+
+
+    // Verifica se há mensagem de sucesso ou erro
+    if (isset($_SESSION['mensagem'])) {
+        echo '<div class="alert">' . $_SESSION['mensagem'] . '</div>';
+        unset($_SESSION['mensagem']); // Limpa a mensagem após exibição
+    }
+    ?>
     <div class="w3-container w3-content w3-card w3-round" style="width: 450px;">
+
         <h2 class="w3-center"><b>Cadastrar Morador</b></h2>
 
         <form action="cadastro_moradorAction.php" method="post">
