@@ -54,7 +54,7 @@
                 <br>
 
                 <label for="propriedade">Propriedade</label>
-                <select class="w3-input w3-border" name="propriedade" required>
+                <select class="w3-input w3-border" name="propriedade"  required >
                     <?php
                     $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                     $result = $conexao->query($query);
