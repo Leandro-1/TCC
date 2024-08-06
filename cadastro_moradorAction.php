@@ -23,20 +23,20 @@ $stmt->bind_param("isssi", $cpf, $nome, $tel, $email, $id_propriedade);
 if ($stmt->execute()) {
 
    $_SESSION['mensagem'] =  '
-            <a href="cadastro_morador.php">
+            <a href="menu.php">
                 <h1 class="w3-button w3-green" style="width: 180%;">Realizado com Sucesso! </h1>
             </a>
             ';
     
 } else {
     $_SESSION['mensagem'] =  '
-            <a href="cadastro_morador.php">
+            <a href="menu.php">
                 <h1 class="w3-button w3-red" style="width: 180%;">ERRO... Tente novamente!</h1>
             </a>
             ';
     
 }
-header('Location: cadastro_morador.php');
+header('Location: menu.php');
 
 $stmt->close();
 $conexao->close();
