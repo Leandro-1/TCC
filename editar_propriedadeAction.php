@@ -17,16 +17,12 @@
 
 
         if ($conexao->query($sql) === TRUE) {
-            echo '<a href="consultar_propriedade.php">
-                    <h1 class="w3-button w3-black w3-center">Propriedade Atualizada com Sucesso! </h1>
-                </a>';
-            $id = mysqli_insert_id($conexao);
+            $_SESSION['mensagem'] = "Propriedade Atualizada com Sucesso!";
         } else {
-            echo '<a href="consultar_propriedade.php">
-                    <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
-                </a>';
+            $_SESSION['mensagem'] = "Erro ao atualizar: ". $conexao->error;
         }
         $conexao->close();
+        header("Location: inicial.adm.php")
         ?>
     </div>
     <?php require_once("rodape.php"); ?>

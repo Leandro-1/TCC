@@ -1,4 +1,4 @@
-<?php require_once('verificaacesso_admin.php');?>
+<?php require_once('conexaoBD.php'); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -13,6 +13,32 @@
     .item_nav {
         height: 100%;
         align-items: center;
+    }
+
+    .aba_menu {
+        border: none;
+    }
+
+    .tablink {
+        border: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tablink::after {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -25px;
+        width: 40px;
+        height: 40px;
+        background-color: #E8E8E8;
+        transform: rotate(40deg);
+
+    }
+
+    .menu {
+        background-color: white;
     }
 
     .botao_cad {
@@ -51,10 +77,10 @@
     }
 </style>
 
-<body>
+<body class="w3-light-grey">
 
     <nav class="w3-bar w3-mobile w3-top w3-center " style="height: 50px;">
-        <img src="img/logo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
+        <img src="img/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
         <span class="w3-left item_nav">
             <h4>Conpac</h4>
         </span>
@@ -67,7 +93,7 @@
 
 
         <div class="w3-bar aba_menu">
-            <div class="w3-blue-grey">
+            <div class="abas w3-blue-grey">
                 <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'propriedades')"><b>Propriedades</b></button>
                 <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'usuarios')"><b>Usuários</b></button>
                 <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'moradores')"><b>Moradores</b></button>
@@ -75,8 +101,19 @@
             </div>
         </div>
 
+        <?php 
+        session_start();
+        if (isset($_SESSION['mensagem'])){
+            echo '<dialog class="w3-panel w3-green w3-display-container">';
+            echo '<span onclick="this.parentElement.style.display=\'none\'" class="w3-buton w3-large w3-display-topright">&times;</span>';
+            echo '<p>'. $_SESSION['mensagem'] . '</p>';
+            echo '</dialog>';
+            unset($_SESSION['mensagem']);
+        }
+        ?>
+
         <!--Aba de entregas -->
-        <div id="entregas" class="w3-container w3-border menu">
+        <div id="entregas" class="w3-container w3-border w3-white menu">
             <div class="w3-container w3-display-top">
                 <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
@@ -127,14 +164,7 @@
                                             <select name="morador" required>
                                                 <option value="" disabled selected>Selecione o morador</option>
                                                 <?php
-                                                $servername = "localhost:3307";
-                                                $username = "root";
-                                                $password = "usbw";
-                                                $dbname = "conpac";
-                                                $conexao = new mysqli($servername, $username, $password, $dbname);
-                                                if ($conexao->connect_error) {
-                                                    die("Connection failed: " . $conexao->connect_error);
-                                                }
+
                                                 $query = "SELECT cpf, nome FROM morador";
                                                 $result = $conexao->query($query);
                                                 if ($result->num_rows > 0) {
@@ -152,14 +182,7 @@
                                             <select name="propriedade" required>
                                                 <option value="" disabled selected>Selecione a propriedade</option>
                                                 <?php
-                                                $servername = "localhost:3307";
-                                                $username = "root";
-                                                $password = "usbw";
-                                                $dbname = "conpac";
-                                                $conexao = new mysqli($servername, $username, $password, $dbname);
-                                                if ($conexao->connect_error) {
-                                                    die("Connection failed: " . $conexao->connect_error);
-                                                }
+
                                                 $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                                 $result = $conexao->query($query);
                                                 if ($result->num_rows > 0) {
@@ -208,8 +231,8 @@
             </div>
             <br>
             <!-- Consulta de Entregas -->
-            <table class="w3-table-all w3-centered " style="overflow-y:auto; ">
-                <tr class="w3-center w3-grey">
+            <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto; ">
+                <tr class="w3-center w3-blue-grey">
                     <th>Data Recebimento</th>
                     <th>Morador</th>
                     <th>Apartamento</th>
@@ -220,14 +243,6 @@
                     <th>Editar</th>
                 </tr>
                 <?php
-                $servername = "localhost:3307";
-                $username = "root";
-                $password = "usbw";
-                $dbname = "conpac";
-                $conexao = new mysqli($servername, $username, $password, $dbname);
-                if ($conexao->connect_error) {
-                    die("Connection failed: " . $conexao->connect_error);
-                }
 
                 // fazer a consulta ainda
                 $sql = "SELECT entrega.data_recebimento, entrega.nome_morador, propriedade.num_propriedade, propriedade.bloco_quadra, entrega.status FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
@@ -247,19 +262,36 @@
                                         <i class="fa fa-user-times w3-large w3-text-black"></i> 
                                     </a></td>
                             </td>';
-                        echo '<td><a href="excluir_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
-                                        <i class="fa fa-user-times w3-large w3-text-black"></i> 
-                                    Detalhes</a></td>
-                            </td>';
-                        echo '<td><a href="editar_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
-                                    <i class="fa fa-pen-to-square w3-large w3-text-black""></i>    
-                                    </a></td>
-                                </td>';
+                        echo '<td><button onclick="document.getElementById(\'excluir_entrega\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="document.getElementById(\'editar_entrega\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                        echo '</tr>';
                         echo '</tr>';
                     }
 
                 ?>
-            </table>
+            </table><br>
+            <!--Editar entregas -->
+            <div id="editar_entrega" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('editar_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Excluir entregas -->
+            <div id="excluir_entrega" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('excluir_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--Aba de MORADORES -->
@@ -330,10 +362,10 @@
                 </div>
             </div>
             <br>
-            <!-- Consulta de Moradores -->
 
-            <table class="w3-table-all w3-centered" style="overflow-y:auto;">
-                <tr class="w3-center w3-grey">
+            <!-- Consulta de Moradores -->
+            <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto;">
+                <tr class="w3-center w3-blue-grey">
                     <th>CPF</th>
                     <th>Nome</th>
                     <th>Telefone</th>
@@ -344,15 +376,6 @@
                     <th>Editar</th>
                 </tr>
                 <?php
-                $servername = "localhost:3307";
-                $username = "root";
-                $password = "usbw";
-                $dbname = "conpac";
-                $conexao = new mysqli($servername, $username, $password, $dbname);
-                if ($conexao->connect_error) {
-                    die("Connection failed: " . $conexao->connect_error);
-                }
-
 
                 $sql = "SELECT morador.cpf, morador.nome, morador.telefone, morador.email, propriedade.num_propriedade, propriedade.bloco_quadra FROM morador, propriedade WHERE morador.id_propriedade = propriedade.id_propriedade order by nome";
                 $resultado = $conexao->query($sql);
@@ -365,21 +388,110 @@
                         echo '<td>' . $linha['email'] . '</td>';
                         echo '<td>' . $linha['num_propriedade'] . '</td>';
                         echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                        echo '<td><a href="excluir_morador.php?cpf=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
-                                        <i class="fa fa-user-times w3-large w3-text-black"></i> 
-                                    </a></td>
-                            </td>';
-                        echo '<td> <a href="editar_morador.php?cpf=' . $linha['cpf'] . '&nome=' . $linha['nome'] . '&tel=' . $linha['telefone'] .  '&email=' . $linha['email'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
-                                        <i class="fa fa-pen-to-square w3-large w3-text-black""></i>
-                                    </a></td>
-                                </td>';
+                        echo '<td><button onclick="document.getElementById(\'excluir_morador\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="document.getElementById(\'editar_morador\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                         echo '</tr>';
                     }
 
                 ?>
-            </table>
+            </table><br>
+            <!--Editar moradores -->
+            <div id="editar_morador" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('editar_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <h1 class="w3-center"><b>Editar Morador</b></h1>
+                        <form action="editar_moradorAction.php" method='post' class="w3-padding">
+                            <div class="w3-cell-row">
+                                <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                                    <label class="w3-text-black" style="font-weight: bold;">CPF</label>
+                                    <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo $linha['cpf']; ?>">
+                                </div>
+                                <div class="w3-cell">
+                                    <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                                    <input name="tel" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['nome']; ?>">
+                                </div>
+                            </div><br>
+                            <div class="w3-cell-row">
+                                <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                                    <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
+                                    <input name="nome" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['telefone']; ?>">
+                                </div>
+                                <div>
+                                    <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
+                                    <input name="email" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['email']; ?>">
+                                </div>
+                            </div><br>
+                            <label for="propriedade">Propriedade</label>
+                            <select class="w3-input w3-border w3-light-grey" name="propriedade" style="width:30%;">
+                                <?php
 
+                                $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                                $result = $conexao->query($query);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                    }
+                                } else {
+                                    echo '<option value="">Nenhuma opção disponível</option>';
+                                }
+                                ?>
+                            </select>
+                            <br>
+                            <button class="w3-btn w3-black" type="submit">Alterar</button>
+                        </form><br>
+
+                    </div>
+                </div>
+            </div>
+            <!--Excluir Morador -->
+            <div id="excluir_morador" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('excluir_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+                            <h2 class="w3-center"><b>Excluir Morador</b></h2>
+                            <form action="excluir_moradorAction.php" method="post" class="w3-padding">
+                                <div class="w3-cell-row">
+                                    <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                                        <label class="w3-text-black" style="font-weight: bold;">CPF</label>
+                                        <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo $linha['cpf']; ?>">
+                                    </div>
+                                    <div class="w3-cell">
+                                        <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                                        <input name="tel" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['nome']; ?>">
+                                    </div>
+                                </div><br>
+                                <div class="w3-cell-row">
+                                    <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                                        <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
+                                        <input name="nome" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['telefone']; ?>">
+                                    </div>
+                                    <div class="w3-cell">
+                                        <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
+                                        <input name="email" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['email']; ?>">
+                                    </div>
+                                </div><br>
+                                <div class="w3-cell-row">
+                                    <div class="w3-cell" style="padding-right: 15px;">
+                                        <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
+                                        <input name="numapart" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['num_propriedade']; ?>">
+                                    </div>
+                                    <div class="w3-cell">
+                                        <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                                        <input name="bloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['bloco_quadra']; ?>">
+                                    </div>
+                                </div><br>
+                                <button class="w3-btn w3-black" type="submit">Confirmar Exclusão!</button>
+
+                            </form><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         <!--Aba de usuários -->
         <div id="usuarios" class="w3-container w3-border menu" style="display:none">
@@ -436,8 +548,8 @@
             </div>
             <br>
             <!-- Consulta de usuarios -->
-            <table class="w3-table-all w3-centered">
-                <tr class="w3-center w3-grey">
+            <table class="w3-table-all w3-centered w3-hoverable">
+                <tr class="w3-center w3-blue-grey">
                     <th>Código</th>
                     <th>Nome</th>
                     <th>Login</th>
@@ -447,14 +559,6 @@
                 </tr>
 
                 <?php
-                $servername = "localhost:3307";
-                $username = "root";
-                $password = "usbw";
-                $dbname = "conpac";
-                $conexao = new mysqli($servername, $username, $password, $dbname);
-                if ($conexao->connect_error) {
-                    die("Connection failed: " . $conexao->connect_error);
-                }
 
                 try {
                     $sql = "SELECT * FROM usuario";
@@ -467,12 +571,9 @@
                             echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
                             echo '<td>' . htmlspecialchars($linha['login'], ENT_QUOTES, 'UTF-8') . '</td>';
                             echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                            echo '<td><a href="excluir_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
-                            <i class="fa fa-user-times w3-large"></i>
-                          </a></td>';
-                            echo '<td><a href="editar_usuario.php?id_user=' . $linha['id_user'] . '&nome=' . $linha['nome'] . '&login=' . $linha['login'] . '&senha=' . $linha['senha'] . '&privilegio=' . $linha['privilegio'] . '">
-                            <i class="fa fa-pen-to-square w3-large w3-text-black"></i>
-                          </a></td>';
+                            echo '<td><button onclick="document.getElementById(\'excluir_usuario\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                            echo '<td><button onclick="document.getElementById(\'editar_usuario\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                            echo '</tr>';
 
                             echo '</tr>';
                         }
@@ -483,7 +584,74 @@
                     echo '<tr><td colspan="5" class="w3-center">Erro ao consultar usuários: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</td></tr>';
                 }
                 ?>
-            </table>
+            </table><br>
+            <!--Editar usuario -->
+            <div id="editar_usuario" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('editar_usuario').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+                            <h1 class="w3-center"><b>Editar Usuário</b></h1>
+                            <form action="editar_usuarioAction.php" method='post' class="w3-padding">
+                                <input name="id_user" class="w3-input w3-grey w3-border" type="hidden" value="<?php echo $linha['id_user']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                                <input name="nome" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['nome']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Login</label>
+                                <input name="login" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['login']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Senha</label>
+                                <input name="senha" class="w3-input w3-light-grey w3-border" type="password" value="<?php echo $linha['senha']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Confirme a senha</label>
+                                <input name="confirma_senha" class="w3-input w3-light-grey w3-border" type="password" value="">
+                                <br>
+                                <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
+                                <select class="slc-usuario w3-light-grey" name="privilegio">
+                                    <option value="administrador" <?php echo $linha['privilegio'] == 'administrador' ? 'selected' : ''; ?>>Administrador</option>
+                                    <option value="operador" <?php echo $linha['privilegio'] == 'operador' ? 'selected' : ''; ?>>Operador</option>
+                                    <option value="operador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
+                                </select>
+                                <br><br>
+                                <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Excluir usuario -->
+            <div id="excluir_usuario" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('excluir_usuario').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+                            <h2 class="w3-center"><b>Excluir Usuário</b></h2>
+                            <form action="excluir_usuarioAction.php" method='post' class="w3-padding">
+                                <label class="w3-text-black" style="font-weight: bold;">ID</label>
+                                <input name="id_user" class="w3-input w3-grey w3-border" type="hidden" disabled value="<?php echo $linha['id_user']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                                <input name="nome" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['nome']; ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Login</label>
+                                <input name="login" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['login']; ?>">
+                                <br>
+                                <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
+                                <select class="slc-usuario w3-light-grey" name="privilegio" disabled>
+                                    <option value="administrador" <?php echo $linha['privilegio'] == 'administrador' ? 'selected' : ''; ?>>Administrador</option>
+                                    <option value="operador" <?php echo $linha['privilegio'] == 'operador' ? 'selected' : ''; ?>>Operador</option>
+                                    <option value="operador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
+                                </select>
+                                <br><br>
+
+                                <button class="w3-btn w3-black" type="submit">Confirmar Exclusão!</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -531,24 +699,16 @@
             </div>
             <br>
             <!-- Consulta de propriedade -->
-            <table class="w3-table-all w3-centered">
-                <tr class="w3-center w3-grey">
+            <table class="w3-table-all w3-centered w3-hoverable">
+                <tr class="w3-center w3-blue-grey">
                     <th>Código</th>
                     <th>Número</th>
                     <th>Bloco/Quadra</th>
+                    <th>Excluir</th>
                     <th>Editar</th>
                 </tr>
                 <?php
-                $servername = "localhost:3307";
-                $username = "root";
-                $password = "usbw";
-                $dbname = "conpac";
-                $conexao = new mysqli($servername, $username, $password, $dbname);
-                if ($conexao->connect_error) {
-                    die("Connection failed: " . $conexao->connect_error);
-                }
-
-
+                require_once('conexaoBD.php');
                 $sql = "SELECT * FROM propriedade order by num_propriedade";
                 $resultado = $conexao->query($sql);
                 if ($resultado != null)
@@ -557,19 +717,61 @@
                         echo '<td>' . $linha['id_propriedade'] . '</td>';
                         echo '<td>' . $linha['num_propriedade'] . '</td>';
                         echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                        echo '<td> <a href="editar_propriedade.php?id=' . $linha['id_propriedade'] . '&numero=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '">
-                                        <i class="fa fa-pen-to-square w3-large w3-text-black""></i>
-                                    </a></td>
-                                </td>';
+                        echo '<td><button onclick="document.getElementById(\'excluir_propriedade\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="document.getElementById(\'editar_propriedade\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                         echo '</tr>';
                     }
-
                 ?>
-            </table>
+            </table><br>
+            <!--Editar propriedade -->
+            <div id="editar_propriedade" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('editar_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+                            <h1 class="w3-center"><b>Editar Propriedade</b></h1>
+                            <form action="editar_propriedadeAction.php" method='post' class="w3-padding">
+                                <input name="txtCodigo" class="w3-input w3-grey w3-border" type="" value="<?php echo $linha['id_propriedade'] ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Número</label>
+                                <input name="txtNumero" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['num_propriedade'] ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                                <input name="txtBloco" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['bloco_quadra'] ?>">
+                                <br>
+                                <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Excluir propriedade -->
+            <div id="excluir_propriedade" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <span onclick="document.getElementById('excluir_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                        <div class="w3-container">
+                            <h1 class="w3-center"><b>Editar Propriedade</b></h1>
+                            <form action="editar_propriedadeAction.php" method='post' class="w3-padding">
+                                <input name="txtCodigo" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['id'] ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Número</label>
+                                <input name="txtNumero" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['numero'] ?>">
+                                <br>
+                                <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                                <input name="txtBloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['bloco'] ?>">
+                                <br>
+                                <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div><br><br>
 
     <script>
+        //função das abas do menus
         function openMenu(evt, menuName) {
             var i, x, tablinks;
             x = document.getElementsByClassName("menu");
