@@ -1,3 +1,4 @@
+<?php require_once('verificaacesso_admin.php'); ?>
 <?php require_once('conexaoBD.php'); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -80,11 +81,11 @@
 <body class="w3-light-grey">
 
     <nav class="w3-bar w3-mobile w3-top w3-center " style="height: 50px;">
-        <img src="img/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
+        <img src="imagens_logo/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
         <span class="w3-left item_nav">
             <h4>Conpac</h4>
         </span>
-        <a href="#" class="item_nav w3-bar-item w3-button w3-right w3-hover-red">Sair</a>
+        <a href="logoutAction.php" class="item_nav w3-bar-item w3-button w3-right w3-hover-red">Sair</a>
         <a href="#" class="item_nav w3-bar-item w3-button w3-right">Alterar Senha</a>
         <span class=" item_nav w3-bar-item w3-right">Olá, Fulano</span>
     </nav>
@@ -100,17 +101,6 @@
                 <button class="w3-bar-item w3-button tablink  w3-right w3-border w3-red" onclick="openMenu(event,'entregas')"><b>Entregas</b></button>
             </div>
         </div>
-
-        <?php 
-        session_start();
-        if (isset($_SESSION['mensagem'])){
-            echo '<dialog class="w3-panel w3-green w3-display-container">';
-            echo '<span onclick="this.parentElement.style.display=\'none\'" class="w3-buton w3-large w3-display-topright">&times;</span>';
-            echo '<p>'. $_SESSION['mensagem'] . '</p>';
-            echo '</dialog>';
-            unset($_SESSION['mensagem']);
-        }
-        ?>
 
         <!--Aba de entregas -->
         <div id="entregas" class="w3-container w3-border w3-white menu">
