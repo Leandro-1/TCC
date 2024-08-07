@@ -17,12 +17,19 @@
 
         $sql = "INSERT INTO propriedade (num_propriedade, bloco_quadra) VALUES ('" . $_POST['numero'] . "', '" . $_POST['bloco'] . "')";
         if ($conexao->query($sql) === TRUE) {
-            $_SESSION['mensagem'] = "Propriedade Atualizada com Sucesso!";
+            echo '
+            <a href="cadastro_propriedade.php">
+                <h1 class="w3-button w3-black">Propriedade salva com êxito! </h1>
+            </a>
+            ';
         } else {
-            $_SESSION['mensagem'] = "Erro ao atualizar: ". $conexao->error;
+            echo '
+            <a href="cadastro_propriedade.php">
+                <h1 class="w3-button w3-black">ERRO! </h1>
+            </a>
+            ';
         }
         $conexao->close();
-        header("Location: inicial.adm.php")
-               ?>
+        ?>
     </div>
 <?php require_once('rodape.php'); ?>
