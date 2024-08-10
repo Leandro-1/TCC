@@ -30,7 +30,7 @@
             $_SESSION['nome'] = $linha['nome'];
             $_SESSION['privilegio'] = $linha['privilegio'];
             $bemVindoMensagem = $linha['nome'] . ', Seja Bem-Vindo!';
-            $link = 'menu.php';
+            $link = 'inicial_adm.php';
         } else {
             $link = 'login.html';
             $bemVindoMensagem = 'Login Inválido!';
