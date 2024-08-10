@@ -78,8 +78,8 @@
     }
 </style>
 
-<body class="w3-light-grey">
-
+<body style="background-color: #E8E8E8;">
+    
     <nav class="w3-bar w3-mobile w3-top w3-center " style="height: 50px;">
         <img src="imagens_logo/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
         <span class="w3-left item_nav">
@@ -87,18 +87,18 @@
         </span>
         <a href="logoutAction.php" class="item_nav w3-bar-item w3-button w3-right w3-hover-red">Sair</a>
         <a href="#" class="item_nav w3-bar-item w3-button w3-right">Alterar Senha</a>
-        <span class=" item_nav w3-bar-item w3-right">Olá, Fulano</span>
+        <span class=" item_nav w3-bar-item w3-right">Olá, <?php echo ucwords($_SESSION['nome']) ?></span>
     </nav>
 
     <div class="w3-container " style="margin-top: 80px; padding-bottom: 4rem;">
 
 
         <div class="w3-bar aba_menu">
-            <div class="abas w3-blue-grey">
-                <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'propriedades')"><b>Propriedades</b></button>
-                <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'usuarios')"><b>Usuários</b></button>
-                <button class="w3-bar-item w3-button tablink w3-right w3-border" onclick="openMenu(event,'moradores')"><b>Moradores</b></button>
-                <button class="w3-bar-item w3-button tablink  w3-right w3-border w3-red" onclick="openMenu(event,'entregas')"><b>Entregas</b></button>
+            <div class="abas w3-blue-grey " style="border: none;">
+                <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'propriedades')"><b>Propriedades</b></button>
+                <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'usuarios')"><b>Usuários</b></button>
+                <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'moradores')"><b>Moradores</b></button>
+                <button class="w3-bar-item w3-button tablink  w3-right w3-red" onclick="openMenu(event,'entregas')"><b>Entregas</b></button>
             </div>
         </div>
 
