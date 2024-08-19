@@ -13,12 +13,12 @@
 
 
         if ($conexao->query($sql) === TRUE) {
-            echo '<a href="consultar_usuario.php">
+            echo '<a href="inicial_adm.php">
                     <h1 class="w3-button w3-black w3-center">Usuário Atualizado com Sucesso! </h1>
                 </a>';
             $id = mysqli_insert_id($conexao);
         } else {
-            echo '<a href="consultar_usuario.php">
+            echo '<a href="inicial_adm.php">
                     <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
                 </a>';
         }

@@ -5,11 +5,11 @@
     require_once('conexaoBD.php');
     $sql = "DELETE FROM morador WHERE cpf = '" . $_POST['cpf'] . "';";
     if ($conexao->query($sql) === TRUE) {
-        echo '<a href="consultar_morador.php">
+        echo '<a href="inicial_adm.php">
                         <h1 class="w3-button w3-black w3-center">Morador Excluído com Sucesso!</h1>
                     </a>';
     } else {
-        echo '<a href="consultar_morador.php">
+        echo '<a href="inicial_adm.php">
                         <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
                     </a>';
     }
