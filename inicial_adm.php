@@ -1,100 +1,12 @@
-<?php require_once('verificaacesso_admin.php'); ?>
-<?php require_once('conexaoBD.php'); ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Conpac</title>
-</head>
-<style>
-    .item_nav {
-        height: 100%;
-        align-items: center;
-    }
-
-    .aba_menu {
-        border: none;
-    }
-
-    .tablink {
-        border: white;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .tablink::after {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: -25px;
-        width: 40px;
-        height: 40px;
-        background-color: #E8E8E8;
-        transform: rotate(40deg);
-
-    }
-
-    .menu {
-        background-color: white;
-    }
-
-    .botao_cad {
-        background-color: midnightblue;
-        color: white;
-        box-shadow: 10px 5px 5px black;
-    }
-
-    /* rodapé: #page-container e footer  */
-    #page-container {
-        position: relative;
-        min-height: 100vh;
-    }
-
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 3rem;
-        background-color: #101031;
-        color: white;
-        text-align: center;
-
-    }
-
-    nav {
-        background-color: #101031;
-        color: white;
-    }
-
-    .slc-usuario {
-        width: 30%;
-        padding: 8px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-    }
-</style>
-
-<body style="background-color: #E8E8E8;">
-    
-    <nav class="w3-bar w3-mobile w3-top w3-center " style="height: 50px;">
-        <img src="imagens_logo/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">
-        <span class="w3-left item_nav">
-            <h4>Conpac</h4>
-        </span>
-        <a href="logoutAction.php" class="item_nav w3-bar-item w3-button w3-right w3-hover-red">Sair</a>
-        <a href="#" class="item_nav w3-bar-item w3-button w3-right">Alterar Senha</a>
-        <span class=" item_nav w3-bar-item w3-right">Olá, <?php echo ucwords($_SESSION['nome']) ?></span>
-    </nav>
+<?php require_once('verificaacesso_admin.php');
+require_once('cabecalho.php');
+require_once('conexaoBD.php');
+?>
 
     <div class="w3-container " style="margin-top: 80px; padding-bottom: 4rem;">
 
-
         <div class="w3-bar aba_menu">
-            <div class="abas w3-blue-grey " style="border: none;">
+            <div class="abas w3-blue-grey">
                 <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'propriedades')"><b>Propriedades</b></button>
                 <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'usuarios')"><b>Usuários</b></button>
                 <button class="w3-bar-item w3-button tablink w3-right" onclick="openMenu(event,'moradores')"><b>Moradores</b></button>
@@ -245,16 +157,14 @@
                         echo '<td>' . $linha['num_propriedade'] . '</td>';
                         echo '<td>' . $linha['bloco_quadra'] . '</td>';
                         echo '<td>' . $linha['status'] . '</td>';
-                        echo '<td>' . $linha['bloco_quadra'] . '</td>';
 
                         // criar um modal para relatório com muito mais dados e detalhado
                         echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
                                         <i class="fa fa-user-times w3-large w3-text-black"></i> 
                                     </a></td>
                             </td>';
-                        echo '<td><button onclick="document.getElementById(\'excluir_entrega\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                        echo '<td><button onclick="document.getElementById(\'editar_entrega\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
-                        echo '</tr>';
+                        echo '<td><button onclick="excluirEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                         echo '</tr>';
                     }
 
@@ -354,7 +264,7 @@
             <br>
 
             <!-- Consulta de Moradores -->
-            <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto;">
+            <table class="w3-table-all w3-centered w3-hoverable w3-mobile" style="overflow-y:auto;">
                 <tr class="w3-center w3-blue-grey">
                     <th>CPF</th>
                     <th>Nome</th>
@@ -378,8 +288,8 @@
                         echo '<td>' . $linha['email'] . '</td>';
                         echo '<td>' . $linha['num_propriedade'] . '</td>';
                         echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                        echo '<td><button onclick="document.getElementById(\'excluir_morador\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                        echo '<td><button onclick="document.getElementById(\'editar_morador\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="excluirMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="editarMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                         echo '</tr>';
                     }
 
@@ -395,40 +305,33 @@
                             <div class="w3-cell-row">
                                 <div class="w3-cell" style="padding-right: 15px; width:30%;">
                                     <label class="w3-text-black" style="font-weight: bold;">CPF</label>
-                                    <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo $linha['cpf']; ?>">
+                                    <input id="cpf" name="cpf" class="w3-input w3-grey w3-border" disabled>
                                 </div>
                                 <div class="w3-cell">
                                     <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-                                    <input name="tel" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['nome']; ?>">
+                                    <input id="nome" name="nome" class="w3-input w3-light-grey w3-border">
                                 </div>
                             </div><br>
                             <div class="w3-cell-row">
                                 <div class="w3-cell" style="padding-right: 15px; width:30%;">
                                     <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
-                                    <input name="nome" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['telefone']; ?>">
+                                    <input id="tel" name="tel" class="w3-input w3-light-grey w3-border">
                                 </div>
                                 <div>
                                     <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
-                                    <input name="email" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['email']; ?>">
+                                    <input id="email" name="email" class="w3-input w3-light-grey w3-border">
                                 </div>
                             </div><br>
-                            <label for="propriedade">Propriedade</label>
-                            <select class="w3-input w3-border w3-light-grey" name="propriedade" style="width:30%;">
-                                <?php
-
-                                $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                                $result = $conexao->query($query);
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                                    }
-                                } else {
-                                    echo '<option value="">Nenhuma opção disponível</option>';
-                                }
-                                ?>
-                            </select>
-                            <br>
+                            <div class="w3-cell-row">
+                                <div class="w3-cell" style="padding-right: 15px;">
+                                    <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
+                                    <input id="num_apart" name="num_apart" class="w3-input w3-light-grey w3-border">
+                                </div>
+                                <div class="w3-cell">
+                                    <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                                    <input id="bloco_quadra" name="bloco_quadra" class="w3-input w3-light-grey w3-border">
+                                </div>
+                            </div><br>
                             <button class="w3-btn w3-black" type="submit">Alterar</button>
                         </form><br>
 
@@ -446,34 +349,34 @@
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style="padding-right: 15px; width:30%;">
                                         <label class="w3-text-black" style="font-weight: bold;">CPF</label>
-                                        <input name="cpf" class="w3-input w3-grey w3-border" readonly value="<?php echo $linha['cpf']; ?>">
+                                        <input id="txtcpf" name="cpf" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                     <div class="w3-cell">
                                         <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-                                        <input name="tel" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['nome']; ?>">
+                                        <input id="txtnome" name="tel" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                 </div><br>
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style="padding-right: 15px; width:30%;">
                                         <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
-                                        <input name="nome" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['telefone']; ?>">
+                                        <input id="txttel" name="nome" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                     <div class="w3-cell">
                                         <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
-                                        <input name="email" class="w3-input w3-light-grey w3-border" readonly value="<?php echo $linha['email']; ?>">
+                                        <input id="txtemail" name="email" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                 </div><br>
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style="padding-right: 15px;">
                                         <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
-                                        <input name="numapart" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['num_propriedade']; ?>">
+                                        <input id="numapart" name="numapart" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                     <div class="w3-cell">
                                         <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
-                                        <input name="bloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['bloco_quadra']; ?>">
+                                        <input id="txtbloco" name="bloco" class="w3-input w3-grey w3-border" disabled>
                                     </div>
                                 </div><br>
-                                <button class="w3-btn w3-black" type="submit">Confirmar Exclusão!</button>
+                                <button class="w3-btn w3-black" type="submit">Confirmar Exclusão</button>
 
                             </form><br>
                         </div>
@@ -523,7 +426,7 @@
                                             <option value="" select></option>
                                             <option value="administrador">Administrador</option>
                                             <option value="operador">Operador</option>
-                                            <option value="operador">Morador</option>
+                                            <option value="morador">Morador</option>
                                         </select>
                                         <br><br>
                                         <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
@@ -561,10 +464,8 @@
                             echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
                             echo '<td>' . htmlspecialchars($linha['login'], ENT_QUOTES, 'UTF-8') . '</td>';
                             echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                            echo '<td><button onclick="document.getElementById(\'excluir_usuario\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                            echo '<td><button onclick="document.getElementById(\'editar_usuario\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
-                            echo '</tr>';
-
+                            echo '<td><button onclick="excluirUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                            echo '<td><button onclick="editarUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                             echo '</tr>';
                         }
                     } else {
@@ -583,25 +484,19 @@
                         <div class="w3-container">
                             <h1 class="w3-center"><b>Editar Usuário</b></h1>
                             <form action="editar_usuarioAction.php" method='post' class="w3-padding">
-                                <input name="id_user" class="w3-input w3-grey w3-border" type="hidden" value="<?php echo $linha['id_user']; ?>">
+                                <input id="id_user" name="id_user" class="w3-input w3-grey w3-border" type="hidden">
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-                                <input name="nome" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['nome']; ?>">
+                                <input id="nome_user" name="nome" class="w3-input w3-light-grey w3-border">
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Login</label>
-                                <input name="login" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['login']; ?>">
-                                <br>
-                                <label class="w3-text-black" style="font-weight: bold;">Senha</label>
-                                <input name="senha" class="w3-input w3-light-grey w3-border" type="password" value="<?php echo $linha['senha']; ?>">
-                                <br>
-                                <label class="w3-text-black" style="font-weight: bold;">Confirme a senha</label>
-                                <input name="confirma_senha" class="w3-input w3-light-grey w3-border" type="password" value="">
+                                <input id="login_user" class="w3-input w3-light-grey w3-border">
                                 <br>
                                 <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
-                                <select class="slc-usuario w3-light-grey" name="privilegio">
+                                <select class="slc-usuario w3-light-grey" id="privilegio_user" name="privilegio">
                                     <option value="administrador" <?php echo $linha['privilegio'] == 'administrador' ? 'selected' : ''; ?>>Administrador</option>
                                     <option value="operador" <?php echo $linha['privilegio'] == 'operador' ? 'selected' : ''; ?>>Operador</option>
-                                    <option value="operador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
+                                    <option value="morador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
                                 </select>
                                 <br><br>
                                 <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
@@ -619,16 +514,16 @@
                             <h2 class="w3-center"><b>Excluir Usuário</b></h2>
                             <form action="excluir_usuarioAction.php" method='post' class="w3-padding">
                                 <label class="w3-text-black" style="font-weight: bold;">ID</label>
-                                <input name="id_user" class="w3-input w3-grey w3-border" type="hidden" disabled value="<?php echo $linha['id_user']; ?>">
+                                <input id="user" name="user" class="w3-input w3-grey w3-border" disabled>
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Nome</label>
-                                <input name="nome" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['nome']; ?>">
+                                <input id="nome_usuario" name="nome" class="w3-input w3-grey w3-border" disabled>
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Login</label>
-                                <input name="login" class="w3-input w3-grey w3-border" disabled value="<?php echo $linha['login']; ?>">
+                                <input id="login" name="login" class="w3-input w3-grey w3-border" disabled>
                                 <br>
                                 <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
-                                <select class="slc-usuario w3-light-grey" name="privilegio" disabled>
+                                <select class="slc-usuario w3-grey" id="privilegio" name="privilegio" disabled>
                                     <option value="administrador" <?php echo $linha['privilegio'] == 'administrador' ? 'selected' : ''; ?>>Administrador</option>
                                     <option value="operador" <?php echo $linha['privilegio'] == 'operador' ? 'selected' : ''; ?>>Operador</option>
                                     <option value="operador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
@@ -707,8 +602,8 @@
                         echo '<td>' . $linha['id_propriedade'] . '</td>';
                         echo '<td>' . $linha['num_propriedade'] . '</td>';
                         echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                        echo '<td><button onclick="document.getElementById(\'excluir_propriedade\').style.display=\'block\'"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                        echo '<td><button onclick="document.getElementById(\'editar_propriedade\').style.display=\'block\'"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="excluirPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                        echo '<td><button onclick="editarPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                         echo '</tr>';
                     }
                 ?>
@@ -721,13 +616,13 @@
                         <div class="w3-container">
                             <h1 class="w3-center"><b>Editar Propriedade</b></h1>
                             <form action="editar_propriedadeAction.php" method='post' class="w3-padding">
-                                <input name="txtCodigo" class="w3-input w3-grey w3-border" type="" value="<?php echo $linha['id_propriedade'] ?>">
+                                <input id="txtCodigo" name="txtCodigo" class="w3-input w3-grey w3-border">
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Número</label>
-                                <input name="txtNumero" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['num_propriedade'] ?>">
+                                <input id="txtNumero" name="txtNumero" class="w3-input w3-light-grey w3-border">
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
-                                <input name="txtBloco" class="w3-input w3-light-grey w3-border" value="<?php echo $linha['bloco_quadra'] ?>">
+                                <input id="txtBloco" name="txtBloco" class="w3-input w3-light-grey w3-border">
                                 <br>
                                 <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
                             </form>
@@ -735,23 +630,25 @@
                     </div>
                 </div>
             </div>
+
             <!--Excluir propriedade -->
             <div id="excluir_propriedade" class="w3-modal">
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('excluir_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                         <div class="w3-container">
-                            <h1 class="w3-center"><b>Editar Propriedade</b></h1>
-                            <form action="editar_propriedadeAction.php" method='post' class="w3-padding">
-                                <input name="txtCodigo" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['id'] ?>">
+                            <h1 class="w3-center"><b>Excluir Propriedade</b></h1>
+                            <form action="excluir_propriedadeAction.php" method='post' class="w3-padding">
+                                <label class="w3-text-black" style="font-weight: bold;">Código</label>
+                                <input id="codigo" name="txtCodigo" class="w3-input w3-grey w3-border" disabled>
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Número</label>
-                                <input name="txtNumero" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['numero'] ?>">
+                                <input id="numero" name="txtNumero" class="w3-input w3-grey w3-border" disabled>
                                 <br>
                                 <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
-                                <input name="txtBloco" class="w3-input w3-grey w3-border" disabled value="<?php echo $_GET['bloco'] ?>">
+                                <input id="bloco" name="txtBloco" class="w3-input w3-grey w3-border" disabled>
                                 <br>
-                                <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
+                                <button class="w3-btn w3-black" type="submit">CONFIRMAR EXCLUSÃO</button>
                             </form>
                         </div>
                     </div>
@@ -760,32 +657,4 @@
         </div>
     </div><br><br>
 
-    <script>
-        //função das abas do menus
-        function openMenu(evt, menuName) {
-            var i, x, tablinks;
-            x = document.getElementsByClassName("menu");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < x.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-            }
-            document.getElementById(menuName).style.display = "block";
-            evt.currentTarget.className += " w3-red";
-        }
-    </script>
-    </div>
-</body>
-
-<div id="page-container">
-    <footer>
-        <p>Suporte:
-            <a href="mailto:hege@example.com">contato@econpac.com</a>
-        </p>
-    </footer>
-</div>
-
-
-</html>
+<?php require_once ('rodape.php');?>
