@@ -7,6 +7,7 @@ require_once('cabecalho.php');
 require_once('conexaoBD.php');
 ?>
 
+
 <!-- Falta a criação da logica para o usuario verificar somente suas entregas -->
 
 <div class="w3-container " style="margin-top: 80px; padding-bottom: 4rem;">
@@ -34,29 +35,38 @@ require_once('conexaoBD.php');
                 <th>Status</th>
             </tr>
             <?php
+            $usuario_id = $_SESSION['id_user'];
+            $tipo = $_SESSION['privilegio'];
 
-            // fazer a consulta ainda
-            $sql = "SELECT entrega.data_recebimento, entrega.nome_morador, propriedade.num_propriedade, propriedade.bloco_quadra, entrega.status FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
-            $resultado = $conexao->query($sql);
-            if ($resultado != null)
-                foreach ($resultado as $linha) {
-                    echo '<tr class=w3-text-black>';
-                    echo '<td>' . $linha['data_recebimento'] . '</td>';
-                    echo '<td>' . $linha['nome_morador'] . '</td>';
-                    echo '<td>' . $linha['num_propriedade'] . '</td>';
-                    echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td>' . $linha['status'] . '</td>';
+            // Identificar a propriedade associada ao usuário logado
+            $sql_propriedade = "SELECT id_propriedade FROM morador WHERE id_usuario = '$usuario_id'";
+            $result_propriedade = $conexao->query($sql_propriedade);
 
-                    // criar um modal para relatório com muito mais dados e detalhado
-                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
+            if ($result_propriedade->num_rows > 0) {
+                $morador = $result_propriedade->fetch_assoc();
+                $id_propriedade = $morador['id_propriedade'];
+
+                // Buscar entregas para o apartamento identificado
+                $sql_entregas = "SELECT entrega.*, propriedade.* FROM entrega 
+                     JOIN propriedade ON entrega.id_residencia = propriedade.id_propriedade 
+                     WHERE propriedade.id_propriedade = '$id_propriedade'";
+                $result_entregas = $conexao->query($sql_entregas);
+
+                while ($linha = $result_entregas->fetch_assoc()) {
+                        echo '<tr class=w3-text-black>';
+                        echo '<td>' . $linha['data_recebimento'] . '</td>';
+                        echo '<td>' . $linha['nome_morador'] . '</td>';
+                        echo '<td>' . $linha['num_propriedade'] . '</td>';
+                        echo '<td>' . $linha['bloco_quadra'] . '</td>';
+                        echo '<td>' . $linha['status'] . '</td>';
+
+                        // criar um modal para relatório com muito mais dados e detalhado
+                        echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
                                         <i class="fa fa-user-times w3-large w3-text-black"></i> 
                                     </a></td>
                             </td>';
-                    echo '<td><button onclick="excluirEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                    echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
-                    echo '</tr>';
-                }
-
+                    }
+            }
             ?>
         </table><br>
 

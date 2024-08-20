@@ -31,42 +31,49 @@ require_once('conexaoBD.php');
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                         <div class="w3-container w3-padding">
-                            <h2 class="w3-center"><b>Cadastrar Encomenda</b></h2>
+                            <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
                             <form action="cadastro_encomendaAction.php" method="post" class="w3-padding">
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
-                                        <label for="data_recebimento"><b>Data de Recebimento</b> </label>
+                                        <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
                                         <input type="date" name="data_recebimento" required>
                                     </div>
-                                    <div class="w3-cell">
-                                        <label for="recebido_por"><b>Recebido por</b> </label>
-                                        <input type="text" name="recebido_por" required>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="w3-cell-row">
                                     <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="tipo"><b>Tipo</b> </label>
+                                        <label for="tipo"><b>Tipo</b> </label><br>
                                         <select name="tipo" required>
-                                            <option value="" disabled selected>Selecione o tipo</option>
                                             <option value="e-commerce">E-COMMERCE</option>
                                             <option value="carta">CARTA</option>
                                             <option value="sedex">SEDEX</option>
                                         </select>
                                     </div>
                                     <div class="w3-cell">
-                                        <label for="status"><b>Status</b></label>
-                                        <select name="status" required>
-                                            <option value="" disabled selected>Selecione o status</option>
-                                            <option value="entregue">Entregue</option>
-                                            <option value="a retirar">A Retirar</option>
-                                        </select>
+                                        <label for="recebido_por"><b>Recebido por</b> </label><br>
+                                        <input type="text" name="recebido_por" readonly value="<?php echo ucwords($_SESSION['nome']) ?>">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="w3-cell-row">
+                                    <div class="w3-cell">
+                                        <label for="propriedade"><b>Propriedade</b></label><br>
+                                        <select name="propriedade" required>
+                                            <option value="" disabled selected>Selecione a propriedade</option>
+                                            <?php
+
+                                            $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                                            $result = $conexao->query($query);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option value="">Nenhuma opção disponível</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="morador"><b>Morador</b></label>
+                                        <label for="morador"><b>Morador</b></label><br>
                                         <select name="morador" required>
                                             <option value="" disabled selected>Selecione o morador</option>
                                             <?php
@@ -83,44 +90,33 @@ require_once('conexaoBD.php');
                                             ?>
                                         </select>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="w3-cell-row w3-center">
+                                    <div class="w3-cell" style="padding-right: 15px;">
+                                        <label for="remetente"><b>Remetente</b></label><br>
+                                        <input type="text" name="remetente">
+                                    </div>
                                     <div class="w3-cell">
-                                        <label for="propriedade"><b>Propriedade</b></label>
-                                        <select name="propriedade" required>
-                                            <option value="" disabled selected>Selecione a propriedade</option>
-                                            <?php
-
-                                            $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                                            $result = $conexao->query($query);
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                                                }
-                                            } else {
-                                                echo '<option value="">Nenhuma opção disponível</option>';
-                                            }
-                                            ?>
+                                        <label for="num_registro"><b>Número de Registro</b></label><br>
+                                        <input type="text" name="num_registro">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="w3-cell-row">
+                                    <div class="w3-cell">
+                                        <label for="status"><b>Status</b></label><br>
+                                        <select name="status" required>
+                                            <option value="entregue">Entregue</option>
+                                            <option value="a retirar" selected>A Retirar</option>
                                         </select>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="w3-cell-row">
                                     <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="remetente"><b>Remetente</b></label>
-                                        <input type="text" name="remetente" required>
-                                    </div>
-                                    <div class="w3-cell">
-                                        <label for="num_registro"><b>Número de Registro</b></label>
-                                        <input type="text" name="num_registro" required>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="w3-cell-row">
-                                    <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="retirado_por"><b>Retirado por</b></label>
+                                        <label for="retirado_por"><b>Retirado por</b></label><br>
                                         <input type="text" name="retirado_por">
                                     </div>
                                     <div class="w3-cell">
-                                        <label for="data_retirada"><b>Data de Retirada</b></label>
+                                        <label for="data_retirada"><b>Data de Retirada</b></label><br>
                                         <input type="date" name="data_retirada">
                                     </div>
 
