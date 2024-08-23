@@ -36,7 +36,7 @@ require_once('conexaoBD.php');
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                        <input type="date" name="data_recebimento" required>
+                                        <input type="text" name="data_recebimento" value="<?php echo date('d/m/Y') ?>" readonly>
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
                                         <label for="tipo"><b>Tipo</b> </label><br>
@@ -61,11 +61,10 @@ require_once('conexaoBD.php');
 
                                             $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                             $result = $conexao->query($query);
-                                            
+
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                                                   
                                                 }
                                             } else {
                                                 echo '<option value="">Nenhuma opção disponível</option>';
@@ -74,22 +73,8 @@ require_once('conexaoBD.php');
                                         </select>
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="morador"><b>Morador</b></label><br>
-                                        <select name="morador" required>
-                                            <option value="" disabled selected>Selecione o morador</option>
-                                            <?php
-
-                                            $query = "SELECT cpf, nome FROM morador";
-                                            $result = $conexao->query($query);
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row["cpf"]) . '">' . htmlspecialchars($row["nome"]) . '</option>';
-                                                }
-                                            } else {
-                                                echo '<option value="">Nenhuma opção disponível</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="morador"><b>Destinatário</b></label><br>
+                                        <input type="text" name="destinatario">
                                     </div>
                                 </div>
                                 <br>
@@ -100,14 +85,14 @@ require_once('conexaoBD.php');
                                     </div>
                                     <div class="w3-cell">
                                         <label for="num_registro"><b>Número de Registro</b></label><br>
-                                        <input type="text" name="num_registro" >
+                                        <input type="text" name="num_registro">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="w3-cell-row">
                                     <div class="w3-cell">
                                         <label for="status"><b>Status</b></label><br>
-                                        <select name="status" required>
+                                        <select name="status" name="status" required>
                                             <option value="entregue">Entregue</option>
                                             <option value="a retirar" selected>A Retirar</option>
                                         </select>
@@ -137,7 +122,7 @@ require_once('conexaoBD.php');
         <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto; ">
             <tr class="w3-center w3-blue-grey">
                 <th>Data Recebimento</th>
-                <th>Morador</th>
+                <th>Destinatário</th>
                 <th>Apartamento</th>
                 <th>bloco</th>
                 <th>Status</th>
@@ -160,9 +145,8 @@ require_once('conexaoBD.php');
                     echo '<td>' . $linha['status'] . '</td>';
 
                     // criar um modal para relatório com muito mais dados e detalhado
-                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '">
-                                        <i class="fa fa-user-times w3-large w3-text-black"></i> 
-                                    </a></td>
+                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '" class="w3-text-blue">Detalhes
+                                         </a></td>
                             </td>';
                     echo '<td><button onclick="excluirEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
                     echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
