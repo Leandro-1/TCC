@@ -71,7 +71,14 @@ function excluirUsuario(id, nome, login, privilegio) {
     document.getElementById('excluir_usuario').style.display = 'block';
 
 }
+function detalhesEntrega (dt_recebido,recebido_por,destinatario,status) {
+    document.getElementById('dt_receb').value = dt_recebido;
+    document.getElementById('recebido').value = recebido_por;
+    document.getElementById('destin').value = destinatario;
+    document.getElementById('status_atual').value = status;
+    document.getElementById('detalhes_entrega').style.display = 'block';
 
+}
 
 //função das abas do menus
 function openMenu(evt, menuName) {
