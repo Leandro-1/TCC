@@ -5,7 +5,7 @@
 </head>
 
 <?php 
-session_start();
+
 require_once 'conexaoBD.php';
 
 $cpf = $_POST['cpf'];
@@ -22,21 +22,20 @@ $stmt->bind_param("isssi", $cpf, $nome, $tel, $email, $id_propriedade);
 //Teste de implementar pop-up modal
 if ($stmt->execute()) {
 
-   $_SESSION['mensagem'] =  '
-            <a href="menu.php">
-                <h1 class="w3-button w3-green" style="width: 180%;">Realizado com Sucesso! </h1>
+   echo '
+            <a href="inicial_adm.php">
+                <h1 class="w3-button w3-green w3-center w3-display-center" style="width: 50%;">Realizado com Sucesso! </h1>
             </a>
             ';
     
 } else {
-    $_SESSION['mensagem'] =  '
-            <a href="menu.php">
-                <h1 class="w3-button w3-red" style="width: 180%;">ERRO... Tente novamente!</h1>
+    echo '
+            <a href="inicial_adm.php">
+                <h1 class="w3-button w3-red w3-center" style="width: 50%;">ERRO... Tente novamente!</h1>
             </a>
             ';
     
 }
-header('Location: menu.php');
 
 $stmt->close();
 $conexao->close();

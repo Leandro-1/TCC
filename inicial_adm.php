@@ -32,6 +32,7 @@ require_once('conexaoBD.php');
                         <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
+
                             <form action="cadastro_encomendaAction.php" method="post" class="w3-padding">
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
@@ -221,17 +222,16 @@ require_once('conexaoBD.php');
                                     </div><br>
                                     <label for="propriedade"><b>Propriedade</b></label>
                                     <select class="w3-input w3-border" name="propriedade" required style="width:30%;">
+                                        <option value=""></option>
                                         <?php
                                         $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                         $result = $conexao->query($query);
 
                                         if ($result->num_rows > 0) {
                                             while ($row = $result->fetch_assoc()) {
-                                                echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                                echo '<option value=" ' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["num_propriedade"] . ' - ' . $row["bloco_quadra"]) . '</option>';
                                             }
-                                        } else {
-                                            echo '<option value="">Nenhuma opção disponível</option>';
-                                        }
+                                        } 
                                         ?>
                                     </select>
                                     <br>
@@ -475,7 +475,7 @@ require_once('conexaoBD.php');
                             <input id="nome_user" name="nome" class="w3-input w3-light-grey w3-border">
                             <br>
                             <label class="w3-text-black" style="font-weight: bold;">Login</label>
-                            <input id="login_user" class="w3-input w3-light-grey w3-border">
+                            <input id="login_user" name="login_user" class="w3-input w3-light-grey w3-border">
                             <br>
                             <label for="privilegio" class="w3-text-black" style="font-weight: bold;">Privilégio</label>
                             <select class="slc-usuario w3-light-grey" id="privilegio_user" name="privilegio">
@@ -511,7 +511,7 @@ require_once('conexaoBD.php');
                             <select class="slc-usuario w3-grey" id="privilegio" name="privilegio" disabled>
                                 <option value="administrador" <?php echo $linha['privilegio'] == 'administrador' ? 'selected' : ''; ?>>Administrador</option>
                                 <option value="operador" <?php echo $linha['privilegio'] == 'operador' ? 'selected' : ''; ?>>Operador</option>
-                                <option value="operador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
+                                <option value="morador" <?php echo $linha['privilegio'] == 'morador' ? 'selected' : ''; ?>>Morador</option>
                             </select>
                             <br><br>
 

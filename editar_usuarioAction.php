@@ -9,7 +9,7 @@
         require_once 'conexaoBD.php';
 
 
-        $sql = "UPDATE usuario SET nome = '" . $_POST['nome'] . "', login='" . $_POST['login'] . "', privilegio = '" . $_POST['privilegio'] . "' WHERE id_user =" . $_POST['id_user'] . ";";
+        $sql = "UPDATE usuario SET nome = '" . $_POST['nome'] . "', login='" . $_POST['login_user'] . "', privilegio = '" . $_POST['privilegio'] . "' WHERE id_user =" . $_POST['id_user'] . ";";
 
 
         if ($conexao->query($sql) === TRUE) {
