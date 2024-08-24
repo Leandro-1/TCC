@@ -37,7 +37,7 @@ require_once('conexaoBD.php');
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                        <input type="text" name="data_recebimento" value="<?php echo date('d/m/Y') ?>" readonly>
+                                        <input type="date" name="data_recebimento" >
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
                                         <label for="tipo"><b>Tipo</b> </label><br>
@@ -55,27 +55,16 @@ require_once('conexaoBD.php');
                                 <br>
                                 <div class="w3-cell-row">
                                     <div class="w3-cell">
-                                        <label for="propriedade"><b>Propriedade</b></label><br>
-                                        <select name="propriedade" required>
-                                            <option value="" disabled selected>Selecione a propriedade</option>
-                                            <?php
-
-                                            $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                                            $result = $conexao->query($query);
-
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                                                }
-                                            } else {
-                                                echo '<option value="">Nenhuma opção disponível</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="apartamento"><b>Apartamento</b></label><br>
+                                        <input name="apartamento" required>
                                     </div>
-                                    <div class="w3-cell" style="padding-right: 15px;">
+                                    <div class="w3-cell" >
+                                        <label for="bloco"><b>Bloco</b></label><br>
+                                        <input name="bloco" required>
+                                    </div>
+                                    <div class="w3-cell">
                                         <label for="morador"><b>Destinatário</b></label><br>
-                                        <input type="text" name="destinatario">
+                                        <input type="text" name="destinatario" required>
                                     </div>
                                 </div>
                                 <br>
@@ -93,7 +82,7 @@ require_once('conexaoBD.php');
                                 <div class="w3-cell-row">
                                     <div class="w3-cell">
                                         <label for="status"><b>Status</b></label><br>
-                                        <select name="status" name="status" required>
+                                        <select id="status" name="status" required>
                                             <option value="entregue">Entregue</option>
                                             <option value="a retirar" selected>A Retirar</option>
                                         </select>
@@ -134,7 +123,7 @@ require_once('conexaoBD.php');
             <?php
 
             // fazer a consulta ainda
-            $sql = "SELECT entrega.data_recebimento, entrega.nome_morador, propriedade.num_propriedade, propriedade.bloco_quadra, entrega.status FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
+            $sql = "SELECT entrega.*, propriedade.* FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
             $resultado = $conexao->query($sql);
             if ($resultado != null)
                 foreach ($resultado as $linha) {
@@ -231,7 +220,7 @@ require_once('conexaoBD.php');
                                             while ($row = $result->fetch_assoc()) {
                                                 echo '<option value=" ' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["num_propriedade"] . ' - ' . $row["bloco_quadra"]) . '</option>';
                                             }
-                                        } 
+                                        }
                                         ?>
                                     </select>
                                     <br>
@@ -587,7 +576,6 @@ require_once('conexaoBD.php');
                     echo '<td>' . $linha['id_propriedade'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                    echo '<td><button onclick="excluirPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
                     echo '<td><button onclick="editarPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
                 }
@@ -616,29 +604,6 @@ require_once('conexaoBD.php');
             </div>
         </div>
 
-        <!--Excluir propriedade -->
-        <div id="excluir_propriedade" class="w3-modal">
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <span onclick="document.getElementById('excluir_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                    <div class="w3-container">
-                        <h1 class="w3-center"><b>Excluir Propriedade</b></h1>
-                        <form action="excluir_propriedadeAction.php" method='post' class="w3-padding">
-                            <label class="w3-text-black" style="font-weight: bold;">Código</label>
-                            <input id="codigo" name="txtCodigo" class="w3-input w3-grey w3-border" disabled>
-                            <br>
-                            <label class="w3-text-black" style="font-weight: bold;">Número</label>
-                            <input id="numero" name="txtNumero" class="w3-input w3-grey w3-border" disabled>
-                            <br>
-                            <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
-                            <input id="bloco" name="txtBloco" class="w3-input w3-grey w3-border" disabled>
-                            <br>
-                            <button class="w3-btn w3-black" type="submit">CONFIRMAR EXCLUSÃO</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div><br><br>
 

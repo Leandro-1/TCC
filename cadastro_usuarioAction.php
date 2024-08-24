@@ -7,11 +7,6 @@
         <?php
         require_once 'conexaoBD.php';
 
-        // Verificação de erro de conexão
-        if ($conexao->connect_error) {
-            die("Connection failed: " . $conexao->connect_error);
-        }
-
         // Verificação de campos vazios
         if (empty($_POST["login"]) || empty($_POST["senha"]) || empty($_POST["nome"]) || empty($_POST["privilegio"])) {
             echo "Por favor, preencha todos os campos!";

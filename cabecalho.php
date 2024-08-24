@@ -21,5 +21,5 @@
         </span>
         <a href="logoutAction.php" class="item_nav w3-bar-item w3-button w3-right w3-hover-red">Sair</a>
         <a href="#" class="item_nav w3-bar-item w3-button w3-right">Alterar Senha</a>
-        <span class=" item_nav w3-bar-item w3-right">Olá, <?php echo ucwords($_SESSION['nome']) ?></span>
+        <span class=" item_nav w3-bar-item w3-right">Olá, <?php echo ucwords($_SESSION['nome']); ?></span>
     </nav>
