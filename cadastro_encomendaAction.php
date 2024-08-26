@@ -14,15 +14,8 @@ $retirado_por = $_POST['retirado_por'];
 $data_retirada = $_POST['data_retirada'];
 
 // Obtendo id_propriedade
-$id_propriedade_query = "SELECT id_propriedade FROM propriedade WHERE num_propriedade = ? AND bloco_quadra = ?";
-$stmt = $conexao->prepare($id_propriedade_query);
-$stmt->bind_param('is', $apartamento, $bloco);
-$stmt->execute();
-$result = $stmt->get_result();
-$id_propriedade_row = $result->fetch_assoc();
+$id_propriedade = "SELECT id_propriedade FROM propriedade WHERE num_propriedade = $apartamento AND bloco_quadra = '$bloco';";
 
-if ($id_propriedade_row) {
-    $id_propriedade = $id_propriedade_row['id_propriedade'];
 
     // Inserindo dados na tabela entrega
     $sql = "INSERT INTO entrega (tipo, data_recebimento, data_retirada, nome_morador, status, id_residencia, remetente, retirado_por, recebido_por, num_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -34,10 +27,7 @@ if ($id_propriedade_row) {
     } else {
         echo '<a href="inicial_adm.php"><h1 class="w3-button w3-red w3-center">ERRO... Tente novamente!</h1></a>';
     }
-} else {
-    echo '<a href="inicial_adm.php"><h1 class="w3-button w3-red w3-center">Propriedade não encontrada!</h1></a>';
-}
-
+ 
 $stmt->close();
 $conexao->close();
 

@@ -37,7 +37,7 @@ require_once('conexaoBD.php');
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                        <input type="date" name="data_recebimento" >
+                                        <input type="text" name="data_recebimento" value="<?php echo date('d/m/Y') ?> " readonly>
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
                                         <label for="tipo"><b>Tipo</b> </label><br>
