@@ -20,7 +20,7 @@ require_once('conexaoBD.php');
 
     <!--Aba de entregas -->
     <div id="entregas" class="w3-container w3-border w3-white menu">
-        <div class="w3-container w3-display-top w3-padding">
+        <div class="w3-container w3-display-top">
             <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
             <!--Cadastro de entregas com caixa Modal -->
@@ -32,11 +32,12 @@ require_once('conexaoBD.php');
                         <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
+
                             <form action="cadastro_encomendaAction.php" method="post" class="w3-padding">
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                        <input type="text" name="data_recebimento" value="<?php echo date('d/m/Y'); ?>" readonly>
+                                        <input type="text" name="data_recebimento" value="<?php echo date('Y/m/d') ?> " readonly>
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
                                         <label for="tipo"><b>Tipo</b> </label><br>
@@ -54,27 +55,16 @@ require_once('conexaoBD.php');
                                 <br>
                                 <div class="w3-cell-row">
                                     <div class="w3-cell">
-                                        <label for="propriedade"><b>Propriedade</b></label><br>
-                                        <select name="propriedade" required>
-                                            <option value="" disabled selected>Selecione a propriedade</option>
-                                            <?php
-
-                                            $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                                            $result = $conexao->query($query);
-
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                                                }
-                                            } else {
-                                                echo '<option value="">Nenhuma opção disponível</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="apartamento"><b>Apartamento</b></label><br>
+                                        <input name="apartamento" required>
                                     </div>
-                                    <div class="w3-cell" style="padding-right: 15px;">
+                                    <div class="w3-cell">
+                                        <label for="bloco"><b>Bloco</b></label><br>
+                                        <input name="bloco" required>
+                                    </div>
+                                    <div class="w3-cell">
                                         <label for="morador"><b>Destinatário</b></label><br>
-                                        <input type="text" name="destinatario">
+                                        <input type="text" name="destinatario" required>
                                     </div>
                                 </div>
                                 <br>
@@ -92,7 +82,7 @@ require_once('conexaoBD.php');
                                 <div class="w3-cell-row">
                                     <div class="w3-cell">
                                         <label for="status"><b>Status</b></label><br>
-                                        <select name="status" required>
+                                        <select id="status" name="status" required>
                                             <option value="entregue">Entregue</option>
                                             <option value="a retirar" selected>A Retirar</option>
                                         </select>
@@ -133,22 +123,23 @@ require_once('conexaoBD.php');
             <?php
 
             // fazer a consulta ainda
-            $sql = "SELECT entrega.data_recebimento, entrega.nome_morador, propriedade.num_propriedade, propriedade.bloco_quadra, entrega.status FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
+            $sql = "SELECT entrega.*, propriedade.* FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
             $resultado = $conexao->query($sql);
             if ($resultado != null)
                 foreach ($resultado as $linha) {
                     echo '<tr class=w3-text-black>';
                     echo '<td>' . $linha['data_recebimento'] . '</td>';
-                    echo '<td>' . $linha['nome_morador'] . '</td>';
+                    echo '<td>' . $linha['nome_destinatario'] . '</td>';
                     echo '<td>' . $linha['num_propriedade'] . '</td>';
                     echo '<td>' . $linha['bloco_quadra'] . '</td>';
                     echo '<td>' . $linha['status'] . '</td>';
 
                     // criar um modal para relatório com muito mais dados e detalhado
-                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_morador'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '" class="w3-text-blue">Detalhes</a></td>';
-
-                    echo '<td><button onclick="excluirEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                    echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_destinatario'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '" class="w3-text-blue">Detalhes
+                                         </a>
+                            </td>';
+                    echo '<td><button onclick="excluirEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+                    echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
                 }
 
@@ -160,22 +151,96 @@ require_once('conexaoBD.php');
                 <div class="w3-container">
                     <span onclick="document.getElementById('editar_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                     <div class="w3-container">
-
+                        <div class="w3-cell-row">
+                            <div class="w3-cell" style=" padding-right: 15px;">
+                                <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
+                                <input type="text" id="data_recebimento" name="data_recebimento " class="w3-light-grey" disabled>
+                            </div>
+                            <div class="w3-cell" style="padding-right: 15px;">
+                                <label for="tipo"><b>Tipo</b> </label><br>
+                                <select id="tipo" name="tipo" required>
+                                    <option value="e-commerce">E-COMMERCE</option>
+                                    <option value="carta">CARTA</option>
+                                    <option value="sedex">SEDEX</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="w3-cell-row">
+                            <div class="w3-cell">
+                                <label for="apartamento"><b>Apartamento</b></label><br>
+                                <input id="apartamento_entrega" name="apartamento" required>
+                            </div>
+                            <div class="w3-cell">
+                                <label for="bloco"><b>Bloco</b></label><br>
+                                <input id="bloco_entrega" name="bloco" required>
+                            </div>
+                            <div class="w3-cell">
+                                <label for="destinatario"><b>Destinatário</b></label><br>
+                                <input type="text" id="destinatario" name="destinatario" required>
+                            </div>
+                            <div class="w3-cell">
+                                <label for="status"><b>Status</b></label><br>
+                                <select id="status" name="status" required>
+                                    <option value="entregue">Entregue</option>
+                                    <option value="a retirar" selected>A Retirar</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!--Excluir entregas -->
         <div id="excluir_entrega" class="w3-modal">
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('excluir_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
                     <div class="w3-container">
-
+                        <div class="w3-container">
+                            <div class="w3-cell-row">
+                                <div class="w3-cell" style=" padding-right: 15px;">
+                                    <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
+                                    <input type="text" id="data_receb" name="data_recebimento " class="w3-light-grey" disabled>
+                                </div>
+                                <div class="w3-cell" style="padding-right: 15px;">
+                                    <label for="tipo"><b>Tipo</b> </label><br>
+                                    <select id="tipo_entrega" name="tipo" class="w3-light-grey" disabled>
+                                        <option value="e-commerce">E-COMMERCE</option>
+                                        <option value="carta">CARTA</option>
+                                        <option value="sedex">SEDEX</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="w3-cell-row">
+                                <div class="w3-cell">
+                                    <label for="apartamento"><b>Apartamento</b></label><br>
+                                    <input id="apartamento_" name="apartamento" class="w3-light-grey" disabled>
+                                </div>
+                                <div class="w3-cell">
+                                    <label for="bloco"><b>Bloco</b></label><br>
+                                    <input id="bloco_" name="bloco" class="w3-light-grey" disabled>
+                                </div>
+                                <div class="w3-cell">
+                                    <label for="destinatario_entrega"><b>Destinatário</b></label><br>
+                                    <input type="text" id="destinatario" name="destinatario" class="w3-light-grey" disabled>
+                                </div>
+                                <div class="w3-cell">
+                                    <label for="status"><b>Status</b></label><br>
+                                    <select id="status_entrega" name="status" class="w3-light-grey" disabled>
+                                        <option value="entregue">Entregue</option>
+                                        <option value="a retirar" selected>A Retirar</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!--Aba de MORADORES -->
@@ -186,7 +251,7 @@ require_once('conexaoBD.php');
         <!-- Consulta de Moradores -->
         <table class="w3-table-all w3-centered w3-hoverable w3-mobile" style="overflow-y:auto;">
             <tr class="w3-center w3-blue-grey">
-                <th>CPF</th>
+
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
@@ -200,7 +265,7 @@ require_once('conexaoBD.php');
             if ($resultado != null)
                 foreach ($resultado as $linha) {
                     echo '<tr class=w3-text-black>';
-                    echo '<td>' . $linha['cpf'] . '</td>';
+
                     echo '<td>' . $linha['nome'] . '</td>';
                     echo '<td>' . $linha['telefone'] . '</td>';
                     echo '<td>' . $linha['email'] . '</td>';

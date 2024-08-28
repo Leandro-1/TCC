@@ -56,13 +56,13 @@ require_once('conexaoBD.php');
                     echo '<td>' . $linha['num_propriedade'] . ' / ' . $linha['bloco_quadra'] . '</td>';
                     echo '<td>' . $linha['data_recebimento'] . '</td>';
                     echo '<td>' . $linha['recebido_por'] . '</td>';
-                    echo '<td>' . $linha['nome_morador'] . '</td>';
+                    echo '<td>' . $linha['nome_destinatario'] . '</td>';
                     echo '<td>' . $linha['retirado_por'] . '</td>';
                     echo '<td>' . $linha['data_retirada'] .  '</td>';
                     echo '<td>' . $linha['status'] . '</td>';
 
                     // colocar mais detalhes relevantes
-                    echo '<td><button onclick="detalhesEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_morador'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
+                    echo '<td><button onclick="detalhesEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
                 }
             }
             ?>

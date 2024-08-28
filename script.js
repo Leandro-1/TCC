@@ -1,20 +1,24 @@
 
-function editarEntrega(data, nome, numero, bloco, status) {
-    document.getElementById('').value = data;
-    document.getElementById('').value = nome;
-    document.getElementById('').value = numero;
-    document.getElementById('').value = bloco;
-    document.getElementById('').value = status;
+function editarEntrega(id, data, tipo, nome, numero, bloco, status) {
+    document.getElementById('id_entrega').value = id;
+    document.getElementById('data_recebimento').value = data;
+    document.getElementById('tipo').value = tipo;
+    document.getElementById('destinatario').value = nome;
+    document.getElementById('apartamento_entrega').value = numero;
+    document.getElementById('bloco_entrega').value = bloco;
+    document.getElementById('status').value = status;
     document.getElementById('editar_entrega').style.display = 'block';
 
 }
 
-function excluirEntrega(data, nome, numero, bloco, status) {
-    document.getElementById('').value = data;
-    document.getElementById('').value = nome;
-    document.getElementById('').value = numero;
-    document.getElementById('').value = bloco;
-    document.getElementById('').value = status;
+function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {
+    document.getElementById('cod_entrega').value = id;
+    document.getElementById('data_receb').value = data;
+    document.getElementById('tipo_entrega').value = tipo;
+    document.getElementById('destinatario_entrega').value = nome;
+    document.getElementById('apartamento_').value = numero;
+    document.getElementById('bloco_').value = bloco;
+    document.getElementById('status_entrega').value = status;
     document.getElementById('excluir_entrega').style.display = 'block';
 
 }

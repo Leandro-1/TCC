@@ -14,21 +14,32 @@ $retirado_por = $_POST['retirado_por'];
 $data_retirada = $_POST['data_retirada'];
 
 // Obtendo id_propriedade
-$id_propriedade = "SELECT id_propriedade FROM propriedade WHERE num_propriedade = $apartamento AND bloco_quadra = '$bloco';";
+$id_propriedade = "SELECT id_propriedade FROM propriedade WHERE num_propriedade = $apartamento AND bloco_quadra = '$bloco'";
+$result = $conexao->query($id_propriedade);
 
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id_propriedade = $row['id_propriedade'];
 
-    // Inserindo dados na tabela entrega
-    $sql = "INSERT INTO entrega (tipo, data_recebimento, data_retirada, nome_morador, status, id_residencia, remetente, retirado_por, recebido_por, num_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssssissss', $tipo, $data_recebimento, $data_retirada, $destinatario, $status, $id_propriedade, $remetente, $retirado_por, $recebido_por, $num_registro);
+    // Inserir entrega
+    $sql = "INSERT INTO entrega (tipo, data_recebimento, data_retirada, nome_destinatario, status, id_residencia, remetente, retirado_por, recebido_por, num_registro) VALUES ('$tipo','$data_recebimento','$data_retirada','$destinatario','$status',$id_propriedade,'$remetente','$retirado_por','$recebido_por','$num_registro');";
 
-    if ($stmt->execute()) {
-        echo '<a href="inicial_adm.php"><h1 class="w3-button w3-green w3-center">Realizado com Sucesso! </h1></a>';
+    if ($conexao->query($sql) === TRUE) {
+        echo '<a href="inicial_adm.php">
+                <h1 class="w3-button w3-black w3-center">Morador Atualizado com Sucesso!</h1>
+              </a>';
     } else {
-        echo '<a href="inicial_adm.php"><h1 class="w3-button w3-red w3-center">ERRO... Tente novamente!</h1></a>';
+        echo '<a href="inicial_adm.php">
+                <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
+              </a>';
     }
- 
-$stmt->close();
+} else {
+    echo '<a href="inicial_adm.php">
+            <h1 class="w3-button w3-black w3-center">Propriedade não encontrada!</h1>
+          </a>';
+}
+
+
 $conexao->close();
 
 

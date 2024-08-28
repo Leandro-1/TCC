@@ -1,9 +1,14 @@
-<?php require_once("verificaacesso_admin.php") ?>
-<?php require_once("cabecalho.php"); ?>
-<div class="formulario w3-padding w3-content w3-text-grey w3-third w3-display-middle">
+<?php
+require_once('verificar_permissaoAcesso.php');
+verificar_permissao('administrador');
+require_once('cabecalho.php');
+require_once 'conexaoBD.php';
+?>
+
+
+<div class="w3-display-middle">
   <?php
-  require_once 'conexaoBD.php';
-  // dando erro no id cpf de novo
+  
   $cpf = $_POST['cpf'];
   $tel = $_POST['tel'];
   $nome = $_POST['nome'];
@@ -11,27 +16,40 @@
   $numero_apart = $_POST['num_apart'];
   $bloco = $_POST['bloco_quadra'];
 
-  $id_propriedade_stmt = $conexao->prepare("SELECT id_propriedade FROM propriedade WHERE num_propriedade = ? AND bloco_quadra = ?");
-  $id_propriedade_stmt->bind_param("ss", $numero_apart, $bloco);
-  $id_propriedade_stmt->execute();
-  $id_propriedade_result = $id_propriedade_stmt->get_result();
-  $id_propriedade_row = $id_propriedade_result->fetch_assoc();
-  $id_propriedade_value = $id_propriedade_row['id_propriedade'];
+  // Proteção contra SQL Injection
+  $cpf = mysqli_real_escape_string($conexao, $cpf);
+  $tel = mysqli_real_escape_string($conexao, $tel);
+  $nome = mysqli_real_escape_string($conexao, $nome);
+  $email = mysqli_real_escape_string($conexao, $email);
+  $numero_apart = mysqli_real_escape_string($conexao, $numero_apart);
+  $bloco = mysqli_real_escape_string($conexao, $bloco);
 
-  // Atualização do Morador
-  $stmt = $conexao->prepare("UPDATE morador SET nome = ?, telefone = ?, email = ?, id_propriedade = ? WHERE cpf = ?");
-  $stmt->bind_param("sssis", $nome, $tel, $email, $id_propriedade_value, $cpf);
-  if ($stmt->execute()) {
-    echo '<a href="inicial_adm.php">
-                <h1 class="w3-button w3-black w3-center">Morador Atualizado com Sucesso! </h1>
+  // Obter o id_propriedade
+  $id_propriedade_sql = "SELECT id_propriedade FROM propriedade WHERE num_propriedade = $numero_apart AND bloco_quadra = '$bloco'";
+  $result = $conexao->query($id_propriedade_sql);
+
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id_propriedade = $row['id_propriedade'];
+
+    // Atualizar o morador
+    $sql = "UPDATE morador SET nome = '$nome', telefone = '$tel', email = '$email', id_propriedade = $id_propriedade WHERE cpf = $cpf";
+
+    if ($conexao->query($sql) === TRUE) {
+      echo '<a href="inicial_adm.php">
+                <h1 class="w3-button w3-black w3-center">Morador Atualizado com Sucesso!</h1>
               </a>';
+    } else {
+      echo '<a href="inicial_adm.php">
+                <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
+              </a>';
+    }
   } else {
     echo '<a href="inicial_adm.php">
-                <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
-              </a>';
+            <h1 class="w3-button w3-black w3-center">Propriedade não encontrada!</h1>
+          </a>';
   }
 
-  $stmt->close();
   $conexao->close();
   ?>
 </div>
