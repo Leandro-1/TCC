@@ -53,7 +53,12 @@ require_once('conexaoBD.php');
                                     </div>
                                 </div>
                                 <br>
+
                                 <div class="w3-cell-row">
+                                <div class="w3-cell">
+                                        <label for="morador"><b>Destinatário</b></label><br>
+                                        <input type="text" name="destinatario" required>
+                                    </div> 
                                 <label for="propriedade">Propriedade</label>
                 <select class="w3-input w3-border" name="propriedade" required>
                     <?php 
@@ -72,22 +77,7 @@ require_once('conexaoBD.php');
 
 
                                 </div>
-                                <!--
-                                <div class="w3-cell-row">
-                                    <div class="w3-cell">
-                                        <label for="apartamento"><b>Apartamento</b></label><br>
-                                        <input name="apartamento" required>
-                                    </div>
-                                    <div class="w3-cell">
-                                        <label for="bloco"><b>Bloco</b></label><br>
-                                        <input name="bloco" required>
-                                    </div>
-                                    <div class="w3-cell">
-                                        <label for="morador"><b>Destinatário</b></label><br>
-                                        <input type="text" name="destinatario" required>
-                                    </div>
-                                </div>
--->
+                               
                                 <br>
                                 <div class="w3-cell-row w3-center">
                                     <div class="w3-cell" style="padding-right: 15px;">
