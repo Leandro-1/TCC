@@ -54,6 +54,26 @@ require_once('conexaoBD.php');
                                 </div>
                                 <br>
                                 <div class="w3-cell-row">
+                                <label for="propriedade">Propriedade</label>
+                <select class="w3-input w3-border" name="propriedade" required>
+                    <?php 
+                    $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                    $result = $conexao->query($query);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Nenhuma opção disponível</option>';
+                    }
+                    ?>
+                </select>
+
+
+                                </div>
+                                <!--
+                                <div class="w3-cell-row">
                                     <div class="w3-cell">
                                         <label for="apartamento"><b>Apartamento</b></label><br>
                                         <input name="apartamento" required>
@@ -67,6 +87,7 @@ require_once('conexaoBD.php');
                                         <input type="text" name="destinatario" required>
                                     </div>
                                 </div>
+-->
                                 <br>
                                 <div class="w3-cell-row w3-center">
                                     <div class="w3-cell" style="padding-right: 15px;">
