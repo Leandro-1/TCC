@@ -1,22 +1,23 @@
 <?php
 require_once('conexaoBD.php');
 
-// Pegando os dados do formulário
+
 $data_recebimento = $_POST['data_recebimento'];
 $recebido_por = $_POST['recebido_por'];
 $tipo = $_POST['tipo'];
-$propriedade = $_POST['propriedade'];  // Corrigido para 'propriedade'
-$destinatario = $_POST['destinatario']; // Corrigido para 'destinatario'
+$propriedade = $_POST['propriedade'];  
+$destinatario = $_POST['destinatario']; 
 $remetente = $_POST['remetente'];
 $status = $_POST['status'];
 $num_registro = $_POST['num_registro'];
 $retirado_por = $_POST['retirado_por'];
-$data_retirada = $_POST['data_retirada'];
+$data_retirada = isset($_POST['data_retirada']) ? $_POST['data_retirada'] : NULL;
 
-// Verificando se a propriedade existe
+
+
 $query = "SELECT id_propriedade FROM propriedade WHERE id_propriedade = ?";
 $stmt = $conexao->prepare($query);
-$stmt->bind_param("i", $propriedade); // Usando prepare statement para maior segurança
+$stmt->bind_param("i", $propriedade); 
 $stmt->execute();
 $result = $stmt->get_result();
 

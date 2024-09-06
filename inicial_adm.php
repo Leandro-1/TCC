@@ -94,8 +94,8 @@ require_once('conexaoBD.php');
                                     <div class="w3-cell">
                                         <label for="status"><b>Status</b></label><br>
                                         <select id="status" name="status" required>
-                                            <option value="entregue">Entregue</option>
-                                            <option value="a retirar" selected>A Retirar</option>
+                                            <option value="Entregue">Entregue</option>
+                                            <option value="A retirar" selected>A Retirar</option>
                                         </select>
                                     </div>
                                     <div class="w3-cell" style="padding-right: 15px;">
@@ -149,7 +149,7 @@ require_once('conexaoBD.php');
                                          </a>
                             </td>';
                     echo '<td><button onclick="excluirEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                    echo '<td><button onclick="editarEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                    echo '<td><button onclick="editarEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['bloco_quadra'] . ' - ' . $linha['num_propriedade'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
                 }
 
@@ -185,12 +185,22 @@ require_once('conexaoBD.php');
                             <br>
                             <div class="w3-cell-row">
                                 <div class="w3-cell">
-                                    <label for="apartamento"><b>Apartamento</b></label><br>
-                                    <input id="apartamento_entrega" name="apartamento" required>
-                                </div>
-                                <div class="w3-cell">
-                                    <label for="bloco"><b>Bloco</b></label><br>
-                                    <input id="bloco_entrega" name="bloco" required>
+                                label for="propriedade">Propriedade</label>
+                <select class="w3-input w3-border" name="propriedade" required>
+                    <?php 
+                    $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                    $result = $conexao->query($query);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                        }
+                    } else {
+                        echo '<option value="">Nenhuma opção disponível</option>';
+                    }
+                    ?>
+                </select>
+
                                 </div>
 
                                 <div class="w3-cell">
@@ -200,6 +210,10 @@ require_once('conexaoBD.php');
                                         <option value="a retirar" selected>A Retirar</option>
                                     </select>
                                 </div>
+                                <div class="w3-cell" style="padding-right: 15px;">
+                                        <label for="retirado_por"><b>Retirado por</b></label><br>
+                                        <input type="text" name="retirado_por">
+                                    </div>
                             </div>
                             <br>
                             <div class="w3-cell-row w3-center">
@@ -221,17 +235,15 @@ require_once('conexaoBD.php');
             </div>
         </div>
         <script>
-            function editarEntrega(id, data, tipo, nome, numero, bloco, status) {
-                document.getElementById('id_entrega').value = id;
-                document.getElementById('data_recebimento').value = data;
-                document.getElementById('tipo').value = tipo;
-                document.getElementById('destinatario').value = nome;
-                document.getElementById('apartamento_entrega').value = numero;
-                document.getElementById('bloco_entrega').value = bloco;
-                document.getElementById('status').value = status;
-                document.getElementById('editar_entrega').style.display = 'block';
-
-            }
+            function editarEntrega(id, data, tipo, nome, propriedade, status) {
+    document.getElementById('id_entrega').value = id;
+    document.getElementById('data_recebimento').value = data;
+    document.getElementById('tipo').value = tipo;
+    document.getElementById('destinatario').value = nome;
+    document.querySelector('select[name="propriedade"]').value = propriedade;  // Propriedade (bloco e apartamento juntos)
+    document.getElementById('status').value = status;
+    document.getElementById('editar_entrega').style.display = 'block';
+}
         </script>
         <!--Excluir entregas -->
         <div id="excluir_entrega" class="w3-modal">
@@ -278,6 +290,7 @@ require_once('conexaoBD.php');
                                         <option value="a retirar" selected>A Retirar</option>
                                     </select>
                                 </div>
+                                
                             </div>
                             <br>
                             <div class="w3-cell-row w3-center">
