@@ -55,29 +55,29 @@ require_once('conexaoBD.php');
                                 <br>
 
                                 <div class="w3-cell-row">
-                                <div class="w3-cell">
+                                    <div class="w3-cell">
                                         <label for="morador"><b>Destinatário</b></label><br>
                                         <input type="text" name="destinatario" required>
-                                    </div> 
-                                <label for="propriedade">Propriedade</label>
-                <select class="w3-input w3-border" name="propriedade" required>
-                    <?php 
-                    $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                    $result = $conexao->query($query);
+                                    </div>
+                                    <label for="propriedade">Propriedade</label>
+                                    <select class="w3-input w3-border" name="propriedade" required>
+                                        <?php
+                                        $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                                        $result = $conexao->query($query);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                        }
-                    } else {
-                        echo '<option value="">Nenhuma opção disponível</option>';
-                    }
-                    ?>
-                </select>
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                            }
+                                        } else {
+                                            echo '<option value="">Nenhuma opção disponível</option>';
+                                        }
+                                        ?>
+                                    </select>
 
 
                                 </div>
-                               
+
                                 <br>
                                 <div class="w3-cell-row w3-center">
                                     <div class="w3-cell" style="padding-right: 15px;">
@@ -145,9 +145,7 @@ require_once('conexaoBD.php');
                     echo '<td>' . $linha['status'] . '</td>';
 
                     // criar um modal para relatório com muito mais dados e detalhado
-                    echo '<td><a href="relatorio_entrega.php?dt_recebimento=' . $linha['data_recebimento'] . '&nome=' . $linha['nome_destinatario'] . '&num_apart=' . $linha['num_propriedade'] . '&bloco=' . $linha['bloco_quadra'] . '&status=' . $linha['status'] . '" class="w3-text-blue">Detalhes
-                                         </a>
-                            </td>';
+                    echo '<td><button onclick="detalhesEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
                     echo '<td><button onclick="excluirEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
                     echo '<td><button onclick="editarEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['bloco_quadra'] . ' - ' . $linha['num_propriedade'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
@@ -155,6 +153,36 @@ require_once('conexaoBD.php');
 
             ?>
         </table><br>
+
+        <!-- modal para detalhes da entrega -->
+        <div id="detalhes_entrega" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <span onclick="document.getElementById('detalhes_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="w3-container">
+                        <h2>Detalhes da Entrega</h2>
+                        <span>Data de Recebimento:</span>
+                        <p id="dt_receb"></p>
+                        <span>Recebido Por:</span>
+                        <p id="recebido"></p>
+                        <span>Destinatário:</span>
+                        <p id="destin"></p>
+                        <span>Status:</span>
+                        <p id="status_atual"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function detalhesEntrega(dt_recebido, recebido_por, destinatario, status) {
+                document.getElementById('dt_receb').value = dt_recebido;
+                document.getElementById('recebido').value = recebido_por;
+                document.getElementById('destin').value = destinatario;
+                document.getElementById('status_atual').value = status;
+                document.getElementById('detalhes_entrega').style.display = 'block';
+
+            }
+        </script>
         <!--Editar entregas -->
         <div id="editar_entrega" class="w3-modal">
             <div class="w3-modal-content">
