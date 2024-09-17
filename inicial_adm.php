@@ -5,6 +5,7 @@ require_once('verificar_permissaoAcesso.php');
 verificar_permissao('administrador');
 require_once('cabecalho.php');
 require_once('conexaoBD.php');
+
 ?>
 
 <div class="w3-container " style="margin-top: 80px; padding-bottom: 4rem;">
@@ -30,6 +31,7 @@ require_once('conexaoBD.php');
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
 
@@ -109,8 +111,7 @@ require_once('conexaoBD.php');
 
                                 </div>
                                 <br>
-
-                                <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
+                                                        <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                             </form><br>
 
                         </div>
@@ -213,21 +214,21 @@ require_once('conexaoBD.php');
                             <br>
                             <div class="w3-cell-row">
                                 <div class="w3-cell">
-                                label for="propriedade">Propriedade</label>
-                <select class="w3-input w3-border" name="propriedade" required>
-                    <?php 
-                    $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
-                    $result = $conexao->query($query);
+                                    label for="propriedade">Propriedade</label>
+                                    <select class="w3-input w3-border" name="propriedade" required>
+                                        <?php
+                                        $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
+                                        $result = $conexao->query($query);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
-                        }
-                    } else {
-                        echo '<option value="">Nenhuma opção disponível</option>';
-                    }
-                    ?>
-                </select>
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                            }
+                                        } else {
+                                            echo '<option value="">Nenhuma opção disponível</option>';
+                                        }
+                                        ?>
+                                    </select>
 
                                 </div>
 
@@ -239,9 +240,9 @@ require_once('conexaoBD.php');
                                     </select>
                                 </div>
                                 <div class="w3-cell" style="padding-right: 15px;">
-                                        <label for="retirado_por"><b>Retirado por</b></label><br>
-                                        <input type="text" name="retirado_por">
-                                    </div>
+                                    <label for="retirado_por"><b>Retirado por</b></label><br>
+                                    <input type="text" name="retirado_por">
+                                </div>
                             </div>
                             <br>
                             <div class="w3-cell-row w3-center">
@@ -264,14 +265,14 @@ require_once('conexaoBD.php');
         </div>
         <script>
             function editarEntrega(id, data, tipo, nome, propriedade, status) {
-    document.getElementById('id_entrega').value = id;
-    document.getElementById('data_recebimento').value = data;
-    document.getElementById('tipo').value = tipo;
-    document.getElementById('destinatario').value = nome;
-    document.querySelector('select[name="propriedade"]').value = propriedade;  // Propriedade (bloco e apartamento juntos)
-    document.getElementById('status').value = status;
-    document.getElementById('editar_entrega').style.display = 'block';
-}
+                document.getElementById('id_entrega').value = id;
+                document.getElementById('data_recebimento').value = data;
+                document.getElementById('tipo').value = tipo;
+                document.getElementById('destinatario').value = nome;
+                document.querySelector('select[name="propriedade"]').value = propriedade; // Propriedade (bloco e apartamento juntos)
+                document.getElementById('status').value = status;
+                document.getElementById('editar_entrega').style.display = 'block';
+            }
         </script>
         <!--Excluir entregas -->
         <div id="excluir_entrega" class="w3-modal">
@@ -318,7 +319,7 @@ require_once('conexaoBD.php');
                                         <option value="a retirar" selected>A Retirar</option>
                                     </select>
                                 </div>
-                                
+
                             </div>
                             <br>
                             <div class="w3-cell-row w3-center">

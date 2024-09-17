@@ -63,3 +63,18 @@ nav {
     border-radius: 4px;
     border: 1px solid #ccc;
 }
+
+.alert-success {
+    background-color: #4CAF50;
+    /* Verde */
+    color: #ffffff;
+    /* Texto branco */
+}
+
+/* Estilo para mensagens de erro */
+.alert-error {
+    background-color: #FF5733;
+    /* Vermelho */
+    color: #ffffff;
+    /* Texto branco */
+}
