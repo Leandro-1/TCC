@@ -25,17 +25,17 @@ require_once('conexaoBD.php');
             <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
             <!--Cadastro de entregas com caixa Modal -->
-            <button onclick="document.getElementById('cad_entrega').style.display='block'" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
+            <button onclick="document.getElementById('cad_entrega').style.display='block'" id="botao_cad" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
 
             <div id="cad_entrega" class="w3-modal">
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-
+                        <div id="feedbackMessage" style="display:none;"></div>
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
 
-                            <form action="cadastro_encomendaAction.php" method="post" class="w3-padding">
+                            <form id="myForm" action="cadastro_encomendaAction.php" method="post" class="w3-padding">
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
@@ -63,6 +63,7 @@ require_once('conexaoBD.php');
                                     </div>
                                     <label for="propriedade">Propriedade</label>
                                     <select class="w3-input w3-border" name="propriedade" required>
+                                        <option value="" selected></option>
                                         <?php
                                         $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                         $result = $conexao->query($query);
@@ -76,8 +77,6 @@ require_once('conexaoBD.php');
                                         }
                                         ?>
                                     </select>
-
-
                                 </div>
 
                                 <br>
@@ -111,7 +110,7 @@ require_once('conexaoBD.php');
 
                                 </div>
                                 <br>
-                                                        <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
+                                <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
                             </form><br>
 
                         </div>
@@ -120,6 +119,7 @@ require_once('conexaoBD.php');
             </div>
         </div>
         <br>
+
         <!-- Consulta de Entregas -->
         <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto; ">
             <tr class="w3-center w3-blue-grey">
@@ -148,7 +148,7 @@ require_once('conexaoBD.php');
                     // criar um modal para relatório com muito mais dados e detalhado
                     echo '<td><button onclick="detalhesEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
                     echo '<td><button onclick="excluirEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                    echo '<td><button onclick="editarEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['bloco_quadra'] . ' - ' . $linha['num_propriedade'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                    echo '<td><button onclick="editarEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
                 }
 
@@ -174,16 +174,7 @@ require_once('conexaoBD.php');
                 </div>
             </div>
         </div>
-        <script>
-            function detalhesEntrega(dt_recebido, recebido_por, destinatario, status) {
-                document.getElementById('dt_receb').value = dt_recebido;
-                document.getElementById('recebido').value = recebido_por;
-                document.getElementById('destin').value = destinatario;
-                document.getElementById('status_atual').value = status;
-                document.getElementById('detalhes_entrega').style.display = 'block';
 
-            }
-        </script>
         <!--Editar entregas -->
         <div id="editar_entrega" class="w3-modal">
             <div class="w3-modal-content">
@@ -214,7 +205,7 @@ require_once('conexaoBD.php');
                             <br>
                             <div class="w3-cell-row">
                                 <div class="w3-cell">
-                                    label for="propriedade">Propriedade</label>
+                                    <label for="propriedade">Propriedade</label>
                                     <select class="w3-input w3-border" name="propriedade" required>
                                         <?php
                                         $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
@@ -263,17 +254,7 @@ require_once('conexaoBD.php');
                 </div>
             </div>
         </div>
-        <script>
-            function editarEntrega(id, data, tipo, nome, propriedade, status) {
-                document.getElementById('id_entrega').value = id;
-                document.getElementById('data_recebimento').value = data;
-                document.getElementById('tipo').value = tipo;
-                document.getElementById('destinatario').value = nome;
-                document.querySelector('select[name="propriedade"]').value = propriedade; // Propriedade (bloco e apartamento juntos)
-                document.getElementById('status').value = status;
-                document.getElementById('editar_entrega').style.display = 'block';
-            }
-        </script>
+
         <!--Excluir entregas -->
         <div id="excluir_entrega" class="w3-modal">
             <div class="w3-modal-content">
@@ -340,23 +321,7 @@ require_once('conexaoBD.php');
                 </div>
             </div>
         </div>
-
-        <script>
-            function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {
-                document.getElementById('cod_entrega').value = id;
-                document.getElementById('data_receb').value = data;
-                document.getElementById('tipo_entrega').value = tipo;
-                document.getElementById('destinatario_entrega').value = nome;
-                document.getElementById('apartamento_').value = numero;
-                document.getElementById('bloco_').value = bloco;
-                document.getElementById('status_entrega').value = status;
-                document.getElementById('excluir_entrega').style.display = 'block';
-
-            }
-        </script>
     </div>
-
-
 
     <!--Aba de MORADORES -->
     <div id="moradores" class="w3-container w3-border menu" style="display:none">

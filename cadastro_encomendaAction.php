@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('conexaoBD.php');
-require_once 'functions.php';
+
 
 $data_recebimento = $_POST['data_recebimento'];
 $recebido_por = $_POST['recebido_por'];
@@ -33,20 +33,17 @@ if ($result->num_rows > 0) {
   $stmt->bind_param("sssssisiss", $tipo, $data_recebimento, $data_retirada, $destinatario, $status, $id_propriedade, $remetente, $retirado_por, $recebido_por, $num_registro);
 
   if ($stmt->execute()) {
-    $_SESSION['mensagem_feedback'] = ['mensagem'=>'Cadastro realizado com sucesso!','type'=> 'success'];
+    echo '<h2 class="w3-panel w3-pale-green w3-center">Cadastro Realizado com Sucesso!</h2>';
    
   } else {
-    $_SESSION['mensagem_feedback'] = ['mensagem' => 'Erro ao cadastrar. Tente novamente.', 'type'=>'error'];
+    echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
   
   }
 } else {
-  echo '<a href="inicial_adm.php">
-            <h1 class="w3-button w3-black w3-center">Propriedade não encontrada!</h1>
-          </a>';
+  echo '<h2 class="w3-panel w3-pale-yellow w3-center">Propriedade não encontrada!</h2>';
 }
 
 $stmt->close();
 $conexao->close();
-header('Location: inicial_adm.php#cad_entrega');
-exit;
+
 ?>

@@ -1,4 +1,35 @@
 
+$(document).ready(function () {
+   
+
+    // Submeter o formulário via AJAX
+    $('#myForm').submit(function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Envia os dados do formulário usando jQuery AJAX
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'), // Obtém a URL do atributo action do formulário
+            data: $(this).serialize(), // Serializa os dados do formulário
+            success: function (response) {
+                $('#feedbackMessage').html(response).show();
+
+                // Oculta a mensagem após 3 segundos
+                setTimeout(function () {
+                    $('#feedbackMessage').hide();
+                }, 5000);
+
+                // Opcional: Limpar o formulário após o envio
+                $('#myForm')[0].reset();
+            },
+            error: function () {
+                $('#feedbackMessage').html('Ocorreu um erro ao processar o formulário.').show();
+            }
+        });
+    });
+});
+
+//verificar porque não quer abrir
 function editarEntrega(id, data, tipo, nome, numero, bloco, status) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
