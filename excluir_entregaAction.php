@@ -5,8 +5,9 @@ require_once 'conexaoBD.php';
 
 <div class="w3-padding w3-content w3-display-middle">
     <?php
-$id_entrega = $_POST['cod_entrega'];
+    $id_entrega = $_POST['cod_entrega'];
     $sql = "DELETE FROM entrega WHERE id_entrega = $id_entrega;";
+
     if ($conexao->query($sql) === TRUE) {
         echo '<h2 class="w3-panel w3-pale-green w3-center">Excluído com Sucesso!</h2>';
     } else {

@@ -1,31 +1,37 @@
 
 $(document).ready(function () {
-   
-    // Submeter o formulário via AJAX
-    $('#myForm').submit(function (event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
 
-        // Envia os dados do formulário usando jQuery AJAX
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'), // Obtém a URL do atributo action do formulário
-            data: $(this).serialize(), // Serializa os dados do formulário
-            success: function (response) {
-                $('#feedbackMessage').html(response).show();
+    function processarFomularioCadastro(idForm) {
+        // Submeter o formulário via AJAX
+        $(idForm).submit(function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
 
-                // Oculta a mensagem após 3 segundos
-                setTimeout(function () {
-                    $('#feedbackMessage').hide();
-                }, 5000);
+            // Envia os dados do formulário usando jQuery AJAX
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'), // Obtém a URL do atributo action do formulário
+                data: $(this).serialize(), // Serializa os dados do formulário
+                success: function (response) {
+                    $('.feedbackMessage').html(response).show();
 
-                // Opcional: Limpar o formulário após o envio
-                $('#myForm')[0].reset();
-            },
-            error: function () {
-                $('#feedbackMessage').html('Ocorreu um erro ao processar o formulário.').show();
-            }
+                    // Oculta a mensagem após 3 segundos
+                    setTimeout(function () {
+                        $('.feedbackMessage').hide();
+                    }, 3000);
+
+                    // Opcional: Limpar o formulário após o envio
+                    $(idForm)[0].reset();
+                },
+                error: function () {
+                    $('.feedbackMessage').html('Ocorreu um erro ao processar o formulário.').show();
+                }
+            });
         });
-    });
+    }
+    processarFomularioCadastro('#myForm1');
+    processarFomularioCadastro('#myForm2');
+    processarFomularioCadastro('#myForm3');
+    processarFomularioCadastro('#myForm4');
 });
 
 //verificar porque não quer abrir
@@ -105,7 +111,7 @@ function excluirUsuario(id, nome, login, privilegio) {
     document.getElementById('excluir_usuario').style.display = 'block';
 
 }
-function detalhesEntrega (dt_recebido,recebido_por,destinatario,status) {
+function detalhesEntrega(dt_recebido, recebido_por, destinatario, status) {
     document.getElementById('dt_receb').value = dt_recebido;
     document.getElementById('recebido').value = recebido_por;
     document.getElementById('destin').value = destinatario;
