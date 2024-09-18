@@ -17,18 +17,11 @@ $stmt->bind_param("isssi", $cpf, $nome, $tel, $email, $propriedade);
 
 if ($stmt->execute()) {
 
-    echo '
-            <a href="inicial_adm.php">
-                <h1 class="w3-button w3-green w3-center w3-display-center" style="width: 50%;">Realizado com Sucesso! </h1>
-            </a>
-            ';
+    echo '<h2 class="w3-panel w3-pale-green w3-center">Cadastro Realizado com Sucesso!</h2>';
 } else {
-    echo '
-            <a href="inicial_adm.php">
-                <h1 class="w3-button w3-red w3-center" style="width: 50%;">ERRO... Tente novamente!</h1>
-            </a>
-            ';
+    echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
 }
+
 
 $stmt->close();
 $conexao->close();

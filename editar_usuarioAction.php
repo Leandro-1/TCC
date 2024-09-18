@@ -6,20 +6,16 @@ require_once 'conexaoBD.php';
 
 <div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
     <?php
- 
+
     $sql = "UPDATE usuario SET nome = '" . $_POST['nome'] . "', login='" . $_POST['login_user'] . "', privilegio = '" . $_POST['privilegio'] . "' WHERE id_user =" . $_POST['id_user'] . ";";
 
 
     if ($conexao->query($sql) === TRUE) {
-        echo '<a href="inicial_adm.php">
-                    <h1 class="w3-button w3-black w3-center">Usuário Atualizado com Sucesso! </h1>
-                </a>';
-        $id = mysqli_insert_id($conexao);
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Atualizado com Sucesso!</h2>';
     } else {
-        echo '<a href="inicial_adm.php">
-                    <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
-                </a>';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
+
     $conexao->close();
     ?>
 </div>

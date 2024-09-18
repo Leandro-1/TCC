@@ -11,16 +11,10 @@ require_once 'conexaoBD.php';
 
 
     if ($conexao->query($sql) === TRUE) {
-
-        echo '<a href="inicial_adm.php">
-                    <h1 class="w3-button w3-black w3-center">Propriedade Atualizada com Sucesso! </h1>
-              </a> ';
-
-        $id = mysqli_insert_id($conexao);
+        
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Atualizado com Sucesso!</h2>';
     } else {
-        echo '<a href="inicial_adm.php">
-                    <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente! </h1>
-                </a>';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
 
     $conexao->close();

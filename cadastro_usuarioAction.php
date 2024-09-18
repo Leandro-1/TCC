@@ -24,18 +24,11 @@ require_once 'conexaoBD.php';
     $privilegio = $_POST['privilegio'];
 
     if ($stmt->execute()) {
-        echo '
-            <a href="cadastro_usuario.php">
-                <h1 class="w3-button w3-black">Usuário salvo com êxito! </h1>
-            </a>
-            ';
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Cadastro Realizado com Sucesso!</h2>';
     } else {
-        echo '
-            <a href="cadastro_usuario.php">
-                <h1 class="w3-button w3-black">ERRO... Tente Novamente! </h1>
-            </a>
-            ';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
+
 
     // Fechar a declaração e a conexão
     $stmt->close();

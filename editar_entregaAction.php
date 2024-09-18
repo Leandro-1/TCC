@@ -11,7 +11,7 @@ require_once 'conexaoBD.php';
     $data_recebimento = $_POST['data_recebimento'];
     $tipo = $_POST['tipo'];
     $propriedade = $_POST['propriedade'];  // Já contém o id_propriedade
-    $destinatario = $_POST['destinatario']; 
+    $destinatario = $_POST['destinatario'];
     $remetente = $_POST['remetente'];
     $status = $_POST['status'];
     $num_registro = $_POST['num_registro'];
@@ -28,21 +28,18 @@ require_once 'conexaoBD.php';
     $remetente = mysqli_real_escape_string($conexao, $remetente);
     $num_registro = mysqli_real_escape_string($conexao, $num_registro);
 
-    // Atualizar entrega
+
     $sql = "UPDATE entrega 
             SET tipo = '$tipo', data_recebimento = '$data_recebimento', nome_destinatario = '$destinatario', 
                 status = '$status', id_residencia = $propriedade, remetente = '$remetente', num_registro = '$num_registro' 
             WHERE id_entrega = $id_entrega";
- 
+
     if ($conexao->query($sql) === TRUE) {
-        echo '<a href="inicial_adm.php">
-            <h1 class="w3-button w3-black w3-center">Entrega Atualizada com Sucesso!</h1>
-          </a>';
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Atualizado com Sucesso!</h2>';
     } else {
-        echo '<a href="inicial_adm.php">
-            <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
-          </a>';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
+
 
     $conexao->close();
     ?>

@@ -13,18 +13,11 @@ require_once('conexaoBD.php');
     $sql = "DELETE FROM morador WHERE cpf = $cpf;";
     if ($conexao->query($sql) === TRUE) {
 
-        echo '
-        <a href="inicial_adm.php">
-            <h1 class="w3-button w3-green w3-center">Morador Excluído com Sucesso!</h1>
-        </a>';
-        
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Excluído com Sucesso!</h2>';
     } else {
-        
-        echo '
-        <a href="inicial_adm.php">
-            <h1 class="w3-button w3-red w3-center">ERRO... Tente Novamente!</h1>
-        </a>';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
+
     $conexao->close();
     ?>
 </div>

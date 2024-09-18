@@ -8,7 +8,7 @@ require_once 'conexaoBD.php';
 
 <div class="w3-display-middle">
   <?php
-  
+
   $cpf = $_POST['cpf'];
   $tel = $_POST['tel'];
   $nome = $_POST['nome'];
@@ -36,18 +36,12 @@ require_once 'conexaoBD.php';
     $sql = "UPDATE morador SET nome = '$nome', telefone = '$tel', email = '$email', id_propriedade = $id_propriedade WHERE cpf = $cpf";
 
     if ($conexao->query($sql) === TRUE) {
-      echo '<a href="inicial_adm.php">
-                <h1 class="w3-button w3-black w3-center">Morador Atualizado com Sucesso!</h1>
-              </a>';
+      echo '<h2 class="w3-panel w3-pale-green w3-center">Atualizado com Sucesso!</h2>';
     } else {
-      echo '<a href="inicial_adm.php">
-                <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
-              </a>';
+      echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
   } else {
-    echo '<a href="inicial_adm.php">
-            <h1 class="w3-button w3-black w3-center">Propriedade não encontrada!</h1>
-          </a>';
+    echo '<h2 class="w3-panel w3-pale-yellow w3-center">Propriedade não encontrada!</h2>';
   }
 
   $conexao->close();

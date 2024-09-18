@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
    
-
     // Submeter o formulário via AJAX
     $('#myForm').submit(function (event) {
         event.preventDefault(); // Impede o envio padrão do formulário
