@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="script.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- passar estilização para o doc style.css-->
   <style>
   html{
@@ -49,17 +51,18 @@
     <!--Imagem temporaria-->
     <img src="imagens_logo/logo_semFundo.png" alt="conpac" class="logoimg">
   </div>
+ 
   <div class="w3-container w3-card-4 w3-round-xxlarge w3-display-middle w3-quarter w3-padding w3-black" style="opacity: 0.7;">
+    
     <h2 class="w3-center">Conpac</h2><br>
-    <form action="loginAction.php" method="post">
-      
+    <form id="myForm_login" action="loginAction.php" method="post">
       <div class="w3-container">
         <label for="uname"><b>Login</b></label>
         <input class="w3-input w3-round-xlarge" type="text" name="login" required>
-<br>
+        <br>
         <label for="psw"><b>Senha</b></label>
         <input class="w3-input w3-round-xlarge" type="password" name="senha" required>
-<br>
+        <br>
         <button class="w3-button w3-block w3-round-xlarge" type="submit" style="background-color: midnightblue;">Login</button>
        
           <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
@@ -69,8 +72,8 @@
       <button class="w3-button w3-red w3-round-xlarge" type="button">Limpar</button>
       <!-- implantar depois <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
-   
   </div>
+  <div class="feedbackMessage w3-display-middle" style="width: 700px;"></div>
 </body>
 
 </html>

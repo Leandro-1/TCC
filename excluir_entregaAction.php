@@ -1,9 +1,10 @@
 <?php
-require_once('cabecalho.php');
+    require_once('verificar_permissaoAcesso.php');
+    verificar_permissao('administrador');
 require_once 'conexaoBD.php';
 ?>
 
-<div class="w3-padding w3-content w3-display-middle">
+
     <?php
     $id_entrega = $_POST['cod_entrega'];
     $sql = "DELETE FROM entrega WHERE id_entrega = $id_entrega;";
@@ -16,6 +17,5 @@ require_once 'conexaoBD.php';
 
     $conexao->close();
     ?>
-</div>
 
-<?php require_once('rodape.php'); ?>
+

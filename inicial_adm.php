@@ -30,12 +30,11 @@ require_once('conexaoBD.php');
             <div id="cad_entrega" class="w3-modal">
                 <div class="w3-modal-content">
                     <div class="w3-container">
-                        <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                        <div class="feedbackMessage" style="display:none;"></div>
+                        <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large close-modal" data-modal="#cad_entrega"><b>&times;</b></span>
+                        <div class="feedbackMessage w3-padding"></div>
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
-
-                            <form id="myForm1" action="cadastro_encomendaAction.php" method="post" class="w3-padding">
+                            <form id="myForm_entrega" action="cadastro_encomendaAction.php" method="post" class="w3-padding">
                                 <div class="w3-cell-row">
                                     <div class="w3-cell" style=" padding-right: 15px;">
                                         <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
@@ -180,9 +179,10 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('editar_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container">
                         <h1 class="w3-center"><b>Editar Entrega</b></h1>
-                        <form action="editar_entregaAction.php" method='post' class="w3-padding">
+                        <form id="form_editar_entrega" action="editar_entregaAction.php" method='post' class="w3-padding">
                             <div class="w3-cell-row">
                                 <input type="text" id="id_entrega" name="id_entrega" hidden>
                                 <div class="w3-cell" style=" padding-right: 15px;">
@@ -259,10 +259,11 @@ require_once('conexaoBD.php');
         <div id="excluir_entrega" class="w3-modal">
             <div class="w3-modal-content">
                 <div class="w3-container">
-                    <span onclick="document.getElementById('excluir_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <span class="w3-button w3-display-topright w3-hover-red w3-large close-modal" data-modal="#excluir_entrega"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container w3-padding">
                         <h1 class="w3-center"><b>Excluir Entrega</b></h1>
-                        <form class="myForm" action="excluir_entregaAction.php" method='post' class="w3-padding">
+                        <form id="form_excluir_entrega" action="excluir_entregaAction.php" method='post' class="w3-padding">
                             <div class="w3-cell-row">
                                 <input type="text" id="cod_entrega" name="cod_entrega" hidden>
                                 <div class="w3-cell" style=" padding-right: 15px;">
@@ -297,7 +298,7 @@ require_once('conexaoBD.php');
                                     <label for="status"><b>Status</b></label><br>
                                     <select id="status_entrega" name="status" class="w3-grey" readonly>
                                         <option value="entregue">Entregue</option>
-                                        <option value="a retirar" selected>A Retirar</option>
+                                        <option value="a retirar">A Retirar</option>
                                     </select>
                                 </div>
                             </div>
@@ -312,7 +313,7 @@ require_once('conexaoBD.php');
                                     <input type="text" name="num_registro" class="w3-grey" readonly>
                                 </div>
                             </div>
-                            <div class="feedbackMessage" style="display:none;"></div>
+
                             <br>
                             <button class="w3-btn w3-black" type="submit">CONFIRMAR EXCLUSÃO</button>
                             <br>
@@ -335,10 +336,10 @@ require_once('conexaoBD.php');
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                        <div class="feedbackMessage" style="display:none;"></div>
+                        <div class="feedbackMessage w3-padding"></div>
                         <div class="w3-container w3-padding">
                             <h2 class="w3-center w3-padding"><b>Cadastrar Morador</b></h2><br>
-                            <form id="myForm2" action="cadastro_moradorAction.php" method="post" class="w3-padding">
+                            <form id="myForm_morador" action="cadastro_moradorAction.php" method="post" class="w3-padding">
                                 <div class="w3-margin-bottom">
                                     <div class="w3-cell-row">
                                         <div class="w3-cell " style="padding-right: 15px; width:30%;">
@@ -427,8 +428,9 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('editar_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                    <h1 class="w3-center"><b>Editar Morador</b></h1>
-                    <form action="editar_moradorAction.php" method='post' class="w3-padding">
+                    <div class="feedbackMessage w3-padding"></div>
+                    <h1 class="w3-center w3-padding"><b>Editar Morador</b></h1>
+                    <form id="form_editar_morador" action="editar_moradorAction.php" method='post' class="w3-padding">
                         <div class="w3-cell-row">
                             <input id="cpf" name="cpf" class="w3-input w3-grey w3-border" type="hidden">
 
@@ -468,9 +470,10 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('excluir_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container">
-                        <h2 class="w3-center"><b>Excluir Morador</b></h2>
-                        <form action="excluir_moradorAction.php" method="post" class="w3-padding">
+                        <h2 class="w3-center w3-padding"><b>Excluir Morador</b></h2>
+                        <form id="form_excluir_morador" action="excluir_moradorAction.php" method="post" class="w3-padding">
                             <div class="w3-cell-row">
                                 <input id="txtcpf" name="cpf" class="w3-input w3-grey w3-border" type="hidden" readonly>
 
@@ -521,11 +524,11 @@ require_once('conexaoBD.php');
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_usuario').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                        <div class="feedbackMessage"></div>
-                        <div class="w3-container w3-content ">
-                            <h2 class="w3-center"><b>Cadastrar Usuários</b></h2>
+                        <div class="feedbackMessage w3-padding"></div>
+                        <div class="w3-container w3-padding">
+                            <h2 class="w3-center w3-padding"><b>Cadastrar Usuários</b></h2>
                             <br>
-                            <form id="myForm3" action="cadastro_usuarioAction.php" method="post" class="w3-padding">
+                            <form id="myForm_usuario" action="cadastro_usuarioAction.php" method="post" class="w3-padding">
                                 <div class="w3-margin-bottom">
                                     <div class="w3-cell-row">
                                         <div class="w3-cell" style="width: 30%; padding-right: 15px;">
@@ -550,7 +553,7 @@ require_once('conexaoBD.php');
                                         <option value="" select></option>
                                         <option value="administrador">Administrador</option>
                                         <option value="operador">Operador</option>
-                                        <option value="morador">Morador</option>
+                                        <!--Tirei a opção de morador, porque o usuario dele será criado de forma automatica com um PROCEDURE -->
                                     </select>
                                     <br><br>
                                     <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
@@ -605,9 +608,10 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('editar_usuario').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container">
-                        <h1 class="w3-center"><b>Editar Usuário</b></h1>
-                        <form action="editar_usuarioAction.php" method='post' class="w3-padding">
+                        <h1 class="w3-center w3-padding"><b>Editar Usuário</b></h1>
+                        <form id="form_editar_usuario" action="editar_usuarioAction.php" method='post' class="w3-padding">
                             <input id="id_user" name="id_user" class="w3-input w3-grey w3-border" type="hidden">
                             <br>
                             <label class="w3-text-black" style="font-weight: bold;">Nome</label>
@@ -634,9 +638,10 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('excluir_usuario').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container">
-                        <h2 class="w3-center"><b>Excluir Usuário</b></h2>
-                        <form action="excluir_usuarioAction.php" method='post' class="w3-padding">
+                        <h2 class="w3-center w3-padding"><b>Excluir Usuário</b></h2>
+                        <form id="form_excluir_usuario" action="excluir_usuarioAction.php" method='post' class="w3-padding">
                             <label class="w3-text-black" style="font-weight: bold;">ID</label>
                             <input id="user" name="user" class="w3-input w3-grey w3-border" readonly>
                             <br>
@@ -676,11 +681,11 @@ require_once('conexaoBD.php');
                 <div class="w3-modal-content">
                     <div class="w3-container">
                         <span onclick="document.getElementById('cad_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                        <div class="feedbackMessage"></div>
-                        <div class="w3-container">
-                            <h1 class="w3-center"><b>Cadastrar Propriedade</b></h1>
+                        <div class="feedbackMessage w3-padding"></div>
+                        <div class="w3-container w3-padding">
+                            <h2 class="w3-center w3-padding"><b>Cadastrar Propriedade</b></h2>
 
-                            <form id="myForm4" action="cadastro_propriedadeAction.php" method="post" class="w3-padding">
+                            <form id="myForm_propriedade" action="cadastro_propriedadeAction.php" method="post" class="w3-padding">
                                 <div class="w3-container w3-margin-bottom">
                                     <div class="cod" style="width:35%;">
                                         <label for="codigo"><b>Código</b> </label>
@@ -736,9 +741,10 @@ require_once('conexaoBD.php');
             <div class="w3-modal-content">
                 <div class="w3-container">
                     <span onclick="document.getElementById('editar_propriedade').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <div class="feedbackMessage w3-padding"></div>
                     <div class="w3-container">
-                        <h1 class="w3-center"><b>Editar Propriedade</b></h1>
-                        <form action="editar_propriedadeAction.php" method='post' class="w3-padding">
+                        <h1 class="w3-center w3-padding"><b>Editar Propriedade</b></h1>
+                        <form id="form_editar_propriedade" action="editar_propriedadeAction.php" method='post' class="w3-padding">
                             <input id="txtCodigo" name="txtCodigo" class="w3-input w3-grey w3-border">
                             <br>
                             <label class="w3-text-black" style="font-weight: bold;">Número</label>

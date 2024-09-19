@@ -1,6 +1,5 @@
 <?php require_once('verificar_permissaoAcesso.php');
 verificar_permissao('administrador');
-require_once('cabecalho.php');
 require_once 'conexaoBD.php';
 ?>
 
@@ -26,4 +25,3 @@ if ($stmt->execute()) {
 $stmt->close();
 $conexao->close();
 ?>
-<?php require_once('rodape.php'); ?>
