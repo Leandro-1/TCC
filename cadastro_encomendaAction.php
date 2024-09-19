@@ -29,14 +29,9 @@ if ($result->num_rows > 0) {
   // Inserindo entrega
   $sql = "INSERT INTO entrega (tipo, data_recebimento, data_retirada, nome_destinatario, status, id_residencia, remetente, retirado_por, recebido_por, num_registro) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-<<<<<<< Updated upstream
-  $stmt = $conexao->prepare($sql);
-  $stmt->bind_param("sssssisiss", $tipo, $data_recebimento, $data_retirada, $destinatario, $status, $id_propriedade, $remetente, $retirado_por, $recebido_por, $num_registro);
-=======
             $data_retirada = !empty($_POST['data_retirada']) ? $_POST['data_retirada'] : NULL;
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param("sssssisiss", $tipo, $data_recebimento, $data_retirada, $destinatario, $status, $id_propriedade, $remetente, $retirado_por, $recebido_por, $num_registro);
->>>>>>> Stashed changes
 
   if ($stmt->execute()) {
     echo '<h2 class="w3-panel w3-pale-green w3-center">Cadastro Realizado com Sucesso!</h2>';
