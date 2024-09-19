@@ -4,7 +4,7 @@ session_start();
 ?>
 
 
-<div class="w3-container w3-display-middle">
+<div class="w3-container w3-display-middle w3-card-4 w3-padding w3-round-xlarge">
     <h1>Alterar Senha</h1>
     <form id="myForm_alterar_senha" action="alterar_senhaAction.php" method="post">
         
