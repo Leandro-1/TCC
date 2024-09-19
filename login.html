@@ -8,18 +8,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <!-- passar estilização para o doc style.css-->
   <style>
-  
+  html{
+     height: 100%;
+
+  }
     body {
       font-family: Arial, Helvetica, sans-serif;
+      background-image: linear-gradient(to top, black, #101031, midnightblue);
+      background-repeat: no-repeat;
+     
     }
 
     .logo {
-      text-align: center;
+      text-align: top;
       margin: 24px 0 12px 0;
     }
 
     .logoimg {
-      width: 40%;
+      width: 25%;
       border-radius: 50%;
     }
 
@@ -38,28 +44,29 @@
 </head>
 
 <body>
-  <h2 class="w3-center">Conpac</h2>
-  <div class="w3-container w3-card-4 w3-round-xxlarge w3-display-middle w3-third w3-padding">
+  
+  <div class="logo w3-display-topmiddle w3-center">
+    <!--Imagem temporaria-->
+    <img src="imagens_logo/logo_semFundo.png" alt="conpac" class="logoimg">
+  </div>
+  <div class="w3-container w3-card-4 w3-round-xxlarge w3-display-middle w3-quarter w3-padding w3-black" style="opacity: 0.7;">
+    <h2 class="w3-center">Conpac</h2><br>
     <form action="loginAction.php" method="post">
-      <div class="logo">
-        <!--Imagem temporaria-->
-        <img src="imagens_logo/logo.png" alt="conpac" class="logoimg">
-      </div>
-
+      
       <div class="w3-container">
         <label for="uname"><b>Login</b></label>
-        <input class="w3-input w3-border w3-margin-bottom" type="text" name="login" required>
-
+        <input class="w3-input w3-round-xlarge" type="text" name="login" required>
+<br>
         <label for="psw"><b>Senha</b></label>
-        <input class="w3-input w3-border w3-margin-bottom" type="password" name="senha" required>
-
-        <button class="w3-button w3-black w3-block w3-margin-bottom" type="submit">Login</button>
-        <label>
+        <input class="w3-input w3-round-xlarge" type="password" name="senha" required>
+<br>
+        <button class="w3-button w3-block w3-round-xlarge" type="submit" style="background-color: midnightblue;">Login</button>
+       
           <!-- implantar depois <input class="w3-check" type="checkbox" checked="checked" name="remember"> Remember me</label>  -->
-      </div>
+      </div><br>
     </form>
-    <div class="w3-container w3-light-grey w3-padding">
-      <button class="w3-button w3-red" type="button">Limpar</button>
+    <div class="w3-container  w3-padding">
+      <button class="w3-button w3-red w3-round-xlarge" type="button">Limpar</button>
       <!-- implantar depois <span class="psw">Forgot <a href="#">password?</a></span> -->
     </div>
    

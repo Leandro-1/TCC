@@ -1,18 +1,20 @@
-<?php require_once("verificaacesso_admin.php") ?>
-<?php require_once('cabecalho.php'); ?>
+<?php require_once('verificar_permissaoAcesso.php');
+verificar_permissao('administrador');
+require_once('cabecalho.php');
+require_once 'conexaoBD.php';
+?>
+
 <div class="w3-padding w3-content w3-display-middle">
     <?php
-    require_once('conexaoBD.php');
-    $sql = "DELETE FROM usuario WHERE id_user = '" . $_POST['id_user'] . "';";
+
+    $sql = "DELETE FROM usuario WHERE id_user = '" . $_POST['user'] . "';";
     if ($conexao->query($sql) === TRUE) {
-        echo '<a href="consultar_usuario.php">
-                        <h1 class="w3-button w3-black w3-center">Usuário Excluído com Sucesso!</h1>
-                    </a>';
+        
+        echo '<h2 class="w3-panel w3-pale-green w3-center">Excluído com Sucesso!</h2>';
     } else {
-        echo '<a href="consultar_morador.php">
-                        <h1 class="w3-button w3-black w3-center">ERRO... Tente Novamente!</h1>
-                    </a>';
+        echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
     }
+
     $conexao->close();
     ?>
 </div>
