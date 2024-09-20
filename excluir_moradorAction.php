@@ -1,12 +1,11 @@
 <?php
 require_once('verificar_permissaoAcesso.php');
 verificar_permissao('administrador');
-require_once('cabecalho.php');
+
 require_once('conexaoBD.php');
 ?>
 
-<!--Pagina action do formulario -->
-<div class="w3-display-middle">
+
     <?php
 
     $cpf = $_POST['cpf'];
@@ -20,6 +19,5 @@ require_once('conexaoBD.php');
 
     $conexao->close();
     ?>
-</div>
 
-<?php require_once('rodape.php'); ?>
+

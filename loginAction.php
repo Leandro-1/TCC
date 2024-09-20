@@ -1,5 +1,5 @@
 <?php
-require_once 'cabecalho.php';
+
 session_start();
 require_once 'conexaoBD.php';
 
@@ -27,11 +27,11 @@ if ($linha && $linha['senha'] == $senha) {
     } elseif ($_SESSION['privilegio'] == 'morador') {
         header('Location: inicial_morador.php');
     } else {
-        header('Location: acessonegado.php');
+        echo '<h2 class="w3-panel w3-red w3-center" >ACESSO NEGADO...<br>Tente Novamente!</h2>';
     }
 } else {
-    header('Location: acessonegado.php');
+    echo '<h2 class="w3-panel w3-red w3-center" >ACESSO NEGADO...<br>Tente Novamente!</h2>';
 }
 
 ?>
-<?php require_once 'rodape.php'; ?>
+

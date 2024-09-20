@@ -1,11 +1,10 @@
 <?php
 require_once('verificar_permissaoAcesso.php');
 verificar_permissao('administrador');
-require_once('cabecalho.php');
 require_once 'conexaoBD.php';
 ?>
 
-<div class="w3-display-middle">
+
     <?php
     $id_entrega = $_POST['id_entrega'];  // Receber o ID da entrega
     $data_recebimento = $_POST['data_recebimento'];
@@ -43,6 +42,4 @@ require_once 'conexaoBD.php';
 
     $conexao->close();
     ?>
-</div>
 
-<?php require_once("rodape.php"); ?>

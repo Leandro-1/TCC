@@ -1,7 +1,7 @@
-
+//função para mostrar a mensagem nas caixas de cadastros(entega,moradores,usuarios e propriedade)
 $(document).ready(function () {
 
-    function processarFomularioCadastro(idForm) {
+    function processarFormularioCadastro(idForm) {
         // Submeter o formulário via AJAX
         $(idForm).submit(function (event) {
             event.preventDefault(); // Impede o envio padrão do formulário
@@ -28,24 +28,72 @@ $(document).ready(function () {
             });
         });
     }
-    processarFomularioCadastro('#myForm1');
-    processarFomularioCadastro('#myForm2');
-    processarFomularioCadastro('#myForm3');
-    processarFomularioCadastro('#myForm4');
+    processarFormularioCadastro('#myForm_entrega');
+    processarFormularioCadastro('#myForm_morador');
+    processarFormularioCadastro('#myForm_usuario');
+    processarFormularioCadastro('#myForm_propriedade');
+    processarFormularioCadastro('#myForm_login');
+});
+
+//função para mostrar mensagem nas demais caixas, com a diferença que a caixa fecha depois da mensagem
+$(document).ready(function () {
+
+    function processarForm_Fechar(idForm,idModal) {
+        // Submeter o formulário via AJAX
+        $(idForm).submit(function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Envia os dados do formulário usando jQuery AJAX
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'), // Obtém a URL do atributo action do formulário
+                data: $(this).serialize(), // Serializa os dados do formulário
+                success: function (response) {
+                    $('.feedbackMessage').html(response).show();
+
+                    // Oculta a mensagem após 3 segundos
+                    setTimeout(function () {
+                        $(idModal).hide();  
+                        $('.feedbackMessage').hide();
+                    }, 3000);
+                },
+                error: function () {
+                    $('.feedbackMessage').html('Ocorreu um erro ao processar o formulário.').show();
+                }
+            });
+        });
+    }
+
+    processarForm_Fechar('#form_excluir_entrega','#excluir_entrega');
+    processarForm_Fechar('#form_excluir_morador', '#excluir_morador');
+    processarForm_Fechar('#form_excluir_usuario', '#excluir_usuario');
+    processarForm_Fechar('#form_editar_entrega', '#editar_entrega');
+    processarForm_Fechar('#form_editar_morador', '#editar_morador');
+    processarForm_Fechar('#form_editar_usuario', '#editar_usuario');
+    processarForm_Fechar('#form_editar_propriedade', '#editar_propriedade');
+
+
+    $('.close-modal').click(function () {
+        var idModal = $(this).data('modal');
+        $(idModal).hide();
+    });
 });
 
 //verificar porque não quer abrir
-function editarEntrega(id, data, tipo, nome, numero, bloco, status) {
+function editarEntrega(id, data, tipo, nome, propriedade, status, data_retirada) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
     document.getElementById('tipo').value = tipo;
     document.getElementById('destinatario').value = nome;
-    document.getElementById('apartamento_entrega').value = numero;
-    document.getElementById('bloco_entrega').value = bloco;
+    document.getElementById('propriedade').value = propriedade; // Atualiza a propriedade
     document.getElementById('status').value = status;
-    document.getElementById('editar_entrega').style.display = 'block';
+    document.getElementById('data_retirada').value = data_retirada; // Preenche a data de retirada
 
+    // Exibe o modal de edição
+    document.getElementById('editar_entrega').style.display = 'block';
 }
+
+
 
 function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {
     document.getElementById('cod_entrega').value = id;

@@ -1,10 +1,9 @@
 <?php require_once('verificar_permissaoAcesso.php');
 verificar_permissao('administrador');
-require_once('cabecalho.php');
 require_once 'conexaoBD.php';
 ?>
 
-<div class="w3-padding w3-content w3-text-grey w3-third w3-display-middle">
+
     <?php
 
     // Verificação de campos vazios
@@ -34,5 +33,4 @@ require_once 'conexaoBD.php';
     $stmt->close();
     $conexao->close();
     ?>
-</div>
-<?php require_once('rodape.php'); ?>
+
