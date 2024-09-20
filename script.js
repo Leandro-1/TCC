@@ -80,17 +80,18 @@ $(document).ready(function () {
 });
 
 //verificar porque não quer abrir
-function editarEntrega(id, data, tipo, nome, numero, bloco, status) {
+function editarEntrega(id, data, tipo, nome, propriedade, status) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
     document.getElementById('tipo').value = tipo;
     document.getElementById('destinatario').value = nome;
-    document.getElementById('apartamento_entrega').value = numero;
-    document.getElementById('bloco_entrega').value = bloco;
+    document.getElementById('propriedade').value = propriedade; // Atualiza a propriedade
     document.getElementById('status').value = status;
-    document.getElementById('editar_entrega').style.display = 'block';
 
+    // Exibe o modal de edição
+    document.getElementById('editar_entrega').style.display = 'block';
 }
+
 
 function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {
     document.getElementById('cod_entrega').value = id;

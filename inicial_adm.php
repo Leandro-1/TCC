@@ -27,7 +27,91 @@ require_once('conexaoBD.php');
             <!--Cadastro de entregas - editar - excluir  -->
           <?php require_once('cadastro_entrega.php')?>
 
-       
+       <!--Editar moradores -->
+<div id="editar_morador" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('editar_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+            <h1 class="w3-center"><b>Editar Morador</b></h1>
+            <form action="editar_moradorAction.php" method='post' class="w3-padding">
+                <div class="w3-cell-row">
+                    <input id="cpf" name="cpf" class="w3-input w3-grey w3-border" type="hidden">
+
+                    <div class="w3-cell">
+                        <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                        <input id="nome" name="nome" class="w3-input w3-light-grey w3-border">
+                    </div>
+                </div><br>
+                <div class="w3-cell-row">
+                    <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                        <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
+                        <input id="tel" name="tel" class="w3-input w3-light-grey w3-border">
+                    </div>
+                    <div>
+                        <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
+                        <input id="email" name="email" class="w3-input w3-light-grey w3-border">
+                    </div>
+                </div><br>
+                <div class="w3-cell-row">
+                    <div class="w3-cell" style="padding-right: 15px;">
+                        <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
+                        <input id="num_apart" name="num_apart" class="w3-input w3-light-grey w3-border">
+                    </div>
+                    <div class="w3-cell">
+                        <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                        <input id="bloco_quadra" name="bloco_quadra" class="w3-input w3-light-grey w3-border">
+                    </div>
+                </div><br>
+                <button class="w3-btn w3-black" type="submit">Alterar</button>
+            </form><br>
+
+        </div>
+    </div>
+</div>
+<!--Excluir Morador -->
+<div id="excluir_morador" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('excluir_morador').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+            <div class="w3-container">
+                <h2 class="w3-center"><b>Excluir Morador</b></h2>
+                <form action="excluir_moradorAction.php" method="post" class="w3-padding">
+                    <div class="w3-cell-row">
+                        <input id="txtcpf" name="cpf" class="w3-input w3-grey w3-border" type="hidden" readonly>
+
+                        <div class="w3-cell">
+                            <label class="w3-text-black" style="font-weight: bold;">Nome</label>
+                            <input id="txtnome" name="tel" class="w3-input w3-grey w3-border" readonly>
+                        </div>
+                    </div><br>
+                    <div class="w3-cell-row">
+                        <div class="w3-cell" style="padding-right: 15px; width:30%;">
+                            <label class="w3-text-black" style="font-weight: bold;">Telefone</label>
+                            <input id="txttel" name="nome" class="w3-input w3-grey w3-border" readonly>
+                        </div>
+                        <div class="w3-cell">
+                            <label class="w3-text-black" style="font-weight: bold;">E-mail</label>
+                            <input id="txtemail" name="email" class="w3-input w3-grey w3-border" readonly>
+                        </div>
+                    </div><br>
+                    <div class="w3-cell-row">
+                        <div class="w3-cell" style="padding-right: 15px;">
+                            <label class="w3-text-black" style="font-weight: bold;">Apartamento</label>
+                            <input id="numapart" name="numapart" class="w3-input w3-grey w3-border" readonly>
+                        </div>
+                        <div class="w3-cell">
+                            <label class="w3-text-black" style="font-weight: bold;">Bloco/Quadra</label>
+                            <input id="txtbloco" name="bloco" class="w3-input w3-grey w3-border" readonly>
+                        </div>
+                    </div><br>
+                    <button class="w3-btn w3-black" type="submit">Confirmar Exclusão</button>
+
+                </form><br>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
     <!--Aba de usuários -->
