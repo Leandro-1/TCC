@@ -32,7 +32,7 @@ $(document).ready(function () {
     processarFormularioCadastro('#myForm_morador');
     processarFormularioCadastro('#myForm_usuario');
     processarFormularioCadastro('#myForm_propriedade');
-    processarFormularioCadastro('#myForm_login');
+    
 });
 
 //função para mostrar mensagem nas demais caixas, com a diferença que a caixa fecha depois da mensagem
