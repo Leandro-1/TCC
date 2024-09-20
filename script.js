@@ -1,3 +1,34 @@
+$(document).ready(function () {
+
+    // Submeter o formulário via AJAX
+    $('#myForm_alterar_senha').submit(function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Envia os dados do formulário usando jQuery AJAX
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'), // Obtém a URL do atributo action do formulário
+            data: $(this).serialize(), // Serializa os dados do formulário
+            success: function (response) {
+                $('.feedbackMessage').html(response).show();
+
+                // Oculta a mensagem após 3 segundos
+                setTimeout(function () {
+                    $('.feedbackMessage').hide();
+                }, 3000);
+
+                // Opcional: Limpar o formulário após o envio
+                $('#myForm_alterar_senha')[0].reset();
+            },
+            error: function () {
+                $('.feedbackMessage').html('Ocorreu um erro ao processar o formulário.').show();
+            }
+        });
+    });
+
+});
+
+
 //função para mostrar a mensagem nas caixas de cadastros(entega,moradores,usuarios e propriedade)
 $(document).ready(function () {
 
@@ -32,13 +63,13 @@ $(document).ready(function () {
     processarFormularioCadastro('#myForm_morador');
     processarFormularioCadastro('#myForm_usuario');
     processarFormularioCadastro('#myForm_propriedade');
-    
+
 });
 
 //função para mostrar mensagem nas demais caixas, com a diferença que a caixa fecha depois da mensagem
 $(document).ready(function () {
 
-    function processarForm_Fechar(idForm,idModal) {
+    function processarForm_Fechar(idForm, idModal) {
         // Submeter o formulário via AJAX
         $(idForm).submit(function (event) {
             event.preventDefault(); // Impede o envio padrão do formulário
@@ -53,7 +84,7 @@ $(document).ready(function () {
 
                     // Oculta a mensagem após 3 segundos
                     setTimeout(function () {
-                        $(idModal).hide();  
+                        $(idModal).hide();
                         $('.feedbackMessage').hide();
                     }, 3000);
                 },
@@ -64,7 +95,7 @@ $(document).ready(function () {
         });
     }
 
-    processarForm_Fechar('#form_excluir_entrega','#excluir_entrega');
+    processarForm_Fechar('#form_excluir_entrega', '#excluir_entrega');
     processarForm_Fechar('#form_excluir_morador', '#excluir_morador');
     processarForm_Fechar('#form_excluir_usuario', '#excluir_usuario');
     processarForm_Fechar('#form_editar_entrega', '#editar_entrega');
