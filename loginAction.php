@@ -27,10 +27,10 @@ if ($linha && $linha['senha'] == $senha) {
     } elseif ($_SESSION['privilegio'] == 'morador') {
         header('Location: inicial_morador.php');
     } else {
-        echo '<h2 class="w3-panel w3-red w3-center" >ACESSO NEGADO...<br>Tente Novamente!</h2>';
+        header('Location: acessonegado.php');
     }
 } else {
-    echo '<h2 class="w3-panel w3-red w3-center" >ACESSO NEGADO...<br>Tente Novamente!</h2>';
+    header('Location: acessonegado.php');
 }
 
 ?>
