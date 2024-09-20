@@ -80,17 +80,19 @@ $(document).ready(function () {
 });
 
 //verificar porque não quer abrir
-function editarEntrega(id, data, tipo, nome, propriedade, status) {
+function editarEntrega(id, data, tipo, nome, propriedade, status, data_retirada) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
     document.getElementById('tipo').value = tipo;
     document.getElementById('destinatario').value = nome;
     document.getElementById('propriedade').value = propriedade; // Atualiza a propriedade
     document.getElementById('status').value = status;
+    document.getElementById('data_retirada').value = data_retirada; // Preenche a data de retirada
 
     // Exibe o modal de edição
     document.getElementById('editar_entrega').style.display = 'block';
 }
+
 
 
 function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {

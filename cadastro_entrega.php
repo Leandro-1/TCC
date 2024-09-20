@@ -155,7 +155,6 @@ if ($resultado != null)
 <div id="editar_entrega" class="w3-modal">
     <div class="w3-modal-content">
         <div class="w3-container">
-            <!-- Corrigido o ID para fechar o modal -->
             <span onclick="document.getElementById('editar_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
             <div class="w3-container">
                 <h1 class="w3-center"><b>Editar Entrega</b></h1>
@@ -198,7 +197,6 @@ if ($resultado != null)
                                 ?>
                             </select>
                         </div>
-
                         <div class="w3-cell">
                             <label for="status"><b>Status</b></label><br>
                             <select id="status" name="status" required>
@@ -220,6 +218,13 @@ if ($resultado != null)
                         <div class="w3-cell">
                             <label for="num_registro"><b>Número de Registro</b></label><br>
                             <input type="text" name="num_registro">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="w3-cell-row w3-center">
+                        <div class="w3-cell" style="padding-right: 15px;">
+                            <label for="data_retirada"><b>Data de Retirada</b></label><br>
+                            <input type="date" id="data_retirada" name="data_retirada">
                         </div>
                     </div>
                     <br>
