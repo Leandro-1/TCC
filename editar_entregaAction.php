@@ -1,6 +1,5 @@
 <?php
-require_once('verificar_permissaoAcesso.php');
-verificar_permissao('administrador');
+require_once('permissaoAcesso_adm_e_operador.php');
 require_once 'conexaoBD.php';
 ?>
 
