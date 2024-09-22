@@ -2,50 +2,62 @@
     <div class="w3-container w3-display-top">
         <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
-        <button onclick="document.getElementById('cad_entrega').style.display='block'" id="botao_cad" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
+        <button onclick="document.getElementById('cad_entrega').style.display='block'" 
+                id="botao_cad" 
+                class="botao_cad w3-right w3-round-xlarge w3-large w3-padding" 
+                type="button">Novo Cadastro</button>
 
+        <!-- Modal de Cadastro -->
         <div id="cad_entrega" class="w3-modal">
-            <div class="w3-modal-content">
+            <div class="w3-modal-content w3-card-4 custom-modal">
                 <div class="w3-container">
-                    <span onclick="document.getElementById('cad_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+                    <span onclick="document.getElementById('cad_entrega').style.display='none'" 
+                          class="w3-button w3-display-topright w3-hover-red w3-large">
+                        <b>&times;</b>
+                    </span>
 
-                    <div class="feedbackMessage w3-padding"></div>
-                    <div class="w3-container w3-padding">
-                        <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
+                    <div id="feedbackMessage" class="w3-padding"></div>
+                    <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
 
-                        <form id="myForm_entrega" action="cadastro_encomendaAction.php" method="post" class="w3-padding">
-                            <div class="w3-cell-row">
-                                <div class="w3-cell" style=" padding-right: 15px;">
-                                    <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                    <input type="text" name="data_recebimento" value="<?php echo date('Y/m/d') ?> " readonly>
-                                </div>
-                                <div class="w3-cell" style="padding-right: 15px;">
-                                    <label for="tipo"><b>Tipo</b> </label><br>
-                                    <select name="tipo" required>
-                                        <option value="e-commerce">E-COMMERCE</option>
-                                        <option value="carta">CARTA</option>
-                                        <option value="sedex">SEDEX</option>
-                                    </select>
-                                </div>
-                                <div class="w3-cell">
-                                    <label for="recebido_por"><b>Recebido por</b> </label><br>
-                                    <input type="text" name="recebido_por" readonly value="<?php echo ucwords($_SESSION['nome']) ?>">
-                                </div>
+                    <form id="form_entrega" action="cadastro_encomendaAction.php" method="post" class="custom-form w3-padding">
+
+                        <!-- Primeira Linha: Data de Recebimento, Tipo, Recebido por -->
+                        <div class="w3-row-padding">
+                            <div class="w3-third">
+                                <label for="data_recebimento"><b>Data de Recebimento</b></label>
+                                <input class="w3-input w3-border" type="text" id="data_recebimento" 
+                                       name="data_recebimento" value="<?php echo date('Y/m/d'); ?>" readonly>
                             </div>
-                            <br>
+                            <div class="w3-third">
+                                <label for="tipo"><b>Tipo</b></label>
+                                <select class="w3-input w3-border" id="tipo" name="tipo" required>
+                                    <option value="e-commerce">E-COMMERCE</option>
+                                    <option value="carta">CARTA</option>
+                                    <option value="sedex">SEDEX</option>
+                                </select>
+                            </div>
+                            <div class="w3-third">
+                                <label for="recebido_por"><b>Recebido por</b></label>
+                                <input class="w3-input w3-border" type="text" id="recebido_por" 
+                                       name="recebido_por" readonly value="<?php echo ucwords($_SESSION['nome']); ?>">
+                            </div>
+                        </div>
 
-                            <div class="w3-cell-row">
-                                <div class="w3-cell">
-                                    <label for="morador"><b>Destinatário</b></label><br>
-                                    <input type="text" name="destinatario" required>
-                                </div>
-                                <label for="propriedade">Propriedade</label>
-                                <select class="w3-input w3-border" name="propriedade" required>
+                        <br>
+
+                        <!-- Segunda Linha: Destinatário, Propriedade -->
+                        <div class="w3-row-padding">
+                            <div class="w3-half">
+                                <label for="destinatario"><b>Destinatário</b></label>
+                                <input class="w3-input w3-border" type="text" id="destinatario" name="destinatario" required>
+                            </div>
+                            <div class="w3-half">
+                                <label for="propriedade"><b>Propriedade</b></label>
+                                <select class="w3-input w3-border" id="propriedade" name="propriedade" required>
                                     <option value="" selected></option>
                                     <?php
                                     $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                     $result = $conexao->query($query);
-
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
@@ -56,47 +68,58 @@
                                     ?>
                                 </select>
                             </div>
+                        </div>
 
-                            <br>
-                            <div class="w3-cell-row w3-center">
-                                <div class="w3-cell" style="padding-right: 15px;">
-                                    <label for="remetente"><b>Remetente</b></label><br>
-                                    <input type="text" name="remetente">
-                                </div>
-                                <div class="w3-cell">
-                                    <label for="num_registro"><b>Número de Registro</b></label><br>
-                                    <input type="text" name="num_registro">
-                                </div>
+                        <br>
+
+                        <!-- Terceira Linha: Remetente, Número de Registro -->
+                        <div class="w3-row-padding">
+                            <div class="w3-half">
+                                <label for="remetente"><b>Remetente</b></label>
+                                <input class="w3-input w3-border" type="text" id="remetente" name="remetente">
                             </div>
-                            <br>
-                            <div class="w3-cell-row">
-                                <div class="w3-cell">
-                                    <label for="status"><b>Status</b></label><br>
-                                    <select id="status" name="status" required>
-                                        <option value="Entregue">Entregue</option>
-                                        <option value="A retirar" selected>A Retirar</option>
-                                    </select>
-                                </div>
-                                <div class="w3-cell" style="padding-right: 15px;">
-                                    <label for="retirado_por"><b>Retirado por</b></label><br>
-                                    <input type="text" name="retirado_por">
-                                </div>
-                                <div class="w3-cell">
-                                    <label for="data_retirada"><b>Data de Retirada</b></label><br>
-                                    <input type="date" name="data_retirada">
-                                </div>
-
+                            <div class="w3-half">
+                                <label for="num_registro"><b>Número de Registro</b></label>
+                                <input class="w3-input w3-border" type="text" id="num_registro" name="num_registro">
                             </div>
-                            <br>
-                            <button class="w3-btn w3-black" type="submit">CADASTRAR</button>
-                        </form><br>
+                        </div>
 
-                    </div>
+                        <br>
+
+                        <!-- Quarta Linha: Status, Retirado por, Data de Retirada -->
+                        <div class="w3-row-padding">
+                            <div class="w3-third">
+                                <label for="status"><b>Status</b></label>
+                                <select class="w3-input w3-border" id="status" name="status" required>
+                                    <option value="Entregue">Entregue</option>
+                                    <option value="A retirar" selected>A Retirar</option>
+                                </select>
+                            </div>
+                            <div class="w3-third">
+                                <label for="retirado_por"><b>Retirado por</b></label>
+                                <input class="w3-input w3-border" type="text" id="retirado_por" name="retirado_por">
+                            </div>
+                            <div class="w3-third">
+                                <label for="data_retirada"><b>Data de Retirada</b></label>
+                                <input class="w3-input w3-border" type="date" id="data_retirada" name="data_retirada">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <!-- Botão de Cadastrar -->
+                        <div class="w3-center">
+                            <button id="submit" class="w3-btn w3-black" type="submit">CADASTRAR</button>
+                        </div>
+
+                    </form>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <br>
+</div>
+
 
     <!-- Consulta de Entregas -->
     <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto; ">
