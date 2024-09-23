@@ -110,7 +110,7 @@ $(document).ready(function () {
     });
 });
 
-//verificar porque não quer abrir
+
 function editarEntrega(id, data, tipo, nome, propriedade, status, data_retirada) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
@@ -204,12 +204,13 @@ function openMenu(evt, menuName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("menu");
     for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
+        x[i].style.display = "none"; // Esconde todas as abas
     }
     tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); // Remove a classe "ativa"
     }
-    document.getElementById(menuName).style.display = "block";
-    evt.currentTarget.className += " w3-red";
+    document.getElementById(menuName).style.display = "block"; // Mostra a aba ativa
+    evt.currentTarget.className += " w3-red"; // Adiciona a classe "ativa" à aba clicada
 }
+

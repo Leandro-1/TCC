@@ -1,12 +1,8 @@
-<div id="entregas" class="w3-container w3-border w3-white menu">
+<div id="entregas" class="w3-container w3-border w3-white menu style="display: block;">
     <div class="w3-container w3-display-top">
         <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
-        <button onclick="document.getElementById('cad_entrega').style.display='block'" 
-                id="botao_cad" 
-                class="botao_cad w3-right w3-round-xlarge w3-large w3-padding" 
-                type="button">Novo Cadastro</button>
-
+        <button onclick="document.getElementById('cad_entrega').style.display='block'" class="botao_cad w3-right w3-round-xlarge  w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
         <!-- Modal de Cadastro -->
         <div id="cad_entrega" class="w3-modal">
             <div class="w3-modal-content w3-card-4 custom-modal">
@@ -118,43 +114,49 @@
             </div>
         </div>
     </div>
-</div>
+
 
 
     <!-- Consulta de Entregas -->
-    <table class="w3-table-all w3-centered w3-hoverable" style="overflow-y:auto; ">
-        <tr class="w3-center w3-blue-grey">
-            <th>Data Recebimento</th>
-            <th>Destinatário</th>
-            <th>Apartamento</th>
-            <th>bloco</th>
-            <th>Status</th>
-            <th>Relatório</th>
-            <th>Excluir</th>
-            <th>Editar</th>
-        </tr>
-        <?php
+    <table class="w3-table-all w3-centered w3-hoverable">
+    <tr class="w3-center w3-blue-grey">
+        <th>Data Recebimento</th>
+        <th>Destinatário</th>
+        <th>Apartamento</th>
+        <th>Bloco</th>
+        <th>Status</th>
+        <th>Relatório</th>
+        <th>Excluir</th>
+        <th>Editar</th>
+    </tr>
+    <?php
+    $sql = "SELECT entrega.*, propriedade.* FROM entrega JOIN propriedade ON entrega.id_residencia = propriedade.id_propriedade ORDER BY data_recebimento";
+    if ($resultado = $conexao->query($sql)) {
+        foreach ($resultado as $linha) {
+            echo '<tr class="w3-text-black">';
+            echo '<td>' . htmlspecialchars($linha['data_recebimento']) . '</td>';
+            echo '<td>' . htmlspecialchars($linha['nome_destinatario']) . '</td>';
+            echo '<td>' . htmlspecialchars($linha['num_propriedade']) . '</td>';
+            echo '<td>' . htmlspecialchars($linha['bloco_quadra']) . '</td>';
+            echo '<td>' . htmlspecialchars($linha['status']) . '</td>';
 
-        $sql = "SELECT entrega.*, propriedade.* FROM entrega, propriedade WHERE entrega.id_residencia = propriedade.id_propriedade order by data_recebimento";
-        $resultado = $conexao->query($sql);
-        if ($resultado != null)
-            foreach ($resultado as $linha) {
-                echo '<tr class=w3-text-black>';
-                echo '<td>' . $linha['data_recebimento'] . '</td>';
-                echo '<td>' . $linha['nome_destinatario'] . '</td>';
-                echo '<td>' . $linha['num_propriedade'] . '</td>';
-                echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                echo '<td>' . $linha['status'] . '</td>';
+            // Botão de detalhes
+            echo '<td><button onclick="detalhesEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['recebido_por']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" class="w3-text-blue" aria-label="Ver detalhes da entrega">Detalhes</button></td>';
+            
+            // Botão de exclusão
+            echo '<td><button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Excluir entrega"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+            
+            // Botão de edição
+            echo '<td><button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+            
+            echo '</tr>';
+        }
+    } else {
+        echo '<tr><td colspan="8" class="w3-text-red">Erro ao carregar as entregas.</td></tr>';
+    }
+    ?>
+</table>
 
-                // criar um modal para relatório com muito mais dados e detalhado
-                echo '<td><button onclick="detalhesEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
-                echo '<td><button onclick="excluirEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                echo '<td><button onclick="editarEntrega(\'' . $linha['id_entrega'] . '\',\'' . $linha['data_recebimento'] . '\',\'' . $linha['tipo'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\',\'' . $linha['status'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
-                echo '</tr>';
-            }
-
-        ?>
-    </table><br>
 
     <!-- modal para detalhes da entrega -->
     <div id="detalhes_entrega" class="w3-modal">
