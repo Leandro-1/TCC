@@ -180,155 +180,172 @@
 
     <!--Editar entregas -->
     <div id="editar_entrega" class="w3-modal">
-        <div class="w3-modal-content">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('editar_entrega').style.display='none'" 
+                  class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+            <div class="feedbackMessage w3-padding"></div>
             <div class="w3-container">
-                <span onclick="document.getElementById('editar_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                <div class="feedbackMessage w3-padding"></div>
-                <div class="w3-container">
-                    <h1 class="w3-center"><b>Editar Entrega</b></h1>
-                    <form id="form_editar_entrega" action="editar_entregaAction.php" method='post' class="w3-padding">
-                        <div class="w3-cell-row">
-                            <input type="text" id="id_entrega" name="id_entrega" hidden>
-                            <div class="w3-cell" style=" padding-right: 15px;">
-                                <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                <input type="text" id="data_recebimento" name="data_recebimento" class="w3-light-grey" readonly>
-                            </div>
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="tipo"><b>Tipo</b> </label><br>
-                                <select id="tipo" name="tipo" required>
-                                    <option value="e-commerce">E-COMMERCE</option>
-                                    <option value="carta">CARTA</option>
-                                    <option value="sedex">SEDEX</option>
-                                </select>
-                            </div>
-                            <div class="w3-cell">
-                                <label for="destinatario"><b>Destinatário</b></label><br>
-                                <input type="text" id="destinatario" name="destinatario" required>
-                            </div>
+                <h1 class="w3-center"><b>Editar Entrega</b></h1>
+                
+                <form id="form_editar_entrega" action="editar_entregaAction.php" method="post" class="w3-padding">
+                    <input type="hidden" id="id_entrega" name="id_entrega">
+
+                    <!-- Primeira Linha: Data de Recebimento, Tipo e Destinatário -->
+                    <div class="w3-row-padding">
+                        <div class="w3-third">
+                            <label for="data_recebimento"><b>Data de Recebimento</b></label>
+                            <input type="text" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
                         </div>
-                        <br>
-                        <div class="w3-cell-row">
-                            <div class="w3-cell">
-                                <label for="propriedade">Propriedade</label>
-                                <select id="propriedade" class="w3-input w3-border" name="propriedade" required>
-                                    <?php
+                        <div class="w3-third">
+                            <label for="tipo"><b>Tipo</b></label>
+                            <select id="tipo" name="tipo" class="w3-select" required>
+                                <option value="e-commerce">E-COMMERCE</option>
+                                <option value="carta">CARTA</option>
+                                <option value="sedex">SEDEX</option>
+                            </select>
+                        </div>
+                        <div class="w3-third">
+                            <label for="destinatario"><b>Destinatário</b></label>
+                            <input type="text" id="destinatario" name="destinatario" class="w3-input" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Segunda Linha: Propriedade, Status e Retirado por -->
+                    <div class="w3-row-padding">
+                        <div class="w3-third">
+                            <label for="propriedade"><b>Propriedade</b></label>
+                            <select id="propriedade" name="propriedade" class="w3-select w3-border" required>
+                                <?php
                                     $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                     $result = $conexao->query($query);
 
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
-                                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
+                                            echo '<option value="' . htmlspecialchars($row["id_propriedade"]) . '">' 
+                                                . htmlspecialchars($row["bloco_quadra"] . ' - ' . $row["num_propriedade"]) . '</option>';
                                         }
                                     } else {
                                         echo '<option value="">Nenhuma opção disponível</option>';
                                     }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="w3-cell">
-                                <label for="status"><b>Status</b></label><br>
-                                <select id="status" name="status" required>
-                                    <option value="entregue">Entregue</option>
-                                    <option value="a retirar">A Retirar</option>
-                                </select>
-                            </div>
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="retirado_por"><b>Retirado por</b></label><br>
-                                <input type="text" name="retirado_por">
-                            </div>
+                                ?>
+                            </select>
                         </div>
-                        <br>
-                        <div class="w3-cell-row w3-center">
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="remetente"><b>Remetente</b></label><br>
-                                <input type="text" name="remetente">
-                            </div>
-                            <div class="w3-cell">
-                                <label for="num_registro"><b>Número de Registro</b></label><br>
-                                <input type="text" name="num_registro">
-                            </div>
+                        <div class="w3-third">
+                            <label for="status"><b>Status</b></label>
+                            <select id="status" name="status" class="w3-select" required>
+                                <option value="entregue">Entregue</option>
+                                <option value="a retirar">A Retirar</option>
+                            </select>
                         </div>
-                        <br>
-                        <div class="w3-cell-row w3-center">
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="data_retirada"><b>Data de Retirada</b></label><br>
-                                <input type="date" id="data_retirada" name="data_retirada">
-                            </div>
+                        <div class="w3-third">
+                            <label for="retirado_por"><b>Retirado por</b></label>
+                            <input type="text" id="retirado_por" name="retirado_por" class="w3-input">
                         </div>
-                        <br>
+                    </div>
+
+                    <!-- Terceira Linha: Remetente e Número de Registro -->
+                    <div class="w3-row-padding">
+                        <div class="w3-half">
+                            <label for="remetente"><b>Remetente</b></label>
+                            <input type="text" id="remetente" name="remetente" class="w3-input">
+                        </div>
+                        <div class="w3-half">
+                            <label for="num_registro"><b>Número de Registro</b></label>
+                            <input type="text" id="num_registro" name="num_registro" class="w3-input">
+                        </div>
+                    </div>
+
+                    <!-- Quarta Linha: Data de Retirada -->
+                    <div class="w3-row-padding">
+                        <div class="w3-half">
+                            <label for="data_retirada"><b>Data de Retirada</b></label>
+                            <input type="date" id="data_retirada" name="data_retirada" class="w3-input">
+                        </div>
+                    </div>
+                    
+                    <!-- Botão de Atualizar -->
+                    <div class="w3-center w3-padding">
                         <button class="w3-btn w3-black" type="submit">ATUALIZAR</button>
-                        <br>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!--Excluir entregas -->
-    <div id="excluir_entrega" class="w3-modal">
-        <div class="w3-modal-content">
-            <div class="w3-container">
-                <span onclick="document.getElementById('excluir_entrega').style.display='none'" class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
-                <div class="feedbackMessage w3-padding"></div>
-                <div class="w3-container w3-padding">
-                    <h1 class="w3-center"><b>Excluir Entrega</b></h1>
-                    <form id="form_excluir_entrega" action="excluir_entregaAction.php" method='post' class="w3-padding">
-                        <div class="w3-cell-row">
-                            <input type="text" id="cod_entrega" name="cod_entrega" hidden>
-                            <div class="w3-cell" style=" padding-right: 15px;">
-                                <label for="data_recebimento"><b>Data de Recebimento</b></label><br>
-                                <input type="text" id="data_receb" name="data_recebimento " class="w3-grey" readonly>
-                            </div>
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="tipo"><b>Tipo</b> </label><br>
-                                <select id="tipo_entrega" name="tipo" class="w3-grey" readonly>
-                                    <option value="e-commerce">E-COMMERCE</option>
-                                    <option value="carta">CARTA</option>
-                                    <option value="sedex">SEDEX</option>
-                                </select>
-                            </div>
-                            <div class="w3-cell">
-                                <label for="destinatario_entrega"><b>Destinatário</b></label><br>
-                                <input type="text" id="destinatario_entrega" name="destinatario" class="w3-grey" readonly>
-                            </div>
+  <!-- Excluir Entregas -->
+<div id="excluir_entrega" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('excluir_entrega').style.display='none'" 
+                  class="w3-button w3-display-topright w3-hover-red w3-large"><b>&times;</b></span>
+            <div class="feedbackMessage w3-padding"></div>
+            <div class="w3-container w3-padding">
+                <h1 class="w3-center"><b>Excluir Entrega</b></h1>
+                
+                <form id="form_excluir_entrega" action="excluir_entregaAction.php" method="post" class="w3-padding">
+                    <input type="hidden" id="cod_entrega" name="cod_entrega">
+                    
+                    <!-- Primeira Linha: Data de Recebimento, Tipo e Destinatário -->
+                    <div class="w3-row-padding">
+                        <div class="w3-third">
+                            <label for="data_recebimento"><b>Data de Recebimento</b></label>
+                            <input type="text" id="data_receb" name="data_recebimento" class="w3-input w3-grey" readonly>
                         </div>
-                        <br>
-                        <div class="w3-cell-row">
-                            <div class="w3-cell">
-                                <label for="apartamento"><b>Apartamento</b></label><br>
-                                <input id="apartamento_" name="apartamento" class="w3-grey" readonly>
-                            </div>
-                            <div class="w3-cell">
-                                <label for="bloco"><b>Bloco</b></label><br>
-                                <input id="bloco_" name="bloco" class="w3-grey" readonly>
-                            </div>
-
-                            <div class="w3-cell">
-                                <label for="status"><b>Status</b></label><br>
-                                <select id="status_entrega" name="status" class="w3-grey" readonly>
-                                    <option value="entregue">Entregue</option>
-                                    <option value="a retirar" selected>A Retirar</option>
-                                </select>
-                            </div>
+                        <div class="w3-third">
+                            <label for="tipo"><b>Tipo</b></label>
+                            <select id="tipo_entrega" name="tipo" class="w3-select w3-grey" readonly>
+                                <option value="e-commerce">E-COMMERCE</option>
+                                <option value="carta">CARTA</option>
+                                <option value="sedex">SEDEX</option>
+                            </select>
                         </div>
-                        <br>
-                        <div class="w3-cell-row w3-center">
-                            <div class="w3-cell" style="padding-right: 15px;">
-                                <label for="remetente"><b>Remetente</b></label><br>
-                                <input type="text" name="remetente" class="w3-grey" readonly>
-                            </div>
-                            <div class="w3-cell">
-                                <label for="num_registro"><b>Número de Registro</b></label><br>
-                                <input type="text" name="num_registro" class="w3-grey" readonly>
-                            </div>
+                        <div class="w3-third">
+                            <label for="destinatario_entrega"><b>Destinatário</b></label>
+                            <input type="text" id="destinatario_entrega" name="destinatario" class="w3-input w3-grey" readonly>
                         </div>
-                       
-                        <br>
+                    </div>
+                    
+                    <!-- Segunda Linha: Apartamento, Bloco e Status -->
+                    <div class="w3-row-padding">
+                        <div class="w3-third">
+                            <label for="apartamento"><b>Apartamento</b></label>
+                            <input type="text" id="apartamento_" name="apartamento" class="w3-input w3-grey" readonly>
+                        </div>
+                        <div class="w3-third">
+                            <label for="bloco"><b>Bloco</b></label>
+                            <input type="text" id="bloco_" name="bloco" class="w3-input w3-grey" readonly>
+                        </div>
+                        <div class="w3-third">
+                            <label for="status"><b>Status</b></label>
+                            <select id="status_entrega" name="status" class="w3-select w3-grey" readonly>
+                                <option value="entregue">Entregue</option>
+                                <option value="a retirar" selected>A Retirar</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Terceira Linha: Remetente e Número de Registro -->
+                    <div class="w3-row-padding">
+                        <div class="w3-half">
+                            <label for="remetente"><b>Remetente</b></label>
+                            <input type="text" id="remetente" name="remetente" class="w3-input w3-grey" readonly>
+                        </div>
+                        <div class="w3-half">
+                            <label for="num_registro"><b>Número de Registro</b></label>
+                            <input type="text" id="num_registro" name="num_registro" class="w3-input w3-grey" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão de confirmação -->
+                    <div class="w3-center w3-padding">
                         <button class="w3-btn w3-black" type="submit">CONFIRMAR EXCLUSÃO</button>
-                        <br>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 </div>
