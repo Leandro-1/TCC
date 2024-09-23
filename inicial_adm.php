@@ -21,8 +21,9 @@ require_once('conexaoBD.php');
 
     <!--Aba de entregas -->
     <!-- Cadastro - Consulta - editar - excluir  -->
+     
     <?php require_once('aba_entrega.php') ?>
-
+    
 
     <!--Aba de MORADORES -->
     <!-- Cadastro - Consulta - editar - excluir  -->
