@@ -2,7 +2,7 @@
     <div class="w3-container w3-display-top">
         <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
-        <button onclick="document.getElementById('cad_entrega').style.display='block'" class="botao_cad w3-right w3-round-xlarge  w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
+        <button onclick="document.getElementById('cad_').style.display='block'" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
         <!-- Modal de Cadastro -->
         <div id="cad_entrega" class="w3-modal">
             <div class="w3-modal-content w3-card-4 custom-modal">
@@ -118,7 +118,7 @@
 
 
     <!-- Consulta de Entregas -->
-    <table class="w3-table-all w3-centered w3-hoverable">
+    <table class="w3-table-all w3-centered w3-hoverable" style="padding-top:100px;margin-top: 20px;">
     <tr class="w3-center w3-blue-grey">
         <th>Data Recebimento</th>
         <th>Destinatário</th>
