@@ -2,7 +2,7 @@
     <div class="w3-container w3-display-top">
         <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
-        <button onclick="document.getElementById('cad_').style.display='block'" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
+        <button onclick="document.getElementById('cad_entrega').style.display='block'" class="botao_cad w3-right w3-round-xlarge w3-large w3-padding w3-display-top" type="submit">Novo Cadastro</button>
         <!-- Modal de Cadastro -->
         <div id="cad_entrega" class="w3-modal">
             <div class="w3-modal-content w3-card-4 custom-modal">
@@ -21,8 +21,7 @@
                         <div class="w3-row-padding">
                             <div class="w3-third">
                                 <label for="data_recebimento"><b>Data de Recebimento</b></label>
-                                <input class="w3-input w3-border" type="text" id="data_recebimento" 
-                                       name="data_recebimento" value="<?php echo date('Y/m/d'); ?>" readonly>
+                                <input class="w3-input w3-border" type="date" id="data_recebimento" name="data_recebimento" value="<?php echo date('Y/m/d'); ?>" >
                             </div>
                             <div class="w3-third">
                                 <label for="tipo"><b>Tipo</b></label>
@@ -42,8 +41,8 @@
                         <br>
 
                         <!-- Segunda Linha: Destinatário, Propriedade -->
-                        <div class="w3-row-padding">
-                            <div class="w3-half">
+                        <div class="w3-row-padding" style="margin-top: -30px;">
+                            <div class="w3-half" >
                                 <label for="destinatario"><b>Destinatário</b></label>
                                 <input class="w3-input w3-border" type="text" id="destinatario" name="destinatario" required>
                             </div>
@@ -69,7 +68,7 @@
                         <br>
 
                         <!-- Terceira Linha: Remetente, Número de Registro -->
-                        <div class="w3-row-padding">
+                        <div class="w3-row-padding" style="margin-top: -30px;">
                             <div class="w3-half">
                                 <label for="remetente"><b>Remetente</b></label>
                                 <input class="w3-input w3-border" type="text" id="remetente" name="remetente">
@@ -83,7 +82,7 @@
                         <br>
 
                         <!-- Quarta Linha: Status, Retirado por, Data de Retirada -->
-                        <div class="w3-row-padding">
+                        <div class="w3-row-padding" style="margin-top: -30px;">
                             <div class="w3-third">
                                 <label for="status"><b>Status</b></label>
                                 <select class="w3-input w3-border" id="status" name="status" required>
