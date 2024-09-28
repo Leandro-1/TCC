@@ -38,9 +38,7 @@ if ($result->num_rows > 0) {
   } else {
     echo '<h2 class="w3-panel w3-pale-red w3-center">Erro... Tente Novamente!</h2>';
   }
-} else {
-  echo '<h2 class="w3-panel w3-pale-yellow w3-center">Propriedade não encontrada!</h2>';
-}
+} 
 
 $stmt->close();
 $conexao->close();
