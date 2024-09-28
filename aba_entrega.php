@@ -1,4 +1,5 @@
-<div id="entregas" class="w3-container w3-border w3-white menu style="display: block;">
+<div id="entregas" class="w3-container w3-border w3-white menu" style="display: block;">
+
     <div class="w3-container w3-display-top">
         <h2 class="w3-center"><b>Consulta de Entregas</b></h2>
 
