@@ -13,6 +13,9 @@ $status = $_POST['status'];
 $num_registro = $_POST['num_registro'];
 $retirado_por = $_POST['retirado_por'];
 $data_retirada = isset($_POST['data_retirada']) ? $_POST['data_retirada'] : NULL;
+$data_recebimento = isset($_POST['data_recebimento']) && !empty($_POST['data_recebimento']) ? $_POST['data_recebimento'] : null;
+
+if ($data_recebimento === null) {$data_recebimento = date('Y-m-d');}
 
 
 
