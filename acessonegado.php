@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Acesso Negado!</title>
 </head>
+<style>
+    html {
+        height: 100%;
+
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: linear-gradient(to top, black, #101031, midnightblue);
+        background-repeat: no-repeat;
+    }
+</style>
 
 <body>
     <div class="w3-padding w3-container w3-third w3-display-middle w3-red w3-text-black w3-center">
