@@ -13,16 +13,16 @@
                         <b>&times;</b>
                     </span>
 
-                    <div id="feedbackMessage" class="w3-padding"></div>
+                    <div class="feedbackMessage" class="w3-padding"></div>
                     <h2 class="w3-center w3-padding"><b>Cadastrar Encomenda</b></h2>
 
-                    <form id="form_entrega" action="cadastro_encomendaAction.php" method="post" class="custom-form w3-padding">
+                    <form id="myForm_entrega" action="cadastro_encomendaAction.php" method="post" class="custom-form w3-padding">
 
                         <!-- Primeira Linha: Data de Recebimento, Tipo, Recebido por -->
                         <div class="w3-row-padding">
                             <div class="w3-third">
                                 <label for="data_recebimento"><b>Data de Recebimento</b></label>
-                                <input class="w3-input w3-border" type="date" id="data_recebimento" name="data_recebimento" value="<?php echo date('Y/m/d'); ?>" >
+                                <input class="w3-input w3-border" type="date" id="data_recebimento" name="data_recebimento" value="<?php echo date('Y-m-d'); ?>" readonly >
                             </div>
                             <div class="w3-third">
                                 <label for="tipo"><b>Tipo</b></label>
@@ -130,7 +130,7 @@
         <th>Editar</th>
     </tr>
     <?php
-    $sql = "SELECT entrega.*, propriedade.* FROM entrega JOIN propriedade ON entrega.id_residencia = propriedade.id_propriedade ORDER BY data_recebimento";
+    $sql = "SELECT entrega.*, propriedade.* FROM entrega JOIN propriedade ON entrega.id_residencia = propriedade.id_propriedade ORDER BY data_recebimento DESC";
     if ($resultado = $conexao->query($sql)) {
         foreach ($resultado as $linha) {
             echo '<tr class="w3-text-black">';
@@ -235,7 +235,7 @@
                             <label for="status"><b>Status</b></label>
                             <select id="status" name="status" class="w3-select" required>
                                 <option value="entregue">Entregue</option>
-                                <option value="a retirar">A Retirar</option>
+                                <option value="a retirar" selected>A Retirar</option>
                             </select>
                         </div>
                         <div class="w3-third">
