@@ -195,7 +195,7 @@
                     <div class="w3-row-padding">
                         <div class="w3-third">
                             <label for="data_recebimento"><b>Data de Recebimento</b></label>
-                            <input type="text" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
+                            <input type="date" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
                         </div>
                         <div class="w3-third">
                             <label for="tipo"><b>Tipo</b></label>
