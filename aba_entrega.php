@@ -125,29 +125,30 @@
         <th>Apartamento</th>
         <th>Bloco</th>
         <th>Status</th>
-        <th>Relatório</th>
-        <th>Excluir</th>
-        <th>Editar</th>
+        <th>Ações</th>
+        
     </tr>
     <?php
     $sql = "SELECT entrega.*, propriedade.* FROM entrega JOIN propriedade ON entrega.id_residencia = propriedade.id_propriedade ORDER BY data_recebimento DESC";
     if ($resultado = $conexao->query($sql)) {
         foreach ($resultado as $linha) {
+            $cor = (htmlspecialchars($linha['status']) == "A retira") ? 'lightcoral' : 'lightgreen';
             echo '<tr class="w3-text-black">';
             echo '<td>' . htmlspecialchars($linha['data_recebimento']) . '</td>';
             echo '<td>' . htmlspecialchars($linha['nome_destinatario']) . '</td>';
             echo '<td>' . htmlspecialchars($linha['num_propriedade']) . '</td>';
             echo '<td>' . htmlspecialchars($linha['bloco_quadra']) . '</td>';
-            echo '<td>' . htmlspecialchars($linha['status']) . '</td>';
+            echo '<td style="background-color: '.$cor.';"><b>' . htmlspecialchars($linha['status']) . '</b></td>';
 
             // Botão de detalhes
-            echo '<td><button onclick="detalhesEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['recebido_por']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" class="w3-text-blue" aria-label="Ver detalhes da entrega">Detalhes</button></td>';
+            echo '<td><button onclick="detalhesEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['recebido_por']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['status']) .
+            '\')" aria-label="Relatorio" class="w3-blue"><i class="fa fa-eye w3-large w3-text-black"></i></button>';
             
             // Botão de exclusão
-            echo '<td><button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Excluir entrega"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
+            echo '<button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Excluir entrega"class="w3-red w3-margin-right w3-margin-left"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
             
             // Botão de edição
-            echo '<td><button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+            echo '<button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega" class="w3-yellow"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
             
             echo '</tr>';
         }
