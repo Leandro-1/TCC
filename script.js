@@ -59,7 +59,7 @@ $(document).ready(function () {
             });
         });
     }
-    processarFormularioCadastro('#form_entrega');
+    processarFormularioCadastro('#myForm_entrega');
     processarFormularioCadastro('#myForm_morador');
     processarFormularioCadastro('#myForm_usuario');
     processarFormularioCadastro('#myForm_propriedade');
