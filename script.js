@@ -102,6 +102,8 @@ $(document).ready(function () {
     processarForm_Fechar('#form_editar_morador', '#editar_morador');
     processarForm_Fechar('#form_editar_usuario', '#editar_usuario');
     processarForm_Fechar('#form_editar_propriedade', '#editar_propriedade');
+    processarForm_Fechar('#form_status', '#modal_status');
+    
 
 
     $('.close-modal').click(function () {
@@ -110,7 +112,13 @@ $(document).ready(function () {
     });
 });
 
-
+function modalStatus(id, status, retiradoPor,) {
+    document.getElementById('entregaID').value = id;
+    document.getElementById('status_atualizar').value = status;
+    document.getElementById('nomeRetirou').value = retiradoPor;
+   
+    document.getElementById('modal_status').style.display = 'block';
+}
 function editarEntrega(id, data, tipo, nome, propriedade, status, data_retirada) {
     document.getElementById('id_entrega').value = id;
     document.getElementById('data_recebimento').value = data;
