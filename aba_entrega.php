@@ -142,13 +142,13 @@
 
             // Botão de detalhes
             echo '<td><button onclick="detalhesEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['recebido_por']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['status']) .
-            '\')" aria-label="Relatorio" class="w3-blue"><i class="fa fa-eye w3-large w3-text-black"></i></button>';
+            '\')" aria-label="Relatorio" class="w3-yellow"><i class="fa fa-eye w3-large w3-text-black"></i></button>';
             
             // Botão de exclusão
             echo '<button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Excluir entrega"class="w3-red w3-margin-right w3-margin-left"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
             
             // Botão de edição
-            echo '<button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega" class="w3-yellow"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+            echo '<button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega" class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
             
             echo '</tr>';
         }

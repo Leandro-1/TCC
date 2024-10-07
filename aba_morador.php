@@ -73,8 +73,8 @@
             <th>E-mail</th>
             <th>Apartamento</th>
             <th>Bloco/Quadra</th>
-            <th>Excluir</th>
-            <th>Editar</th>
+            <th>Ações</th>
+        
         </tr>
         <?php
 
@@ -89,8 +89,8 @@
                 echo '<td>' . $linha['email'] . '</td>';
                 echo '<td>' . $linha['num_propriedade'] . '</td>';
                 echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                echo '<td><button onclick="excluirMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                echo '<td><button onclick="editarMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                echo '<td><button onclick="excluirMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"class="w3-red w3-margin-right"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
+                echo '<button onclick="editarMorador(\'' . $linha['cpf'] . '\',\'' . $linha['nome'] . '\',\'' . $linha['telefone'] . '\',\'' . $linha['email'] . '\',\'' . $linha['num_propriedade'] . '\',\'' . $linha['bloco_quadra'] . '\')"class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                 echo '</tr>';
             }
 
