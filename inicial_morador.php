@@ -63,7 +63,7 @@ require_once('conexaoBD.php');
                     echo '<td style="background-color: ' . $cor . ';">' . $linha['status'] . '</td>';
 
                     // colocar mais detalhes relevantes
-                    echo '<td><button onclick="detalhesEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" class="w3-text-blue">Detalhes</button></td>';
+                    echo '<td><button onclick="detalhesEntrega(\'' . $linha['data_recebimento'] . '\',\'' . $linha['recebido_por'] . '\',\'' . $linha['nome_destinatario'] . '\',\'' . $linha['status'] . '\')" aria-label="Relatorio" class="w3-yellow"><i class="fa fa-eye w3-large w3-text-black"></i></button></td>';
                 }
             }
             ?>

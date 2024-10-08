@@ -28,7 +28,6 @@ $(document).ready(function () {
 
 });
 
-
 //função para mostrar a mensagem nas caixas de cadastros(entega,moradores,usuarios e propriedade)
 $(document).ready(function () {
 
@@ -103,7 +102,7 @@ $(document).ready(function () {
     processarForm_Fechar('#form_editar_usuario', '#editar_usuario');
     processarForm_Fechar('#form_editar_propriedade', '#editar_propriedade');
     processarForm_Fechar('#form_status', '#modal_status');
-    
+
 
 
     $('.close-modal').click(function () {

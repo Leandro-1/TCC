@@ -56,47 +56,6 @@ require_once('conexaoBD.php');
 
     </div>
 
-
-    <!--Aba de usuários -->
-    <div id="usuarios" class="w3-container w3-border menu" style="display:none">
-        <div class="w3-container w3-display-top w3-padding">
-            <h2 class="w3-center"><b>Consulta de Usuários</b></h2>
-        </div>
-        <br>
-        <!-- Consulta de usuarios -->
-        <table class="w3-table-all w3-centered w3-hoverable">
-            <tr class="w3-center w3-blue-grey">
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Login</th>
-                <th>Privilégio</th>
-            </tr>
-
-            <?php
-
-            try {
-                $sql = "SELECT * FROM usuario";
-                $resultado = $conexao->query($sql);
-
-                if ($resultado != null) {
-                    foreach ($resultado as $linha) {
-                        echo '<tr class="w3-text-black">';
-                        echo '<td>' . htmlspecialchars($linha['id_user'], ENT_QUOTES, 'UTF-8') . '</td>';
-                        echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
-                        echo '<td>' . htmlspecialchars($linha['login'], ENT_QUOTES, 'UTF-8') . '</td>';
-                        echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                    }
-                } else {
-                    echo '<tr><td colspan="5" class="w3-center">Nenhum usuário encontrado.</td></tr>';
-                }
-            } catch (PDOException $e) {
-                echo '<tr><td colspan="5" class="w3-center">Erro ao consultar usuários: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</td></tr>';
-            }
-            ?>
-        </table><br>
-    </div>
-
-
     <!--Aba de Propriedade -->
     <div id="propriedades" class="w3-container w3-border menu" style="display:none">
         <div class="w3-container w3-display-top w3-padding">
