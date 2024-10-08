@@ -119,7 +119,7 @@
                 echo '<td>' . htmlspecialchars($linha['bloco_quadra']) . '</td>';
                 echo '<td style="background-color: ' . $cor . ';"';
                 if (htmlspecialchars($linha['status']) === "a retirar") {
-                    echo 'onclick="modalStatus(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['status']) . '\',\'' . htmlspecialchars($linha['retirado_por']) . '\')"><b>' . htmlspecialchars($linha['status']) . '</b></td>';
+                    echo 'onclick="modalStatus(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['status']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\')"><b>' . htmlspecialchars($linha['status']) . '</b></td>';
                 } else {
                     echo '><b>' . htmlspecialchars($linha['status']) . '</b></td>';
                 }
@@ -153,6 +153,12 @@
                     <form id="form_status" action="atualizar_statusAction.php" method="post" class="w3-padding">
                         <input type="hidden" id="entregaID" name="id_entrega">
                         <input type="hidden" id="status_atualizar" name="status" required>
+                        <div class="w3-row-padding">
+                            <div class="w3-third">
+                                <label for="propriedade"><b>Propriedade</b></label>
+                                <input class="w3-input w3-border w3-grey" type="text" id="propriedade_status" name="propriedade_status" readonly>
+                            </div>
+                        </div>
                         <div class="w3-row-padding">
                             <div class="w3-half">
                                 <label for="retirado_por"><b>Retirado por</b></label>
@@ -326,20 +332,14 @@
 
                         <!-- Segunda Linha: Apartamento, Bloco e Status -->
                         <div class="w3-row-padding">
-                            <div class="w3-third">
-                                <label for="apartamento"><b>Apartamento</b></label>
+                            <div class="w3-half">
+                                <label for="apartamento"><b>Propriedade</b></label>
                                 <input type="text" id="apartamento_" name="apartamento" class="w3-input w3-grey" readonly>
                             </div>
-                            <div class="w3-third">
-                                <label for="bloco"><b>Bloco</b></label>
-                                <input type="text" id="bloco_" name="bloco" class="w3-input w3-grey" readonly>
-                            </div>
-                            <div class="w3-third">
+                
+                            <div class="w3-half">
                                 <label for="status"><b>Status</b></label>
-                                <select id="status_entrega" name="status" class="w3-select w3-grey" readonly>
-                                    <option value="entregue">Entregue</option>
-                                    <option value="a retirar" selected>A Retirar</option>
-                                </select>
+                                <input id="status_entrega" name="status" class="w3-select w3-grey" readonly>
                             </div>
                         </div>
 
