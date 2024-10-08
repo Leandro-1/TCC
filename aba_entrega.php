@@ -218,7 +218,7 @@
                         <div class="w3-row-padding">
                             <div class="w3-third">
                                 <label for="data_recebimento"><b>Data de Recebimento</b></label>
-                                <input type="date" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
+                                <input type="datetime" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
                             </div>
                             <div class="w3-third">
                                 <label for="tipo"><b>Tipo</b></label>
@@ -283,7 +283,7 @@
                         <div class="w3-row-padding">
                             <div class="w3-half">
                                 <label for="data_retirada"><b>Data de Retirada</b></label>
-                                <input type="date" id="data_retirada" name="data_retirada" class="w3-input">
+                                <input type="datetime" id="data_retirada" name="data_retirada" class="w3-input">
                             </div>
                         </div>
 
