@@ -9,7 +9,7 @@ require_once('cabecalho.php');
         <form id="myForm_alterar_senha" action="alterar_senhaAction.php" method="post">
             <div class="w3-container">
                 <label>Login:</label><br>
-                <input class="w3-input w3-round-xlarge" type="text" name="login_alterarSenha" required>
+                <input class="w3-input w3-round-xlarge" type="email" name="login_alterarSenha" required>
                 <label>Senha Atual:</label><br>
                 <input class="w3-input w3-round-xlarge" type="password" name="senha_atual" required><br><br>
 

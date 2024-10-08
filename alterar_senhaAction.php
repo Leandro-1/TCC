@@ -19,12 +19,15 @@ $resultado = $conexao->query($pesquisaUser);
 if ($resultado->num_rows > 0) {
     $row = $resultado->fetch_assoc();
     $user = $row['id_user'];
+    $primeiro_acesso = $row['primeiro_acesso'];
 
     if ($user === $usuario) {
         if ($nova_senha === $confirmar_senha) {
-
-            $alteraSenha = "UPDATE usuario SET senha = '$nova_senha' WHERE id_user = $user;";
-            
+            if($primeiro_acesso){
+                $alteraSenha = "UPDATE usuario SET senha = '$nova_senha', primeiro_acesso = false WHERE id_user = $user;";
+            }else{
+                 $alteraSenha = "UPDATE usuario SET senha = '$nova_senha' WHERE id_user = $user;";
+            }
             if ($conexao->query($alteraSenha) === TRUE) {
 
                 echo '<h2 class="w3-panel w3-pale-green w3-center w3-text-green">Senha Atualizada!</h2>';
@@ -32,6 +35,7 @@ if ($resultado->num_rows > 0) {
         } else {
             echo '<h2 class="w3-painel w3-pale-yellow w3-center w3-text-yellow">Nova Senha não confere com a Confirmada!</h2>';
         }
+    
     } else {
         echo '<h2 class="w3-painel w3-pale-red w3-center w3-text-red">Usuário Incorreto!</h2>';
     }
