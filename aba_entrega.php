@@ -128,10 +128,10 @@
                     '\')" aria-label="Relatorio" class="w3-yellow"><i class="fa fa-eye w3-large w3-text-black"></i></button>';
 
                 // Botão de exclusão
-                echo '<button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Excluir entrega"class="w3-red w3-margin-right w3-margin-left"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
+                echo '<button onclick="excluirEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\',\'' . htmlspecialchars($linha['data_retirada']) . '\',\'' . htmlspecialchars($linha['remetente']) . '\',\'' . htmlspecialchars($linha['num_registro']) . '\',\'' . htmlspecialchars($linha['retirado_por']) . '\')" aria-label="Excluir entrega"class="w3-red w3-margin-right w3-margin-left"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
 
                 // Botão de edição
-                echo '<button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['num_propriedade']) . '\',\'' . htmlspecialchars($linha['bloco_quadra']) . '\',\'' . htmlspecialchars($linha['status']) . '\')" aria-label="Editar entrega" class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                echo '<button onclick="editarEntrega(\'' . htmlspecialchars($linha['id_entrega']) . '\',\'' . htmlspecialchars($linha['data_recebimento']) . '\',\'' . htmlspecialchars($linha['tipo']) . '\',\'' . htmlspecialchars($linha['nome_destinatario']) . '\',\'' . htmlspecialchars($linha['id_residencia']) . '\',\'' . htmlspecialchars($linha['data_retirada']) . '\',\'' . htmlspecialchars($linha['status']) . '\',\'' . htmlspecialchars($linha['remetente']) . '\',\'' . htmlspecialchars($linha['num_registro']) . '\',\'' . htmlspecialchars($linha['retirado_por']) . '\')" aria-label="Editar entrega" class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
 
                 echo '</tr>';
             }
@@ -214,31 +214,38 @@
                     <form id="form_editar_entrega" action="editar_entregaAction.php" method="post" class="w3-padding">
                         <input type="hidden" id="id_entrega" name="id_entrega">
 
-                        <!-- Primeira Linha: Data de Recebimento, Tipo e Destinatário -->
+                        <!-- Primeira Linha: Data de Recebimento, Tipo e status -->
                         <div class="w3-row-padding">
                             <div class="w3-third">
                                 <label for="data_recebimento"><b>Data de Recebimento</b></label>
-                                <input type="datetime" id="data_recebimento" name="data_recebimento" class="w3-input w3-light-grey" readonly>
+                                <input type="datetime" id="dt_recebimento" name="data_recebimento" class="w3-input w3-border w3-light-grey" readonly>
                             </div>
                             <div class="w3-third">
                                 <label for="tipo"><b>Tipo</b></label>
-                                <select id="tipo" name="tipo" class="w3-select" required>
+                                <select id="tipo_entrega" name="tipo" class="w3-select w3-border" required>
                                     <option value="e-commerce">E-COMMERCE</option>
                                     <option value="carta">CARTA</option>
                                     <option value="sedex">SEDEX</option>
                                 </select>
                             </div>
                             <div class="w3-third">
-                                <label for="destinatario"><b>Destinatário</b></label>
-                                <input type="text" id="destinatario" name="destinatario" class="w3-input" required>
+                                <label for="status"><b>Status</b></label>
+                                <select id="status" name="status" class="w3-select w3-border" required>
+                                    <option value="entregue">Entregue</option>
+                                    <option value="a retirar" selected>A Retirar</option>
+                                </select>
                             </div>
                         </div>
 
-                        <!-- Segunda Linha: Propriedade, Status e Retirado por -->
+                        <!-- Segunda Linha: Propriedade, destinatario-->
                         <div class="w3-row-padding">
-                            <div class="w3-third">
+                            <div class="w3-half">
+                                <label for="destinatario"><b>Destinatário</b></label>
+                                <input type="text" id="nome_destinatario" name="destinatario" class="w3-input w3-border" required>
+                            </div>
+                            <div class="w3-half">
                                 <label for="propriedade"><b>Propriedade</b></label>
-                                <select id="propriedade" name="propriedade" class="w3-select w3-border" required>
+                                <select id="numero_propriedade" name="propriedade" class="w3-select w3-border" required>
                                     <?php
                                     $query = "SELECT id_propriedade, bloco_quadra, num_propriedade FROM propriedade";
                                     $result = $conexao->query($query);
@@ -254,36 +261,29 @@
                                     ?>
                                 </select>
                             </div>
-                            <div class="w3-third">
-                                <label for="status"><b>Status</b></label>
-                                <select id="status" name="status" class="w3-select" required>
-                                    <option value="entregue">Entregue</option>
-                                    <option value="a retirar" selected>A Retirar</option>
-                                </select>
-                            </div>
-                            <div class="w3-third">
-                                <label for="retirado_por"><b>Retirado por</b></label>
-                                <input type="text" id="retirado_por" name="retirado_por" class="w3-input">
-                            </div>
                         </div>
 
                         <!-- Terceira Linha: Remetente e Número de Registro -->
                         <div class="w3-row-padding">
                             <div class="w3-half">
                                 <label for="remetente"><b>Remetente</b></label>
-                                <input type="text" id="remetente" name="remetente" class="w3-input">
+                                <input type="text" id="nome_remetente" name="remetente" class="w3-input w3-border">
                             </div>
                             <div class="w3-half">
                                 <label for="num_registro"><b>Número de Registro</b></label>
-                                <input type="text" id="num_registro" name="num_registro" class="w3-input">
+                                <input type="text" id="registro_numero" name="num_registro" class="w3-input w3-border">
                             </div>
                         </div>
 
                         <!-- Quarta Linha: Data de Retirada -->
                         <div class="w3-row-padding">
                             <div class="w3-half">
-                                <label for="data_retirada"><b>Data de Retirada</b></label>
-                                <input type="datetime" id="data_retirada" name="data_retirada" class="w3-input">
+                                <label><b>Data de Retirada</b></label>
+                                <input type="datetime" id="data_retirada" name="data_retirada" class="w3-input w3-border">
+                            </div>
+                            <div class="w3-half">
+                                <label for="retirado_por"><b>Retirado por</b></label>
+                                <input type="text" id="retirado_por" name="retirado_por" class="w3-input w3-border">
                             </div>
                         </div>
 
@@ -296,6 +296,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Excluir Entregas -->
     <div id="excluir_entrega" class="w3-modal">
@@ -318,28 +319,27 @@
                             </div>
                             <div class="w3-third">
                                 <label for="tipo"><b>Tipo</b></label>
-                                <select id="tipo_entrega" name="tipo" class="w3-select w3-grey" readonly>
+                                <select id="tipo_encomenda" name="tipo" class="w3-select w3-grey" readonly>
                                     <option value="e-commerce">E-COMMERCE</option>
                                     <option value="carta">CARTA</option>
                                     <option value="sedex">SEDEX</option>
                                 </select>
                             </div>
                             <div class="w3-third">
-                                <label for="destinatario_entrega"><b>Destinatário</b></label>
-                                <input type="text" id="destinatario_entrega" name="destinatario" class="w3-input w3-grey" readonly>
+                                <label for="status"><b>Status</b></label>
+                                <input id="status_entrega" name="status" class="w3-select w3-grey" readonly>
                             </div>
                         </div>
 
                         <!-- Segunda Linha: Apartamento, Bloco e Status -->
                         <div class="w3-row-padding">
                             <div class="w3-half">
+                                <label for="destinatario_entrega"><b>Destinatário</b></label>
+                                <input type="text" id="destinatario_entrega" name="destinatario" class="w3-input w3-grey" readonly>
+                            </div>
+                            <div class="w3-half">
                                 <label for="apartamento"><b>Propriedade</b></label>
                                 <input type="text" id="apartamento_" name="apartamento" class="w3-input w3-grey" readonly>
-                            </div>
-                
-                            <div class="w3-half">
-                                <label for="status"><b>Status</b></label>
-                                <input id="status_entrega" name="status" class="w3-select w3-grey" readonly>
                             </div>
                         </div>
 
@@ -347,11 +347,23 @@
                         <div class="w3-row-padding">
                             <div class="w3-half">
                                 <label for="remetente"><b>Remetente</b></label>
-                                <input type="text" id="remetente" name="remetente" class="w3-input w3-grey" readonly>
+                                <input type="text" id="remetente_nome" name="remetente" class="w3-input w3-grey" readonly>
                             </div>
                             <div class="w3-half">
                                 <label for="num_registro"><b>Número de Registro</b></label>
-                                <input type="text" id="num_registro" name="num_registro" class="w3-input w3-grey" readonly>
+                                <input type="text" id="registro" name="num_registro" class="w3-input w3-grey" readonly>
+                            </div>
+                        </div>
+                        <!-- Quarta Linha: Data de Retirada -->
+                        <div class="w3-row-padding">
+
+                            <div class="w3-half">
+                                <label><b>Data de Retirada</b></label>
+                                <input type="datetime" id="dt_retirada" name="data_retirada" class="w3-input w3-grey" readonly>
+                            </div>
+                            <div class="w3-half">
+                                <label for="retirado_por"><b>Retirado por</b></label>
+                                <input type="text" id="retirado_nome" name="retirado_por" class="w3-input w3-grey" readonly>
                             </div>
                         </div>
 
