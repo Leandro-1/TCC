@@ -36,6 +36,7 @@
         $row = $verifica_email->fetch_assoc();
         $telefone = $row['telefone'];
         $nome_usuario = $row['nome'];
+        $telCodificado ="XX XXXXX-". substr($telefone, -4);
 
         $stmt = $conexao->prepare("UPDATE usuario SET token = ?, expirar_token = ? WHERE login = ?");
         $stmt->bind_param("sss", $token, $expirar_token, $email);
@@ -74,7 +75,7 @@
                 <h2 class="w3-center">Conpac</h2><br>
                 <form id="esqueceu_senha" action="verificar_token.php" method="post">
                     <div class="w3-container">
-                        <h5 class="w3-center">Você receberá um código no seu WhatsApp</h5><br>
+                        <h5 class="w3-center">Você receberá um código no seu WhatsApp '. $telCodificado .'</h5><br>
                         <label><b>Código:</b></label>
                         <input class="w3-input w3-round-xlarge" id="token" name="token" required>
                         <input type="hidden" name="email" value="' . htmlspecialchars($email) . '">
