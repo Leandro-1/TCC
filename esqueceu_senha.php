@@ -28,7 +28,7 @@
         <h2 class="w3-center">Conpac</h2><br>
         <form id="esqueceu_senha" action="esqueceu_senhaAction.php" method="post">
             <div class="w3-container">
-                <h5 class="w3center">Você receberá um código no seu e-mail</h5><br>
+               
                 <label ><b>Email:</b></label>
                 <input class="w3-input w3-round-xlarge" type="email" name="login" required>
                 <br>
