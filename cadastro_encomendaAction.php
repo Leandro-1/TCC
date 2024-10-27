@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
                 $params = array(
                     'token' => 'ptp03f45bypg9v80',
                     'to' => $telefone,
-                    'body' => "Olá $nomeMorador, tenho uma boa noticia.. Chegou uma encomenda 🎉! Quando puder,venha retirar na portaria.😁"
+                    'body' => "Olá, $nomeMorador! Tenho uma boa noticia.. Chegou uma encomenda! Quando puder, venha retirar na portaria 😁"
                 );
 
                 // Configurando e executando o curl para cada número
