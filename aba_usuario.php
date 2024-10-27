@@ -59,8 +59,8 @@
             <th>Nome</th>
             <th>Login</th>
             <th>Privilégio</th>
-            <th>Excluir</th>
-            <th>Editar</th>
+            <th>Ações</th>
+          
         </tr>
 
         <?php
@@ -76,8 +76,8 @@
                     echo '<td>' . htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['login'], ENT_QUOTES, 'UTF-8') . '</td>';
                     echo '<td>' . htmlspecialchars($linha['privilegio'], ENT_QUOTES, 'UTF-8') . '</td>';
-                    echo '<td><button onclick="excluirUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')"><i class="fa fa-user-times w3-large w3-text-black"></i></button></td>';
-                    echo '<td><button onclick="editarUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                    echo '<td><button onclick="excluirUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')"class="w3-red w3-margin-right"><i class="fa fa-user-times w3-large w3-text-black"></i></button>';
+                    echo '<button onclick="editarUsuario(\'' . $linha['id_user'] . '\', \'' . $linha['nome'] . '\', \'' . $linha['login'] . '\', \'' . $linha['privilegio'] . '\')" class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                     echo '</tr>';
                 }
             } else {

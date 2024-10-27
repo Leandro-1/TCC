@@ -28,7 +28,6 @@ $(document).ready(function () {
 
 });
 
-
 //função para mostrar a mensagem nas caixas de cadastros(entega,moradores,usuarios e propriedade)
 $(document).ready(function () {
 
@@ -59,7 +58,7 @@ $(document).ready(function () {
             });
         });
     }
-    processarFormularioCadastro('#form_entrega');
+    processarFormularioCadastro('#myForm_entrega');
     processarFormularioCadastro('#myForm_morador');
     processarFormularioCadastro('#myForm_usuario');
     processarFormularioCadastro('#myForm_propriedade');
@@ -102,6 +101,8 @@ $(document).ready(function () {
     processarForm_Fechar('#form_editar_morador', '#editar_morador');
     processarForm_Fechar('#form_editar_usuario', '#editar_usuario');
     processarForm_Fechar('#form_editar_propriedade', '#editar_propriedade');
+    processarForm_Fechar('#form_status', '#modal_status');
+
 
 
     $('.close-modal').click(function () {
@@ -110,30 +111,40 @@ $(document).ready(function () {
     });
 });
 
-
-function editarEntrega(id, data, tipo, nome, propriedade, status, data_retirada) {
+function modalStatus(id, status, numPropriedade, blocoQuadra) {
+    document.getElementById('entregaID').value = id;
+    document.getElementById('status_atualizar').value = status;
+    document.getElementById('propriedade_status').value = `${numPropriedade} - ${blocoQuadra}`;
+    document.getElementById('modal_status').style.display = 'block';
+}
+function editarEntrega(id, data, tipo, nome, propriedade, data_retirada, status, remetente,num_registro, retirado_por ) {
+    console.log(id, data, tipo, nome, propriedade, status, data_retirada);
     document.getElementById('id_entrega').value = id;
-    document.getElementById('data_recebimento').value = data;
-    document.getElementById('tipo').value = tipo;
-    document.getElementById('destinatario').value = nome;
-    document.getElementById('propriedade').value = propriedade; // Atualiza a propriedade
+    document.getElementById('dt_recebimento').value = data;
+    document.getElementById('tipo_entrega').value = tipo;
+    document.getElementById('nome_destinatario').value = nome;
+    document.getElementById('numero_propriedade').value = propriedade;
     document.getElementById('status').value = status;
-    document.getElementById('data_retirada').value = data_retirada; // Preenche a data de retirada
-
-    // Exibe o modal de edição
+    document.getElementById('data_retirada').value = data_retirada;
+    document.getElementById('registro_numero').value = num_registro;
+    document.getElementById('nome_remetente').value = remetente;
+    document.getElementById('retirado_por').value = retirado_por;
     document.getElementById('editar_entrega').style.display = 'block';
 }
 
 
 
-function excluirEntrega(id, data, tipo, nome, numero, bloco, status) {
+function excluirEntrega(id, data, tipo, nome, numero, bloco, status, data_retirada, remetente, num_registro, retirado_por) {
     document.getElementById('cod_entrega').value = id;
     document.getElementById('data_receb').value = data;
     document.getElementById('tipo_entrega').value = tipo;
     document.getElementById('destinatario_entrega').value = nome;
-    document.getElementById('apartamento_').value = numero;
-    document.getElementById('bloco_').value = bloco;
+    document.getElementById('apartamento_').value = `${numero} - ${bloco}`;
     document.getElementById('status_entrega').value = status;
+    document.getElementById('dt_retirada').value = data_retirada;
+    document.getElementById('registro').value = num_registro;
+    document.getElementById('remetente_nome').value = remetente;
+    document.getElementById('retirado_nome').value = retirado_por;
     document.getElementById('excluir_entrega').style.display = 'block';
 
 }

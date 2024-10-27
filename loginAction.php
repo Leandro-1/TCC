@@ -1,8 +1,6 @@
 <?php
-
 session_start();
 require_once 'conexaoBD.php';
-
 
 $login = $_POST['login'];
 $senha = $_POST['senha'];
@@ -18,20 +16,22 @@ if ($linha && $linha['senha'] == $senha) {
     $_SESSION['nome'] = $linha['nome'];
     $_SESSION['login'] = $linha['login'];
     $_SESSION['privilegio'] = $linha['privilegio'];
+    $_SESSION['primeiro_acesso'] = $linha['primeiro_acesso'];
 
-    // Redirecionamento baseado no privilegio do usuário
-    if ($_SESSION['privilegio'] == 'administrador') {
-        header('Location: inicial_adm.php');
-    } elseif ($_SESSION['privilegio'] == 'operador') {
-        header('Location: inicial_operador.php');
-    } elseif ($_SESSION['privilegio'] == 'morador') {
-        header('Location: inicial_morador.php');
+    if ($linha['primeiro_acesso']) {
+        header('Location: alterar_senha.php');
     } else {
-        header('Location: acessonegado.php');
+        // Redirecionamento baseado no privilegio do usuário
+        if ($_SESSION['privilegio'] == 'administrador') {
+            header('Location: inicial_adm.php');
+        } elseif ($_SESSION['privilegio'] == 'operador') {
+            header('Location: inicial_operador.php');
+        } elseif ($_SESSION['privilegio'] == 'morador') {
+            header('Location: inicial_morador.php');
+        } else {
+            header('Location: acessonegado.php');
+        }
     }
 } else {
     header('Location: acessonegado.php');
 }
-
-?>
-

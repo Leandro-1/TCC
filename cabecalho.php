@@ -14,6 +14,10 @@
 
 
 <body style="background-color:  #E8E8E8;">
+    <?php
+    date_default_timezone_set('America/Sao_Paulo');
+    session_start();
+    ?>
 
     <nav class="w3-bar w3-mobile w3-top w3-center " style="height: 50px;">
         <img src="imagens_logo/logo_semFundo.png" alt="" class="w3-bar-item w3-left item_nav" style="width: 5%;">

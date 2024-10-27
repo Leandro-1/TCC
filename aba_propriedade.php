@@ -46,7 +46,7 @@
             <th>Código</th>
             <th>Número</th>
             <th>Bloco/Quadra</th>
-            <th>Editar</th>
+            <th>Ações</th>
         </tr>
         <?php
         require_once('conexaoBD.php');
@@ -58,7 +58,7 @@
                 echo '<td>' . $linha['id_propriedade'] . '</td>';
                 echo '<td>' . $linha['num_propriedade'] . '</td>';
                 echo '<td>' . $linha['bloco_quadra'] . '</td>';
-                echo '<td><button onclick="editarPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
+                echo '<td><button onclick="editarPropriedade(\'' . $linha['id_propriedade'] . '\', \'' . $linha['num_propriedade'] . '\', \'' . $linha['bloco_quadra'] . '\')"class="w3-blue"><i class="fa fa-pen-to-square w3-large w3-text-black"></i></button></td>';
                 echo '</tr>';
             }
         ?>
